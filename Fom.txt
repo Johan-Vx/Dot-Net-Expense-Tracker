@@ -1,0 +1,38 @@
+1. Khung ứng dụng chính (Main Shell - Window)
+- Giao diện desktop sẽ được chia làm hai phần chính bằng thẻ <Grid>:
+
+- Thanh điều hướng bên trái (Sidebar Navigation): Một cột cố định chứa menu các tính năng chính của ứng dụng.
+
+Vùng nội dung (Content Area): Phần không gian rộng bên phải để hiển thị giao diện tương ứng khi người dùng click vào một mục trên Sidebar.
+
+Dưới đây là chi tiết 5 màn hình sẽ xuất hiện trong vùng nội dung:
+
+2. Màn hình Tổng quan (Dashboard)
+
+- Thẻ tóm tắt (Summary Cards): 3 khối nổi bật hiển thị: Tổng số dư hiện tại, Tổng thu nhập, và Tổng chi phí trong tháng.
+
+- Biểu đồ (Charts): Vùng hiển thị biểu đồ tròn (Donut chart) phân tích tỷ trọng chi tiêu theo từng hạng mục để người dùng có cái nhìn trực quan nhất.
+
+3. Màn hình Giao dịch (Transactions)
+
+- Danh sách (List View): Sử dụng <ListView> để liệt kê lịch sử thu/chi, hiển thị dữ liệu kết xuất từ bảng GIAODICH. Mỗi dòng sẽ có icon hạng mục, ngày giờ, ghi chú, tên tài khoản sử dụng và số tiền.
+
+- Thêm mới giao dịch: Một cửa sổ popup hoặc một panel trượt ra chứa form nhập liệu: TextBox nhập số tiền (có thể tích hợp bàn phím máy tính nhỏ), ComboBox chọn phân loại từ bảng DANHMUC và NGUONTIEN, ô ghi chú, và một nút bấm để đính kèm hình ảnh.
+
+4. Màn hình Lập ngân sách (Budgets)
+
+- Hiển thị danh sách các thẻ ngân sách theo tháng.
+
+- Mỗi thẻ sử dụng thanh tiến trình (Progress Bar) để đối chiếu trực quan giữa giới hạn từ bảng NGANSACH và số tiền thực tế đã tiêu. Thanh này có thể đổi màu (xanh sang đỏ) khi người dùng chi tiêu sắp vượt ngưỡng.
+
+5. Màn hình Tài khoản (Accounts)
+
+- Hiển thị dạng danh sách (Cards) các nguồn tiền đang có dựa trên bảng NGUONTIEN (ví dụ: Ví tiền mặt, Thẻ TPBank).
+
+- Giao diện hiển thị số dư hiện tại của từng ví và tổng tài sản.
+
+6. Màn hình Danh mục (Categories)
+
+- Giao diện chia làm 2 tab con (TabControl): Danh mục Thu và Danh mục Chi.
+
+- Sử dụng <ListView> hoặc <DataGrid> để liệt kê dữ liệu từ bảng DANHMUC, cho phép người dùng thêm, sửa, hoặc xóa các hạng mục (như Lương, Ăn uống, Giải trí) cùng với các biểu tượng (icon) tương ứng
