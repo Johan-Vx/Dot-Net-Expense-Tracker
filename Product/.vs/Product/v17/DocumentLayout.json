@@ -1,0 +1,83 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\Johan\\Year_2_Spring_term\\Technologies DotNet\\Project\\Product\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{FBA27771-9FE5-453A-BF7A-44E25C21BBB2}|Expense_Tracker\\Expense_Tracker.csproj|d:\\johan\\year_2_spring_term\\technologies dotnet\\project\\product\\expense_tracker\\view\\accountsview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{FBA27771-9FE5-453A-BF7A-44E25C21BBB2}|Expense_Tracker\\Expense_Tracker.csproj|solutionrelative:expense_tracker\\view\\accountsview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FBA27771-9FE5-453A-BF7A-44E25C21BBB2}|Expense_Tracker\\Expense_Tracker.csproj|D:\\Johan\\Year_2_Spring_term\\Technologies DotNet\\Project\\Product\\expense_tracker\\view\\dashboardview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{FBA27771-9FE5-453A-BF7A-44E25C21BBB2}|Expense_Tracker\\Expense_Tracker.csproj|solutionrelative:expense_tracker\\view\\dashboardview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FBA27771-9FE5-453A-BF7A-44E25C21BBB2}|Expense_Tracker\\Expense_Tracker.csproj|D:\\Johan\\Year_2_Spring_term\\Technologies DotNet\\Project\\Product\\expense_tracker\\viewmodel\\accoutntsviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FBA27771-9FE5-453A-BF7A-44E25C21BBB2}|Expense_Tracker\\Expense_Tracker.csproj|solutionrelative:expense_tracker\\viewmodel\\accoutntsviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FBA27771-9FE5-453A-BF7A-44E25C21BBB2}|Expense_Tracker\\Expense_Tracker.csproj|D:\\Johan\\Year_2_Spring_term\\Technologies DotNet\\Project\\Product\\expense_tracker\\model\\accountmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FBA27771-9FE5-453A-BF7A-44E25C21BBB2}|Expense_Tracker\\Expense_Tracker.csproj|solutionrelative:expense_tracker\\model\\accountmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 1,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedHeight": 228,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "AccoutntsViewModel.cs",
+              "DocumentMoniker": "D:\\Johan\\Year_2_Spring_term\\Technologies DotNet\\Project\\Product\\Expense_Tracker\\ViewModel\\AccoutntsViewModel.cs",
+              "RelativeDocumentMoniker": "Expense_Tracker\\ViewModel\\AccoutntsViewModel.cs",
+              "ToolTip": "D:\\Johan\\Year_2_Spring_term\\Technologies DotNet\\Project\\Product\\Expense_Tracker\\ViewModel\\AccoutntsViewModel.cs",
+              "RelativeToolTip": "Expense_Tracker\\ViewModel\\AccoutntsViewModel.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAxwBQAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-26T14:57:13.647Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "AccountModel.cs",
+              "DocumentMoniker": "D:\\Johan\\Year_2_Spring_term\\Technologies DotNet\\Project\\Product\\Expense_Tracker\\Model\\AccountModel.cs",
+              "RelativeDocumentMoniker": "Expense_Tracker\\Model\\AccountModel.cs",
+              "ToolTip": "D:\\Johan\\Year_2_Spring_term\\Technologies DotNet\\Project\\Product\\Expense_Tracker\\Model\\AccountModel.cs",
+              "RelativeToolTip": "Expense_Tracker\\Model\\AccountModel.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABAAAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-26T14:56:03.897Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "AccountsView.xaml",
+              "DocumentMoniker": "D:\\Johan\\Year_2_Spring_term\\Technologies DotNet\\Project\\Product\\Expense_Tracker\\View\\AccountsView.xaml",
+              "RelativeDocumentMoniker": "Expense_Tracker\\View\\AccountsView.xaml",
+              "ToolTip": "D:\\Johan\\Year_2_Spring_term\\Technologies DotNet\\Project\\Product\\Expense_Tracker\\View\\AccountsView.xaml",
+              "RelativeToolTip": "Expense_Tracker\\View\\AccountsView.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-03-26T14:45:59.526Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "DashBoardView.xaml",
+              "DocumentMoniker": "D:\\Johan\\Year_2_Spring_term\\Technologies DotNet\\Project\\Product\\Expense_Tracker\\View\\DashBoardView.xaml",
+              "RelativeDocumentMoniker": "Expense_Tracker\\View\\DashBoardView.xaml",
+              "ToolTip": "D:\\Johan\\Year_2_Spring_term\\Technologies DotNet\\Project\\Product\\Expense_Tracker\\View\\DashBoardView.xaml",
+              "RelativeToolTip": "Expense_Tracker\\View\\DashBoardView.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-03-26T09:06:49.254Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
