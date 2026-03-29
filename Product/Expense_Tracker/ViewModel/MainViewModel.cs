@@ -20,12 +20,14 @@ namespace Expense_Tracker.ViewModel
         public RelayCommand ShowDashBoardCommand { get; }
         public RelayCommand ShowBudgetsCommand { get; }
         public RelayCommand ShowAccountsCommand { get; }
+        public RelayCommand ShowTransactionCommand { get; }
         public MainViewModel()
         { 
             CurrentChildView = new DashBoardView();
-            ShowDashBoardCommand = new RelayCommand(_ => { CurrentChildView = new DashBoardView();});
-            ShowBudgetsCommand = new RelayCommand(_ => CurrentChildView = new BudgetsView());
+            ShowDashBoardCommand = new RelayCommand(_ =>  CurrentChildView = new DashBoardView());
+            ShowBudgetsCommand=new RelayCommand(_ => CurrentChildView=new BudgetsView());
             ShowAccountsCommand = new RelayCommand(_ => CurrentChildView = new AccoutntsViewModel());
+            ShowTransactionCommand = new RelayCommand(_ => CurrentChildView = new TransactionsViewModel());
         }
     } 
 }
