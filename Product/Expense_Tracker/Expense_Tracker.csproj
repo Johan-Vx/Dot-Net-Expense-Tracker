@@ -58,11 +58,14 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Model\AccountModel.cs" />
+    <Compile Include="Model\BudgetModel.cs" />
+    <Compile Include="Model\TransactionModel.cs" />
     <Compile Include="Module\BaseViewModel.cs" />
     <Compile Include="ViewModel\AccoutntsViewModel.cs" />
     <Compile Include="ViewModel\DashBoardViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="Module\RelayCommand.cs" />
+    <Compile Include="ViewModel\TransactionsViewModel.cs" />
     <Compile Include="View\AccountsView.xaml.cs">
       <DependentUpon>AccountsView.xaml</DependentUpon>
     </Compile>

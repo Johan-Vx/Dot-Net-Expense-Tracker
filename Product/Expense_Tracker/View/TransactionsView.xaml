@@ -5,8 +5,45 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Expense_Tracker.View"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800" Background="Green">
-    <Grid>
-        <TextBlock Text="Transaction View" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24"/>
+             d:DesignHeight="450" d:DesignWidth="800" Background="Black">
+    <Grid Margin="15">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Giao dịch"
+                   FontSize="20"
+                   FontWeight="Bold"
+                   Foreground="White"
+                   Margin="0,0,0,15"/>
+
+        <!-- List -->
+        <ScrollViewer Grid.Row="1">
+            <ItemsControl ItemsSource="{Binding Transactions}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border Background="#1C2420" CornerRadius="10" Padding="10" Margin="0,0,0,10">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+
+                                <StackPanel>
+                                    <TextBlock Text="{Binding GhiChu}" Foreground="White" FontWeight="SemiBold"/>
+                                    <TextBlock Text="{Binding ThoiGian}" Foreground="#8A9A92" FontSize="12"/>
+                                </StackPanel>
+
+                                <TextBlock Grid.Column="1"
+                                           Text="{Binding SoTienText}"
+                                           Foreground="Red"
+                                           FontWeight="Bold"/>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
     </Grid>
 </UserControl>
