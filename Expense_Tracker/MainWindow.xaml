@@ -1,0 +1,58 @@
+<Window x:Class="Expense_Tracker.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Expense_Tracker"
+        mc:Ignorable="d"
+        Title="Quản lý Quỹ Thu Chi" Height="720" Width="1080"
+        WindowStartupLocation="CenterScreen"
+        Background="{StaticResource ColorBackground}">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="220"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Sidebar -->
+        <Border Grid.Column="0" Background="{StaticResource ColorSurface}">
+            <DockPanel LastChildFill="False">
+                <StackPanel DockPanel.Dock="Top" Margin="10,20,10,20">
+                    <TextBlock Text="QUẢN LÝ QUỸ" FontSize="20" FontWeight="Bold" Foreground="{StaticResource ColorAccent}" HorizontalAlignment="Center" Margin="0,0,0,20"/>
+                    
+                    <!-- User Info -->
+                    <Border Background="#33334A" CornerRadius="5" Padding="10" Margin="0,0,0,20">
+                        <StackPanel>
+                            <TextBlock Text="{Binding CurrentUserName}" FontWeight="Bold" FontSize="16"/>
+                            <TextBlock Text="{Binding CurrentUserRole}" Foreground="{StaticResource ColorTextMuted}"/>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Navigation -->
+                    <Button Content="📊 Dashboard" Command="{Binding NavigateDashboardCommand}" Style="{StaticResource SidebarButtonStyle}"/>
+                    <Button Content="📝 Lập Phiếu" Command="{Binding NavigatePhieuThuChiCommand}" Style="{StaticResource SidebarButtonStyle}"/>
+                    <Button Content="📖 Sổ Quỹ" Command="{Binding NavigateLedgerCommand}" Style="{StaticResource SidebarButtonStyle}"/>
+                    
+                    <Button Content="⚙️ Cài Đặt" Command="{Binding NavigateSettingsCommand}">
+                        <Button.Style>
+                            <Style TargetType="Button" BasedOn="{StaticResource SidebarButtonStyle}">
+                                <Setter Property="Visibility" Value="Collapsed"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding IsAdmin}" Value="True">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                </StackPanel>
+
+                <!-- Logout -->
+                <Button DockPanel.Dock="Bottom" Content="🚪 Đăng Xuất" Command="{Binding LogoutCommand}" Style="{StaticResource SidebarButtonStyle}" Margin="10,0,10,20"/>
+            </DockPanel>
+        </Border>
+
+        <!-- Main Content -->
+        <ContentControl Grid.Column="1" Content="{Binding CurrentView}" Margin="20"/>
+    </Grid>
+</Window>
