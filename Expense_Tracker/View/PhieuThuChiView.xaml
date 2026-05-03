@@ -1,0 +1,112 @@
+<UserControl x:Class="Expense_Tracker.View.PhieuThuChiView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Expense_Tracker.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Lập Phiếu Thu / Chi" FontSize="28" FontWeight="Bold" Foreground="{StaticResource ColorTextPrimary}" Margin="0,0,0,20" Grid.Row="0"/>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="3*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Master List -->
+            <Border Grid.Column="0" Style="{StaticResource CardBorderStyle}">
+                <DockPanel>
+                    <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,10,0,0">
+                        <Button Content="Thêm Mới" Command="{Binding AddCommand}" Style="{StaticResource PrimaryButtonStyle}" Margin="0,0,10,0"/>
+                    </StackPanel>
+                    <DataGrid ItemsSource="{Binding PhieuThuChis}" SelectedItem="{Binding SelectedPhieu}" Style="{StaticResource DataGridDarkStyle}" IsReadOnly="True" SelectionMode="Single">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Ngày Lập" Binding="{Binding NgayLap, StringFormat=dd/MM/yyyy}"/>
+                            <DataGridTextColumn Header="Loại" Binding="{Binding LoaiPhieu}"/>
+                            <DataGridTextColumn Header="Số Tiền" Binding="{Binding TongTien, StringFormat={}{0:N0}}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </DockPanel>
+            </Border>
+
+            <!-- Detail View -->
+            <Border Grid.Column="1">
+                <Border.Style>
+                    <Style TargetType="Border" BasedOn="{StaticResource CardBorderStyle}">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding SelectedPhieu}" Value="{x:Null}">
+                                <Setter Property="IsEnabled" Value="False"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Border.Style>
+                <DockPanel>
+                    <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,15,0,0">
+                        <Button Content="Xóa" Command="{Binding DeleteCommand}" Style="{StaticResource DangerButtonStyle}" Margin="0,0,10,0"/>
+                        <Button Content="Lưu" Command="{Binding SaveCommand}" Style="{StaticResource PrimaryButtonStyle}"/>
+                    </StackPanel>
+
+                    <ScrollViewer VerticalScrollBarVisibility="Auto">
+                        <StackPanel Margin="0,0,15,0" DataContext="{Binding SelectedPhieu}">
+                            
+                            <Grid Margin="0,0,0,15">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <StackPanel Grid.Column="0" Margin="0,0,10,0">
+                                    <TextBlock Text="Ngày Lập" Margin="0,0,0,5" Foreground="{StaticResource ColorTextMuted}"/>
+                                    <DatePicker SelectedDate="{Binding NgayLap}"/>
+                                </StackPanel>
+                                <StackPanel Grid.Column="1">
+                                    <TextBlock Text="Loại Phiếu" Margin="0,0,0,5" Foreground="{StaticResource ColorTextMuted}"/>
+                                    <ComboBox ItemsSource="{Binding DataContext.LoaiPhieus, RelativeSource={RelativeSource AncestorType=UserControl}}" SelectedItem="{Binding LoaiPhieu}"/>
+                                </StackPanel>
+                            </Grid>
+
+                            <Grid Margin="0,0,0,15">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <StackPanel Grid.Column="0" Margin="0,0,10,0">
+                                    <TextBlock Text="Người Nộp / Nhận" Margin="0,0,0,5" Foreground="{StaticResource ColorTextMuted}"/>
+                                    <TextBox Text="{Binding NguoiNopNhan}"/>
+                                </StackPanel>
+                                <StackPanel Grid.Column="1">
+                                    <TextBlock Text="Tài Khoản Quỹ" Margin="0,0,0,5" Foreground="{StaticResource ColorTextMuted}"/>
+                                    <ComboBox ItemsSource="{Binding DataContext.TaiKhoanQuys, RelativeSource={RelativeSource AncestorType=UserControl}}" SelectedItem="{Binding TaiKhoanQuy}" DisplayMemberPath="TenQuy"/>
+                                </StackPanel>
+                            </Grid>
+
+                            <TextBlock Text="Lý Do" Margin="0,0,0,5" Foreground="{StaticResource ColorTextMuted}"/>
+                            <TextBox Text="{Binding LyDoChung}" Height="60" TextWrapping="Wrap" AcceptsReturn="True" Margin="0,0,0,15"/>
+
+                            <TextBlock Text="Chi Tiết Phiếu" FontSize="16" FontWeight="SemiBold" Margin="0,0,0,10"/>
+                            <DataGrid ItemsSource="{Binding DataContext.ChiTietPhieus, RelativeSource={RelativeSource AncestorType=UserControl}}" Style="{StaticResource DataGridDarkStyle}" Height="150" CanUserAddRows="True" CanUserDeleteRows="True" AutoGenerateColumns="False">
+                                <DataGrid.Columns>
+                                    <DataGridComboBoxColumn Header="Danh Mục" 
+                                                            ItemsSource="{Binding DataContext.DanhMucs, RelativeSource={RelativeSource AncestorType=UserControl}}" 
+                                                            DisplayMemberPath="TenDM" 
+                                                            SelectedValuePath="MaDM"
+                                                            SelectedValueBinding="{Binding MaDM}"
+                                                            Width="150"/>
+                                    <DataGridTextColumn Header="Ghi Chú" Binding="{Binding GhiChu}" Width="*"/>
+                                    <DataGridTextColumn Header="Số Tiền" Binding="{Binding SoTien}" Width="100"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+
+                        </StackPanel>
+                    </ScrollViewer>
+                </DockPanel>
+            </Border>
+        </Grid>
+    </Grid>
+</UserControl>

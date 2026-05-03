@@ -1,5 +1,16 @@
 Images
 Structure
+<<<<<<< HEAD
 Form.txt
 ref.jpg
 Research.docx
+=======
+Member
+Research.docx
+Form.txt
+.agent
+artifact
+errors
+.vs
+.env
+>>>>>>> 4d57f41d833566a97260a87249fd7f2a8735e7a3

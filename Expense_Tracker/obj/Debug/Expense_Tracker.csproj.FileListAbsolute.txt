@@ -1,0 +1,67 @@
+D:\Johan\Year_2_Spring_term\Technologies DotNet\Project\Expense_Tracker\bin\Debug\Expense_Tracker.exe.config
+D:\Johan\Year_2_Spring_term\Technologies DotNet\Project\Expense_Tracker\bin\Debug\Expense_Tracker.exe
+D:\Johan\Year_2_Spring_term\Technologies DotNet\Project\Expense_Tracker\bin\Debug\Expense_Tracker.pdb
+D:\Johan\Year_2_Spring_term\Technologies DotNet\Project\Expense_Tracker\obj\Debug\Expense_Tracker.csproj.AssemblyReference.cache
+D:\Johan\Year_2_Spring_term\Technologies DotNet\Project\Expense_Tracker\obj\Debug\MainWindow.g.cs
+D:\Johan\Year_2_Spring_term\Technologies DotNet\Project\Expense_Tracker\obj\Debug\View\DashBoardView.g.cs
+D:\Johan\Year_2_Spring_term\Technologies DotNet\Project\Expense_Tracker\obj\Debug\App.g.cs
+D:\Johan\Year_2_Spring_term\Technologies DotNet\Project\Expense_Tracker\obj\Debug\GeneratedInternalTypeHelper.g.cs
+D:\Johan\Year_2_Spring_term\Technologies DotNet\Project\Expense_Tracker\obj\Debug\Expense_Tracker_MarkupCompile.cache
+D:\Johan\Year_2_Spring_term\Technologies DotNet\Project\Expense_Tracker\obj\Debug\Expense_Tracker_MarkupCompile.lref
+D:\Johan\Year_2_Spring_term\Technologies DotNet\Project\Expense_Tracker\obj\Debug\MainWindow.baml
+D:\Johan\Year_2_Spring_term\Technologies DotNet\Project\Expense_Tracker\obj\Debug\View\DashBoardView.baml
+D:\Johan\Year_2_Spring_term\Technologies DotNet\Project\Expense_Tracker\obj\Debug\Expense_Tracker.g.resources
+D:\Johan\Year_2_Spring_term\Technologies DotNet\Project\Expense_Tracker\obj\Debug\Expense_Tracker.Properties.Resources.resources
+D:\Johan\Year_2_Spring_term\Technologies DotNet\Project\Expense_Tracker\obj\Debug\Expense_Tracker.csproj.GenerateResource.cache
+D:\Johan\Year_2_Spring_term\Technologies DotNet\Project\Expense_Tracker\obj\Debug\Expense_Tracker.csproj.CoreCompileInputs.cache
+D:\Johan\Year_2_Spring_term\Technologies DotNet\Project\Expense_Tracker\obj\Debug\Expense_Tracker.exe
+D:\Johan\Year_2_Spring_term\Technologies DotNet\Project\Expense_Tracker\obj\Debug\Expense_Tracker.pdb
+D:\Johan\Year_2_Spring_term\Technologies DotNet\Project\Expense_Tracker\obj\Debug\Expense_Tracker.exe.config
+D:\Johan\Year_2_Spring_term\Technologies DotNet\Project\Expense_Tracker\obj\Debug\View\LedgerView.g.cs
+D:\Johan\Year_2_Spring_term\Technologies DotNet\Project\Expense_Tracker\obj\Debug\View\LoginView.g.cs
+D:\Johan\Year_2_Spring_term\Technologies DotNet\Project\Expense_Tracker\obj\Debug\View\PhieuThuChiView.g.cs
+D:\Johan\Year_2_Spring_term\Technologies DotNet\Project\Expense_Tracker\obj\Debug\View\SettingsView.g.cs
+D:\Johan\Year_2_Spring_term\Technologies DotNet\Project\Expense_Tracker\obj\Debug\Expense_Tracker_Content.g.cs
+D:\Johan\Year_2_Spring_term\Technologies DotNet\Project\Expense_Tracker\bin\Debug\EntityFramework.dll
+D:\Johan\Year_2_Spring_term\Technologies DotNet\Project\Expense_Tracker\bin\Debug\EntityFramework.SqlServer.dll
+D:\Johan\Year_2_Spring_term\Technologies DotNet\Project\Expense_Tracker\bin\Debug\EntityFramework.xml
+D:\Johan\Year_2_Spring_term\Technologies DotNet\Project\Expense_Tracker\bin\Debug\EntityFramework.SqlServer.xml
+D:\Johan\Year_2_Spring_term\Technologies DotNet\Project\Expense_Tracker\obj\Debug\App.baml
+D:\Johan\Year_2_Spring_term\Technologies DotNet\Project\Expense_Tracker\obj\Debug\View\LedgerView.baml
+D:\Johan\Year_2_Spring_term\Technologies DotNet\Project\Expense_Tracker\obj\Debug\View\LoginView.baml
+D:\Johan\Year_2_Spring_term\Technologies DotNet\Project\Expense_Tracker\obj\Debug\View\PhieuThuChiView.baml
+D:\Johan\Year_2_Spring_term\Technologies DotNet\Project\Expense_Tracker\obj\Debug\View\SettingsView.baml
+D:\Johan\Year_2_Spring_term\Technologies DotNet\Project\Expense_Tracker\obj\Debug\Expense_.666D7226.Up2Date
+C:\Users\phamm\Dot-Net-Expense-Tracker\Expense_Tracker\bin\Debug\Expense_Tracker.exe.config
+C:\Users\phamm\Dot-Net-Expense-Tracker\Expense_Tracker\bin\Debug\Expense_Tracker.exe
+C:\Users\phamm\Dot-Net-Expense-Tracker\Expense_Tracker\bin\Debug\Expense_Tracker.pdb
+C:\Users\phamm\Dot-Net-Expense-Tracker\Expense_Tracker\bin\Debug\EntityFramework.dll
+C:\Users\phamm\Dot-Net-Expense-Tracker\Expense_Tracker\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\phamm\Dot-Net-Expense-Tracker\Expense_Tracker\bin\Debug\EntityFramework.xml
+C:\Users\phamm\Dot-Net-Expense-Tracker\Expense_Tracker\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\phamm\Dot-Net-Expense-Tracker\Expense_Tracker\obj\Debug\Expense_Tracker.csproj.AssemblyReference.cache
+C:\Users\phamm\Dot-Net-Expense-Tracker\Expense_Tracker\obj\Debug\MainWindow.g.cs
+C:\Users\phamm\Dot-Net-Expense-Tracker\Expense_Tracker\obj\Debug\View\DashBoardView.g.cs
+C:\Users\phamm\Dot-Net-Expense-Tracker\Expense_Tracker\obj\Debug\View\LedgerView.g.cs
+C:\Users\phamm\Dot-Net-Expense-Tracker\Expense_Tracker\obj\Debug\View\LoginView.g.cs
+C:\Users\phamm\Dot-Net-Expense-Tracker\Expense_Tracker\obj\Debug\View\PhieuThuChiView.g.cs
+C:\Users\phamm\Dot-Net-Expense-Tracker\Expense_Tracker\obj\Debug\View\SettingsView.g.cs
+C:\Users\phamm\Dot-Net-Expense-Tracker\Expense_Tracker\obj\Debug\App.g.cs
+C:\Users\phamm\Dot-Net-Expense-Tracker\Expense_Tracker\obj\Debug\Expense_Tracker_Content.g.cs
+C:\Users\phamm\Dot-Net-Expense-Tracker\Expense_Tracker\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\phamm\Dot-Net-Expense-Tracker\Expense_Tracker\obj\Debug\Expense_Tracker_MarkupCompile.cache
+C:\Users\phamm\Dot-Net-Expense-Tracker\Expense_Tracker\obj\Debug\Expense_Tracker_MarkupCompile.lref
+C:\Users\phamm\Dot-Net-Expense-Tracker\Expense_Tracker\obj\Debug\App.baml
+C:\Users\phamm\Dot-Net-Expense-Tracker\Expense_Tracker\obj\Debug\MainWindow.baml
+C:\Users\phamm\Dot-Net-Expense-Tracker\Expense_Tracker\obj\Debug\View\DashBoardView.baml
+C:\Users\phamm\Dot-Net-Expense-Tracker\Expense_Tracker\obj\Debug\View\LedgerView.baml
+C:\Users\phamm\Dot-Net-Expense-Tracker\Expense_Tracker\obj\Debug\View\LoginView.baml
+C:\Users\phamm\Dot-Net-Expense-Tracker\Expense_Tracker\obj\Debug\View\PhieuThuChiView.baml
+C:\Users\phamm\Dot-Net-Expense-Tracker\Expense_Tracker\obj\Debug\View\SettingsView.baml
+C:\Users\phamm\Dot-Net-Expense-Tracker\Expense_Tracker\obj\Debug\Expense_Tracker.g.resources
+C:\Users\phamm\Dot-Net-Expense-Tracker\Expense_Tracker\obj\Debug\Expense_Tracker.Properties.Resources.resources
+C:\Users\phamm\Dot-Net-Expense-Tracker\Expense_Tracker\obj\Debug\Expense_Tracker.csproj.GenerateResource.cache
+C:\Users\phamm\Dot-Net-Expense-Tracker\Expense_Tracker\obj\Debug\Expense_Tracker.csproj.CoreCompileInputs.cache
+C:\Users\phamm\Dot-Net-Expense-Tracker\Expense_Tracker\obj\Debug\Expense_.666D7226.Up2Date
+C:\Users\phamm\Dot-Net-Expense-Tracker\Expense_Tracker\obj\Debug\Expense_Tracker.exe
+C:\Users\phamm\Dot-Net-Expense-Tracker\Expense_Tracker\obj\Debug\Expense_Tracker.pdb
