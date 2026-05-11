@@ -4,10 +4,20 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Expense_Tracker"
+        xmlns:vm="clr-namespace:Expense_Tracker.ViewModel"
+        xmlns:behavior="clr-namespace:Expense_Tracker.Behavior"
         mc:Ignorable="d"
-        Title="Quản lý Quỹ Thu Chi" Height="720" Width="1080"
+        Title="Quản lý Quỹ Thu Chi" Height="720" Width="1200"
         WindowStartupLocation="CenterScreen"
-        Background="{StaticResource ColorBackground}">
+        Background="{StaticResource ColorBackground}"
+        behavior:WindowBehavior.DialogResult="{Binding DialogResult}">
+    <!-- Binding DialogResult để hỗ trợ đóng Window từ ViewModel -->
+
+    <!-- Khởi tạo ViewModel hoàn toàn bằng XAML -->
+    <Window.DataContext>
+        <vm:MainViewModel />
+    </Window.DataContext>
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="220"/>
@@ -19,20 +29,20 @@
             <DockPanel LastChildFill="False">
                 <StackPanel DockPanel.Dock="Top" Margin="10,20,10,20">
                     <TextBlock Text="QUẢN LÝ QUỸ" FontSize="20" FontWeight="Bold" Foreground="{StaticResource ColorAccent}" HorizontalAlignment="Center" Margin="0,0,0,20"/>
-                    
+
                     <!-- User Info -->
                     <Border Background="#33334A" CornerRadius="5" Padding="10" Margin="0,0,0,20">
                         <StackPanel>
-                            <TextBlock Text="{Binding CurrentUserName}" FontWeight="Bold" FontSize="16"/>
-                            <TextBlock Text="{Binding CurrentUserRole}" Foreground="{StaticResource ColorTextMuted}"/>
+                            <TextBlock Text="{Binding CurrentUser.HoTen}" Foreground="White" FontWeight="Bold" FontSize="14" HorizontalAlignment="Center"/>
+                            <TextBlock Text="{Binding CurrentUser.VaiTro}" Foreground="#A0A0B5" FontSize="12" HorizontalAlignment="Center"/>
                         </StackPanel>
                     </Border>
 
-                    <!-- Navigation -->
-                    <Button Content="📊 Dashboard" Command="{Binding NavigateDashboardCommand}" Style="{StaticResource SidebarButtonStyle}"/>
+                    <!-- Navigation Buttons -->
+                    <Button Content="📊 Tổng Quan" Command="{Binding NavigateDashBoardCommand}" Style="{StaticResource SidebarButtonStyle}"/>
                     <Button Content="📝 Lập Phiếu" Command="{Binding NavigatePhieuThuChiCommand}" Style="{StaticResource SidebarButtonStyle}"/>
                     <Button Content="📖 Sổ Quỹ" Command="{Binding NavigateLedgerCommand}" Style="{StaticResource SidebarButtonStyle}"/>
-                    
+
                     <Button Content="⚙️ Cài Đặt" Command="{Binding NavigateSettingsCommand}">
                         <Button.Style>
                             <Style TargetType="Button" BasedOn="{StaticResource SidebarButtonStyle}">

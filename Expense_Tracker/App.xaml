@@ -3,8 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:Expense_Tracker"
              xmlns:v="clr-namespace:Expense_Tracker.View"
-             xmlns:vm="clr-namespace:Expense_Tracker.ViewModel"
-             StartupUri="MainWindow.xaml">
+             xmlns:vm="clr-namespace:Expense_Tracker.ViewModel">
     <Application.Resources>
         <!-- Tokens -->
         <SolidColorBrush x:Key="ColorBackground" Color="#1E1E2E"/>

@@ -69,6 +69,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Helper\WindowBehavior.cs" />
     <Compile Include="Model\AccountModel.cs" />
     <Compile Include="Model\BudgetModel.cs" />
     <Compile Include="Model\ChiTietPhieu.cs">

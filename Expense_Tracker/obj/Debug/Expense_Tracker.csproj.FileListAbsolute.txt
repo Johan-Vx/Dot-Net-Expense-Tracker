@@ -31,3 +31,4 @@ D:\Johan\Year_2_Spring_term\Technologies DotNet\Project\Expense_Tracker\obj\Debu
 D:\Johan\Year_2_Spring_term\Technologies DotNet\Project\Expense_Tracker\obj\Debug\Expense_.666D7226.Up2Date
 D:\Johan\Year_2_Spring_term\Technologies DotNet\Project\Expense_Tracker\obj\Debug\Expense_Tracker.exe
 D:\Johan\Year_2_Spring_term\Technologies DotNet\Project\Expense_Tracker\obj\Debug\Expense_Tracker.pdb
+D:\Johan\Year_2_Spring_term\Technologies DotNet\Project\Expense_Tracker\obj\Debug\Expense_Tracker.exe.config
