@@ -10,27 +10,6 @@ namespace Expense_Tracker
         public MainWindow()
         {
             InitializeComponent();
-            
-            this.Loaded += (s, e) =>
-            {
-                if (SessionManager.CurrentUser == null)
-                {
-                    this.Hide();
-                    LoginView login = new LoginView();
-                    bool? res = login.ShowDialog();
-                    if (res == true)
-                    {
-                        this.Show();
-                        var vm = new MainViewModel();
-                        vm.CloseAction = () => this.Close();
-                        this.DataContext = vm;
-                    }
-                    else
-                    {
-                        Application.Current.Shutdown();
-                    }
-                }
-            };
         }
     }
 }

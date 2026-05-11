@@ -1,4 +1,4 @@
-using Expense_Tracker.Module;
+﻿using Expense_Tracker.Module;
 using Expense_Tracker.Model;
 using System;
 using System.Windows.Input;
@@ -17,6 +17,16 @@ namespace Expense_Tracker.ViewModel
                 OnPropertyChanged();
             }
         }
+        private bool? _dialogResult;
+        public bool? DialogResult
+        {
+            get => _dialogResult;
+            set
+            {
+                _dialogResult = value;
+                OnPropertyChanged();
+            }
+        }
 
         public string CurrentUserName => SessionManager.CurrentUser?.HoTen;
         public string CurrentUserRole => SessionManager.IsAdmin ? "Admin" : "User";
@@ -28,8 +38,6 @@ namespace Expense_Tracker.ViewModel
         public ICommand NavigateSettingsCommand { get; }
         public ICommand LogoutCommand { get; }
 
-        public Action CloseAction { get; set; }
-
         public MainViewModel()
         {
             NavigationService.NavigateToViewModel = (vm) => CurrentView = vm;
@@ -38,18 +46,15 @@ namespace Expense_Tracker.ViewModel
             NavigatePhieuThuChiCommand = new RelayCommand(o => NavigationService.NavigateTo(new PhieuThuChiViewModel()));
             NavigateLedgerCommand = new RelayCommand(o => NavigationService.NavigateTo(new LedgerViewModel()));
             NavigateSettingsCommand = new RelayCommand(o => NavigationService.NavigateTo(new SettingsViewModel()));
-            
-            LogoutCommand = new RelayCommand(o => 
-            {
-                SessionManager.CurrentUser = null;
-                
-                var loginView = new Expense_Tracker.View.LoginView();
-                loginView.Show();
-                CloseAction?.Invoke();
-            });
 
-            // Start with Dashboard
+            LogoutCommand = new RelayCommand(ExecuteLogout);
             NavigationService.NavigateTo(new DashBoardViewModel());
+        }
+        private void ExecuteLogout(object obj)
+        {
+            // Xóa phiên đăng nhập hiện tại
+            SessionManager.CurrentUser = null;
+            DialogResult = true;
         }
     }
 }

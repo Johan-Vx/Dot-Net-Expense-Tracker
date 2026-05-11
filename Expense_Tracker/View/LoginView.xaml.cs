@@ -8,13 +8,6 @@ namespace Expense_Tracker.View
         public LoginView()
         {
             InitializeComponent();
-            var vm = new LoginViewModel();
-            vm.CloseAction = (result) =>
-            {
-                this.DialogResult = result;
-                this.Close();
-            };
-            this.DataContext = vm;
         }
     }
 }

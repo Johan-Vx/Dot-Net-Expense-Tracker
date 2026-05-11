@@ -5,66 +5,108 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Expense_Tracker.View"
              mc:Ignorable="d" 
-             d:DesignHeight="600" d:DesignWidth="800">
-    <Grid>
+             d:DesignHeight="600" d:DesignWidth="900"
+             Background="#F8F9FA">
+
+    <Grid Margin="25">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Text="Tổng quan hệ thống" FontSize="28" FontWeight="Bold" Foreground="{StaticResource ColorTextPrimary}" Margin="0,0,0,20" Grid.Row="0"/>
+        <!-- Tiêu đề trang -->
+        <StackPanel Grid.Row="0" Margin="0,0,0,25">
+            <TextBlock Text="Tổng quan hệ thống" FontSize="28" FontWeight="Bold" Foreground="#1A237E"/>
+            <TextBlock Text="Dữ liệu tài chính cập nhật theo thời gian thực" Foreground="#7F8C8D" FontSize="13" Margin="0,5,0,0"/>
+        </StackPanel>
 
         <!-- Summary Cards -->
-        <Grid Grid.Row="1" Margin="0,0,0,20">
+        <Grid Grid.Row="1" Margin="0,0,0,25">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <!-- Card 1: Tổng số dư -->
-            <Border Grid.Column="0" Style="{StaticResource CardBorderStyle}">
+            <!-- Card 1: Số dư -->
+            <Border Grid.Column="0" Margin="0,0,10,0" Background="White" CornerRadius="12" Padding="20">
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="10" Color="#EEEEEE" ShadowDepth="2"/>
+                </Border.Effect>
                 <StackPanel>
-                    <TextBlock Text="TỔNG SỐ DƯ TẤT CẢ QUỸ" Foreground="{StaticResource ColorTextMuted}" FontSize="12" FontWeight="Bold" Margin="0,0,0,10"/>
-                    <TextBlock Text="{Binding TongSoDu, StringFormat={}{0:N0} VNĐ}" FontSize="24" FontWeight="Bold" Foreground="{StaticResource ColorSuccess}"/>
+                    <TextBlock Text="TỔNG SỐ DƯ" Foreground="#7986CB" FontSize="11" FontWeight="Bold" Margin="0,0,0,10"/>
+                    <TextBlock Text="{Binding TongSoDu, StringFormat={}{0:N0} VNĐ}" FontSize="22" FontWeight="Bold" Foreground="#3F51B5"/>
                 </StackPanel>
             </Border>
 
             <!-- Card 2: Thu tháng này -->
-            <Border Grid.Column="1" Style="{StaticResource CardBorderStyle}">
+            <Border Grid.Column="1" Margin="10,0,10,0" Background="White" CornerRadius="12" Padding="20">
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="10" Color="#EEEEEE" ShadowDepth="2"/>
+                </Border.Effect>
                 <StackPanel>
-                    <TextBlock Text="TỔNG THU THÁNG NÀY" Foreground="{StaticResource ColorTextMuted}" FontSize="12" FontWeight="Bold" Margin="0,0,0,10"/>
-                    <TextBlock Text="{Binding TongThuThangNay, StringFormat={}{0:N0} VNĐ}" FontSize="24" FontWeight="Bold" Foreground="{StaticResource ColorAccent}"/>
+                    <TextBlock Text="THU NHẬP THÁNG NÀY" Foreground="#81C784" FontSize="11" FontWeight="Bold" Margin="0,0,0,10"/>
+                    <TextBlock Text="{Binding TongThuThangNay, StringFormat={}{0:N0} VNĐ}" FontSize="22" FontWeight="Bold" Foreground="#2E7D32"/>
                 </StackPanel>
             </Border>
 
             <!-- Card 3: Chi tháng này -->
-            <Border Grid.Column="2" Style="{StaticResource CardBorderStyle}">
+            <Border Grid.Column="2" Margin="10,0,0,0" Background="White" CornerRadius="12" Padding="20">
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="10" Color="#EEEEEE" ShadowDepth="2"/>
+                </Border.Effect>
                 <StackPanel>
-                    <TextBlock Text="TỔNG CHI THÁNG NÀY" Foreground="{StaticResource ColorTextMuted}" FontSize="12" FontWeight="Bold" Margin="0,0,0,10"/>
-                    <TextBlock Text="{Binding TongChiThangNay, StringFormat={}{0:N0} VNĐ}" FontSize="24" FontWeight="Bold" Foreground="{StaticResource ColorDanger}"/>
+                    <TextBlock Text="CHI TIÊU THÁNG NÀY" Foreground="#E57373" FontSize="11" FontWeight="Bold" Margin="0,0,0,10"/>
+                    <TextBlock Text="{Binding TongChiThangNay, StringFormat={}{0:N0} VNĐ}" FontSize="22" FontWeight="Bold" Foreground="#C62828"/>
                 </StackPanel>
             </Border>
         </Grid>
 
-        <!-- Recent Transactions -->
-        <Border Grid.Row="2" Style="{StaticResource CardBorderStyle}">
+        <!-- Recent Transactions Table -->
+        <Border Grid.Row="2" Background="White" CornerRadius="12" Padding="20">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="10" Color="#EEEEEE" ShadowDepth="2"/>
+            </Border.Effect>
             <DockPanel>
-                <TextBlock DockPanel.Dock="Top" Text="Giao dịch gần đây" FontSize="18" FontWeight="SemiBold" Margin="0,0,0,15"/>
-                
-                <DataGrid ItemsSource="{Binding RecentTransactions}" Style="{StaticResource DataGridDarkStyle}" IsReadOnly="True">
+                <TextBlock DockPanel.Dock="Top" Text="Giao dịch gần đây" FontSize="18" FontWeight="Bold" Foreground="#2C3E50" Margin="0,0,0,20"/>
+
+                <DataGrid ItemsSource="{Binding RecentTransactions}" 
+                          AutoGenerateColumns="False" 
+                          IsReadOnly="True"
+                          Background="Transparent"
+                          BorderThickness="0"
+                          GridLinesVisibility="None"
+                          RowHeight="40"
+                          HeadersVisibility="Column">
+                    <DataGrid.ColumnHeaderStyle>
+                        <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="Background" Value="#F1F3F9"/>
+                            <Setter Property="Foreground" Value="#3F51B5"/>
+                            <Setter Property="FontWeight" Value="SemiBold"/>
+                            <Setter Property="Padding" Value="10,8"/>
+                            <Setter Property="BorderThickness" Value="0,0,0,1"/>
+                            <Setter Property="BorderBrush" Value="#E0E0E0"/>
+                        </Style>
+                    </DataGrid.ColumnHeaderStyle>
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Mã Phiếu" Binding="{Binding SoPhieu}" Width="100"/>
                         <DataGridTextColumn Header="Ngày Lập" Binding="{Binding NgayLap, StringFormat=dd/MM/yyyy}" Width="120"/>
-                        <DataGridTextColumn Header="Loại" Binding="{Binding LoaiPhieu}" Width="100"/>
-                        <DataGridTextColumn Header="Số Tiền" Binding="{Binding TongTien, StringFormat={}{0:N0}}" Width="150"/>
+                        <DataGridTextColumn Header="Loại" Binding="{Binding LoaiPhieu}" Width="80"/>
+                        <DataGridTextColumn Header="Số Tiền" Binding="{Binding TongTien, StringFormat={}{0:N0}}" Width="150">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="FontWeight" Value="SemiBold"/>
+                                    <Setter Property="VerticalAlignment" Value="Center"/>
+                                    <Setter Property="Margin" Value="10,0"/>
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
                         <DataGridTextColumn Header="Người Lập" Binding="{Binding NguoiDung.HoTen}" Width="150"/>
-                        <DataGridTextColumn Header="Nội Dung" Binding="{Binding LyDoChung}" Width="*"/>
+                        <DataGridTextColumn Header="Nội dung" Binding="{Binding LyDoChung}" Width="*"/>
                     </DataGrid.Columns>
                 </DataGrid>
             </DockPanel>
         </Border>
-
     </Grid>
 </UserControl>

@@ -33,14 +33,25 @@ namespace Expense_Tracker.ViewModel
             }
         }
 
-        public Action<bool> CloseAction { get; set; }
+        // Thêm thuộc tính này để Bind với Window
+        private bool? _dialogResult;
+        public bool? DialogResult
+        {
+            get => _dialogResult;
+            set
+            {
+                _dialogResult = value;
+                OnPropertyChanged();
+            }
+        }
+
         public ICommand LoginCommand { get; }
         public ICommand CloseCommand { get; }
 
         public LoginViewModel()
         {
             LoginCommand = new RelayCommand(ExecuteLogin);
-            CloseCommand = new RelayCommand(o => CloseAction?.Invoke(false));
+            CloseCommand = new RelayCommand(o => DialogResult = false); // Đóng form (Cancel)
         }
 
         private void ExecuteLogin(object parameter)
@@ -65,7 +76,7 @@ namespace Expense_Tracker.ViewModel
                     if (user != null)
                     {
                         SessionManager.CurrentUser = user;
-                        CloseAction?.Invoke(true);
+                        DialogResult = true; // Đăng nhập thành công -> tự động đóng và trả về true
                     }
                     else
                     {
