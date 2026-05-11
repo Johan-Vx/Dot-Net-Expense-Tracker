@@ -1,9 +1,10 @@
-using Expense_Tracker.Module;
 using Expense_Tracker.Model;
+using Expense_Tracker.Module;
+using System;
 using System.Collections.ObjectModel;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Windows.Input;
-using System;
 
 namespace Expense_Tracker.ViewModel
 {
@@ -56,8 +57,9 @@ namespace Expense_Tracker.ViewModel
             {
                 var newPhieu = _context.PhieuThuChi.Create();
                 newPhieu.NgayLap = DateTime.Now;
-                newPhieu.NguoiLapPhieu = SessionManager.CurrentUser?.MaND ?? 0;
+                newPhieu.NguoiLapPhieu = SessionManager.CurrentUser?.MaND ?? 1;
                 newPhieu.LoaiPhieu = "Chi";
+                newPhieu.NguoiNopNhan = "";
                 
                 PhieuThuChis.Add(newPhieu);
                 SelectedPhieu = newPhieu;
@@ -67,19 +69,47 @@ namespace Expense_Tracker.ViewModel
             {
                 if (SelectedPhieu == null) return;
                 
+                if (string.IsNullOrWhiteSpace(SelectedPhieu.NguoiNopNhan))
+                {
+                    System.Windows.MessageBox.Show("Vui lòng nhập người nộp/nhận.");
+                    return;
+                }
+                
+                if (SelectedPhieu.TaiKhoanQuy == null && string.IsNullOrEmpty(SelectedPhieu.MaQuy))
+                {
+                    System.Windows.MessageBox.Show("Vui lòng chọn tài khoản quỹ.");
+                    return;
+                }
+                
                 if (string.IsNullOrEmpty(SelectedPhieu.SoPhieu))
                 {
-                    // Generate a fake SoPhieu or rely on DB if it has trigger/default
-                    SelectedPhieu.SoPhieu = "PTC_" + DateTime.Now.Ticks.ToString();
+                    SelectedPhieu.SoPhieu = "PTC" + DateTime.Now.ToString("yyMMddHHmmssff");
                     _context.PhieuThuChi.Add(SelectedPhieu);
                 }
                 
                 // Recalculate SoTien
                 SelectedPhieu.TongTien = ChiTietPhieus.Sum(x => x.SoTien);
 
-                _context.SaveChanges();
-                LoadData();
-            });
+                try
+                {
+                    _context.SaveChanges();
+                 LoadData();
+                }
+                catch (DbEntityValidationException e)
+                            {
+                    foreach (var eve in e.EntityValidationErrors)
+                            {
+                                Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
+                                    eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                                foreach (var ve in eve.ValidationErrors)
+                                {
+                                    Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
+                                        ve.PropertyName, ve.ErrorMessage);
+                                }
+                            }
+                            throw;
+                        }
+                    });
 
             DeleteCommand = new RelayCommand(o => 
             {

@@ -33,13 +33,13 @@
                     <!-- User Info -->
                     <Border Background="#33334A" CornerRadius="5" Padding="10" Margin="0,0,0,20">
                         <StackPanel>
-                            <TextBlock Text="{Binding CurrentUser.HoTen}" Foreground="White" FontWeight="Bold" FontSize="14" HorizontalAlignment="Center"/>
-                            <TextBlock Text="{Binding CurrentUser.VaiTro}" Foreground="#A0A0B5" FontSize="12" HorizontalAlignment="Center"/>
+                            <TextBlock Text="{Binding CurrentUserName}" Foreground="White" FontWeight="Bold" FontSize="14" HorizontalAlignment="Center"/>
+                            <TextBlock Text="{Binding CurrentUserRole}" Foreground="#A0A0B5" FontSize="12" HorizontalAlignment="Center"/>
                         </StackPanel>
                     </Border>
 
                     <!-- Navigation Buttons -->
-                    <Button Content="📊 Tổng Quan" Command="{Binding NavigateDashBoardCommand}" Style="{StaticResource SidebarButtonStyle}"/>
+                    <Button Content="📊 Tổng Quan" Command="{Binding NavigateDashboardCommand}" Style="{StaticResource SidebarButtonStyle}"/>
                     <Button Content="📝 Lập Phiếu" Command="{Binding NavigatePhieuThuChiCommand}" Style="{StaticResource SidebarButtonStyle}"/>
                     <Button Content="📖 Sổ Quỹ" Command="{Binding NavigateLedgerCommand}" Style="{StaticResource SidebarButtonStyle}"/>
 
