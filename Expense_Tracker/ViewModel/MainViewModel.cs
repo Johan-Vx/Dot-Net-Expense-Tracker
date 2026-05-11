@@ -46,7 +46,6 @@ namespace Expense_Tracker.ViewModel
             NavigatePhieuThuChiCommand = new RelayCommand(o => NavigationService.NavigateTo(new PhieuThuChiViewModel()));
             NavigateLedgerCommand = new RelayCommand(o => NavigationService.NavigateTo(new LedgerViewModel()));
             NavigateSettingsCommand = new RelayCommand(o => NavigationService.NavigateTo(new SettingsViewModel()));
-
             LogoutCommand = new RelayCommand(ExecuteLogout);
             NavigationService.NavigateTo(new DashBoardViewModel());
         }

@@ -44,6 +44,12 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.5.2\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="LiveCharts, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
+      <HintPath>..\packages\LiveCharts.0.9.7\lib\net45\LiveCharts.dll</HintPath>
+    </Reference>
+    <Reference Include="LiveCharts.Wpf, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
+      <HintPath>..\packages\LiveCharts.Wpf.0.9.7\lib\net45\LiveCharts.Wpf.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
@@ -70,8 +76,6 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Helper\WindowBehavior.cs" />
-    <Compile Include="Model\AccountModel.cs" />
-    <Compile Include="Model\BudgetModel.cs" />
     <Compile Include="Model\ChiTietPhieu.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -114,7 +118,6 @@
     <Compile Include="Model\TaiKhoanQuy.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\TransactionModel.cs" />
     <Compile Include="Model\VaiTro.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -198,6 +201,7 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>EXPENSE_TRACKER_DB.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <None Include=".env" />
     <None Include="Model\EXPENSE_TRACKER_DB.edmx.diagram">
       <DependentUpon>EXPENSE_TRACKER_DB.edmx</DependentUpon>
     </None>

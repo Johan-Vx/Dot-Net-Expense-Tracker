@@ -28,6 +28,7 @@
                     </StackPanel>
                     <DataGrid ItemsSource="{Binding PhieuThuChis}" SelectedItem="{Binding SelectedPhieu}" Style="{StaticResource DataGridDarkStyle}" IsReadOnly="True" SelectionMode="Single">
                         <DataGrid.Columns>
+                            <DataGridTextColumn Header="Số Phiếu" Binding="{Binding SoPhieu}"/>
                             <DataGridTextColumn Header="Ngày Lập" Binding="{Binding NgayLap, StringFormat=dd/MM/yyyy}"/>
                             <DataGridTextColumn Header="Loại" Binding="{Binding LoaiPhieu}"/>
                             <DataGridTextColumn Header="Số Tiền" Binding="{Binding TongTien, StringFormat={}{0:N0}}"/>
@@ -82,7 +83,11 @@
                                 </StackPanel>
                                 <StackPanel Grid.Column="1">
                                     <TextBlock Text="Tài Khoản Quỹ" Margin="0,0,0,5" Foreground="{StaticResource ColorTextMuted}"/>
-                                    <ComboBox ItemsSource="{Binding DataContext.TaiKhoanQuys, RelativeSource={RelativeSource AncestorType=UserControl}}" SelectedItem="{Binding TaiKhoanQuy}" DisplayMemberPath="TenQuy"/>
+                                    <ComboBox ItemsSource="{Binding DataContext.TaiKhoanQuys, RelativeSource={RelativeSource AncestorType=UserControl}}" 
+                                              SelectedItem="{Binding TaiKhoanQuy}" 
+                                              SelectedValue="{Binding MaQuy}"
+                                              SelectedValuePath="MaQuy"
+                                              DisplayMemberPath="TenQuy"/>
                                 </StackPanel>
                             </Grid>
 
