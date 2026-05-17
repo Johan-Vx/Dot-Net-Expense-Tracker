@@ -64,7 +64,7 @@
             </Border>
 
             <!-- PHẦN BÊN PHẢI: FORM ĐĂNG NHẬP -->
-            <Grid Grid.Column="1" Background="#FFFFFF">
+            <Grid Background="#FFFFFF" Grid.ColumnSpan="2" Margin="435,10,10,10">
                 <!-- Nút X thoát nhanh ở góc trên bên phải -->
                 <Button Content="✕" 
                         Command="{Binding CloseCommand}"
