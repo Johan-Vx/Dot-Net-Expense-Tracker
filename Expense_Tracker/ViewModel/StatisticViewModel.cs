@@ -103,13 +103,11 @@ namespace Expense_Tracker.ViewModel
                     };
                     DoughnutLabelFormatter = cp => $"{cp.SeriesView.Title}: {cp.Y} phiếu";
 
-                    // 2. Pie Chart: Cơ cấu chi tiêu theo danh mục (6 months)
-                    var chiTiet6Months = allTransactions6Months
-                        .Where(p => p.LoaiPhieu == "Chi")
-                        .SelectMany(p => p.ChiTietPhieu)
-                        .GroupBy(c => c.DanhMuc.TenDM)
-                        .Select(g => new { TenDM = g.Key, TongTien = g.Sum(c => c.SoTien) })
-                        .OrderByDescending(x => x.TongTien)
+                    // 2. Pie Chart: Cơ cấu chi tiêu theo danh mục (6 tháng) — dùng SP
+                    var chiTiet6Months = context.sp_TongHopChiTieuTheoDanhMuc(
+                        loaiDM: "Chi",
+                        tuNgay: sixMonthsAgo,
+                        denNgay: now)
                         .Take(5)
                         .ToList();
 

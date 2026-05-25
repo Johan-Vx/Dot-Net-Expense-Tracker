@@ -10,3 +10,5 @@ errors
 .env
 draft.docx
 Nhom06_BaoCao.docx
+Expense_Tracker/bin/
+Expense_Tracker/obj/

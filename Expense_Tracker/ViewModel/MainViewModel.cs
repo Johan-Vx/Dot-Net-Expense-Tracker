@@ -1,4 +1,4 @@
-﻿using Expense_Tracker.Module;
+using Expense_Tracker.Module;
 using Expense_Tracker.Model;
 using System;
 using System.Windows.Input;
@@ -36,6 +36,7 @@ namespace Expense_Tracker.ViewModel
         public ICommand NavigatePhieuThuChiCommand { get; }
         public ICommand NavigateLedgerCommand { get; }
         public ICommand NavigateSettingsCommand { get; }
+        public ICommand NavigateStatisticCommand { get; }
         public ICommand LogoutCommand { get; }
 
         public MainViewModel()
@@ -46,6 +47,7 @@ namespace Expense_Tracker.ViewModel
             NavigatePhieuThuChiCommand = new RelayCommand(o => NavigationService.NavigateTo(new PhieuThuChiViewModel()));
             NavigateLedgerCommand = new RelayCommand(o => NavigationService.NavigateTo(new LedgerViewModel()));
             NavigateSettingsCommand = new RelayCommand(o => NavigationService.NavigateTo(new SettingsViewModel()));
+            NavigateStatisticCommand = new RelayCommand(o => NavigationService.NavigateTo(new StatisticViewModel()));
             LogoutCommand = new RelayCommand(ExecuteLogout);
             NavigationService.NavigateTo(new DashBoardViewModel());
         }

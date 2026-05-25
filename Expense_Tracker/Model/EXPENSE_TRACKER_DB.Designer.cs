@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'D:\Johan\Year_2_Spring_term\Technologies DotNet\Project\Expense_Tracker\Model\EXPENSE_TRACKER_DB.edmx'. 
+﻿// T4 code generation is enabled for model 'D:\Johan\Year_2_Spring_term\technologies-dotnet\Project\Expense_Tracker\Model\EXPENSE_TRACKER_DB.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.
