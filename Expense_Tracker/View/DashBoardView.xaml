@@ -6,8 +6,7 @@
              xmlns:local="clr-namespace:Expense_Tracker.View"
              xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
              mc:Ignorable="d" 
-             d:DesignHeight="700" d:DesignWidth="900"
-             Background="#F8F9FA">
+             d:DesignHeight="700" d:DesignWidth="900">
 
     <Grid Margin="25">
         <Grid.RowDefinitions>
@@ -19,8 +18,8 @@
 
         <!-- ── Tiêu đề trang ── -->
         <StackPanel Grid.Row="0" Margin="0,0,0,25">
-            <TextBlock Text="Tổng quan hệ thống" FontSize="28" FontWeight="Bold" Foreground="#1A237E"/>
-            <TextBlock Text="Dữ liệu tài chính cập nhật theo thời gian thực" Foreground="#7F8C8D" FontSize="13" Margin="0,5,0,0"/>
+            <TextBlock Text="Tổng quan hệ thống" FontSize="28" FontWeight="Bold" Foreground="{StaticResource ColorTextPrimary}"/>
+            <TextBlock Text="Dữ liệu tài chính cập nhật theo thời gian thực" Foreground="{StaticResource ColorTextMuted}" FontSize="13" Margin="0,5,0,0"/>
         </StackPanel>
 
         <!-- ── Summary Cards ── -->
@@ -32,36 +31,40 @@
             </Grid.ColumnDefinitions>
 
             <!-- Card 1: Số dư -->
-            <Border Grid.Column="0" Margin="0,0,10,0" Background="White" CornerRadius="12" Padding="20">
-                <Border.Effect><DropShadowEffect BlurRadius="10" Color="#EEEEEE" ShadowDepth="2"/></Border.Effect>
+            <Border Grid.Column="0" Margin="0,0,10,0" Background="{StaticResource ColorSurface}" CornerRadius="12" Padding="20"
+                    BorderBrush="{StaticResource ColorBorder}" BorderThickness="1">
+                <Border.Effect><DropShadowEffect BlurRadius="8" Color="#E2E8F0" ShadowDepth="1" Opacity="0.5"/></Border.Effect>
                 <StackPanel>
-                    <TextBlock Text="TỔNG SỐ DƯ" Foreground="#7986CB" FontSize="11" FontWeight="Bold" Margin="0,0,0,10"/>
-                    <TextBlock Text="{Binding TongSoDu, StringFormat={}{0:N0} VNĐ}" FontSize="22" FontWeight="Bold" Foreground="#3F51B5"/>
+                    <TextBlock Text="TỔNG SỐ DƯ" Foreground="{StaticResource ColorAccentLight}" FontSize="11" FontWeight="Bold" Margin="0,0,0,10"/>
+                    <TextBlock Text="{Binding TongSoDu, StringFormat={}{0:N0} VNĐ}" FontSize="22" FontWeight="Bold" Foreground="{StaticResource ColorAccent}"/>
                 </StackPanel>
             </Border>
 
             <!-- Card 2: Thu tháng này -->
-            <Border Grid.Column="1" Margin="10,0,10,0" Background="White" CornerRadius="12" Padding="20">
-                <Border.Effect><DropShadowEffect BlurRadius="10" Color="#EEEEEE" ShadowDepth="2"/></Border.Effect>
+            <Border Grid.Column="1" Margin="10,0,10,0" Background="{StaticResource ColorSurface}" CornerRadius="12" Padding="20"
+                    BorderBrush="{StaticResource ColorBorder}" BorderThickness="1">
+                <Border.Effect><DropShadowEffect BlurRadius="8" Color="#E2E8F0" ShadowDepth="1" Opacity="0.5"/></Border.Effect>
                 <StackPanel>
-                    <TextBlock Text="THU NHẬP THÁNG NÀY" Foreground="#81C784" FontSize="11" FontWeight="Bold" Margin="0,0,0,10"/>
-                    <TextBlock Text="{Binding TongThuThangNay, StringFormat={}{0:N0} VNĐ}" FontSize="22" FontWeight="Bold" Foreground="#2E7D32"/>
+                    <TextBlock Text="THU NHẬP THÁNG NÀY" Foreground="{StaticResource ColorSuccessMuted}" FontSize="11" FontWeight="Bold" Margin="0,0,0,10"/>
+                    <TextBlock Text="{Binding TongThuThangNay, StringFormat={}{0:N0} VNĐ}" FontSize="22" FontWeight="Bold" Foreground="{StaticResource ColorSuccess}"/>
                 </StackPanel>
             </Border>
 
             <!-- Card 3: Chi tháng này -->
-            <Border Grid.Column="2" Margin="10,0,0,0" Background="White" CornerRadius="12" Padding="20">
-                <Border.Effect><DropShadowEffect BlurRadius="10" Color="#EEEEEE" ShadowDepth="2"/></Border.Effect>
+            <Border Grid.Column="2" Margin="10,0,0,0" Background="{StaticResource ColorSurface}" CornerRadius="12" Padding="20"
+                    BorderBrush="{StaticResource ColorBorder}" BorderThickness="1">
+                <Border.Effect><DropShadowEffect BlurRadius="8" Color="#E2E8F0" ShadowDepth="1" Opacity="0.5"/></Border.Effect>
                 <StackPanel>
-                    <TextBlock Text="CHI TIÊU THÁNG NÀY" Foreground="#E57373" FontSize="11" FontWeight="Bold" Margin="0,0,0,10"/>
-                    <TextBlock Text="{Binding TongChiThangNay, StringFormat={}{0:N0} VNĐ}" FontSize="22" FontWeight="Bold" Foreground="#C62828"/>
+                    <TextBlock Text="CHI TIÊU THÁNG NÀY" Foreground="{StaticResource ColorDangerMuted}" FontSize="11" FontWeight="Bold" Margin="0,0,0,10"/>
+                    <TextBlock Text="{Binding TongChiThangNay, StringFormat={}{0:N0} VNĐ}" FontSize="22" FontWeight="Bold" Foreground="{StaticResource ColorDanger}"/>
                 </StackPanel>
             </Border>
         </Grid>
 
         <!-- ── Doughnut Chart: Chi tiêu tháng này vs tháng trước ── -->
-        <Border Grid.Row="2" Background="White" CornerRadius="12" Padding="20" Margin="0,0,0,20">
-            <Border.Effect><DropShadowEffect BlurRadius="10" Color="#EEEEEE" ShadowDepth="2"/></Border.Effect>
+        <Border Grid.Row="2" Background="{StaticResource ColorSurface}" CornerRadius="12" Padding="20" Margin="0,0,0,20"
+                BorderBrush="{StaticResource ColorBorder}" BorderThickness="1">
+            <Border.Effect><DropShadowEffect BlurRadius="8" Color="#E2E8F0" ShadowDepth="1" Opacity="0.5"/></Border.Effect>
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="220"/>
@@ -79,12 +82,12 @@
                         <lvc:PieSeries Title="Tháng này"
                                        Values="{Binding ChiThangNayValues}"
                                        DataLabels="False"
-                                       Fill="#EF5350"
+                                       Fill="#EF4444"
                                        StrokeThickness="0"/>
                         <lvc:PieSeries Title="Tháng trước"
                                        Values="{Binding ChiThangTruocValues}"
                                        DataLabels="False"
-                                       Fill="#FFCDD2"
+                                       Fill="#FCA5A5"
                                        StrokeThickness="0"/>
                     </lvc:PieChart.Series>
                 </lvc:PieChart>
@@ -92,7 +95,7 @@
                 <!-- Info bên phải chart -->
                 <StackPanel Grid.Column="1" VerticalAlignment="Center" Margin="20,0,0,0">
                     <TextBlock Text="CHI TIÊU SO VỚI THÁNG TRƯỚC"
-                               Foreground="#7F8C8D" FontSize="11" FontWeight="Bold"
+                               Foreground="{StaticResource ColorTextMuted}" FontSize="11" FontWeight="Bold"
                                Margin="0,0,0,8"/>
 
                     <!-- % thay đổi: màu đỏ nếu tăng, xanh nếu giảm -->
@@ -101,10 +104,10 @@
                                Margin="0,0,0,4">
                         <TextBlock.Style>
                             <Style TargetType="TextBlock">
-                                <Setter Property="Foreground" Value="#2E7D32"/>
+                                <Setter Property="Foreground" Value="{StaticResource ColorSuccess}"/>
                                 <Style.Triggers>
                                     <DataTrigger Binding="{Binding IsChiTang}" Value="True">
-                                        <Setter Property="Foreground" Value="#C62828"/>
+                                        <Setter Property="Foreground" Value="{StaticResource ColorDanger}"/>
                                     </DataTrigger>
                                 </Style.Triggers>
                             </Style>
@@ -112,46 +115,34 @@
                     </TextBlock>
 
                     <TextBlock Text="{Binding TongChiThangNay, StringFormat=Chi tháng này: {0:N0} đ}"
-                               Foreground="#2C3E50" FontSize="13" Margin="0,0,0,3"/>
+                               Foreground="{StaticResource ColorTextSecondary}" FontSize="13" Margin="0,0,0,3"/>
                     <TextBlock Text="{Binding ChiThangTruocValues[0], StringFormat=Chi tháng trước: {0:N0} đ}"
-                               Foreground="#7F8C8D" FontSize="12"/>
+                               Foreground="{StaticResource ColorTextMuted}" FontSize="12"/>
 
                     <!-- Legend -->
                     <StackPanel Orientation="Horizontal" Margin="0,12,0,0">
-                        <Border Width="12" Height="12" Background="#EF5350" CornerRadius="2" Margin="0,0,6,0" VerticalAlignment="Center"/>
-                        <TextBlock Text="Tháng này" Foreground="#555" FontSize="12" VerticalAlignment="Center" Margin="0,0,16,0"/>
-                        <Border Width="12" Height="12" Background="#FFCDD2" CornerRadius="2" Margin="0,0,6,0" VerticalAlignment="Center"/>
-                        <TextBlock Text="Tháng trước" Foreground="#555" FontSize="12" VerticalAlignment="Center"/>
+                        <Border Width="12" Height="12" Background="#EF4444" CornerRadius="2" Margin="0,0,6,0" VerticalAlignment="Center"/>
+                        <TextBlock Text="Tháng này" Foreground="{StaticResource ColorTextMuted}" FontSize="12" VerticalAlignment="Center" Margin="0,0,16,0"/>
+                        <Border Width="12" Height="12" Background="#FCA5A5" CornerRadius="2" Margin="0,0,6,0" VerticalAlignment="Center"/>
+                        <TextBlock Text="Tháng trước" Foreground="{StaticResource ColorTextMuted}" FontSize="12" VerticalAlignment="Center"/>
                     </StackPanel>
                 </StackPanel>
             </Grid>
         </Border>
 
         <!-- ── Recent Transactions Table ── -->
-        <Border Grid.Row="3" Background="White" CornerRadius="12" Padding="20">
-            <Border.Effect><DropShadowEffect BlurRadius="10" Color="#EEEEEE" ShadowDepth="2"/></Border.Effect>
+        <Border Grid.Row="3" Background="{StaticResource ColorSurface}" CornerRadius="12" Padding="20"
+                BorderBrush="{StaticResource ColorBorder}" BorderThickness="1">
+            <Border.Effect><DropShadowEffect BlurRadius="8" Color="#E2E8F0" ShadowDepth="1" Opacity="0.5"/></Border.Effect>
             <DockPanel>
                 <TextBlock DockPanel.Dock="Top" Text="Giao dịch gần đây"
-                           FontSize="18" FontWeight="Bold" Foreground="#2C3E50" Margin="0,0,0,20"/>
+                           FontSize="18" FontWeight="Bold" Foreground="{StaticResource ColorTextPrimary}" Margin="0,0,0,20"/>
 
                 <DataGrid ItemsSource="{Binding RecentTransactions}" 
-                          AutoGenerateColumns="False" 
+                          Style="{StaticResource DataGridDarkStyle}"
                           IsReadOnly="True"
-                          Background="Transparent"
-                          BorderThickness="0"
-                          GridLinesVisibility="None"
                           RowHeight="40"
                           HeadersVisibility="Column">
-                    <DataGrid.ColumnHeaderStyle>
-                        <Style TargetType="DataGridColumnHeader">
-                            <Setter Property="Background" Value="#F1F3F9"/>
-                            <Setter Property="Foreground" Value="#3F51B5"/>
-                            <Setter Property="FontWeight" Value="SemiBold"/>
-                            <Setter Property="Padding" Value="10,8"/>
-                            <Setter Property="BorderThickness" Value="0,0,0,1"/>
-                            <Setter Property="BorderBrush" Value="#E0E0E0"/>
-                        </Style>
-                    </DataGrid.ColumnHeaderStyle>
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Mã Phiếu"  Binding="{Binding SoPhieu}" Width="100"/>
                         <DataGridTextColumn Header="Ngày Lập"  Binding="{Binding NgayLap, StringFormat=dd/MM/yyyy}" Width="120"/>

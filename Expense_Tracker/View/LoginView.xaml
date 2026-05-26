@@ -38,15 +38,15 @@
             <Border Grid.Column="0" CornerRadius="19,0,0,19">
                 <Border.Background>
                     <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                        <GradientStop Color="#3F51B5" Offset="0"/>
-                        <GradientStop Color="#1A237E" Offset="1"/>
+                        <GradientStop Color="#4F46E5" Offset="0"/>
+                        <GradientStop Color="#312E81" Offset="1"/>
                     </LinearGradientBrush>
                 </Border.Background>
 
                 <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
                     <!-- Biểu tượng đại diện -->
                     <Border Width="90" Height="90" Background="#FFFFFF" CornerRadius="45" Margin="0,0,0,20">
-                        <TextBlock Text="💰" FontSize="45" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <Image Source="/Logo/huit-logo.png"/>
                     </Border>
 
                     <TextBlock Text="EXPENSE TRACKER" 
@@ -57,14 +57,14 @@
 
                     <TextBlock Text="Quản lý chi tiêu thông minh" 
                                FontSize="14" 
-                               Foreground="#C5CAE9" 
+                               Foreground="#C7D2FE" 
                                HorizontalAlignment="Center" 
                                Margin="0,15,0,0"/>
                 </StackPanel>
             </Border>
 
             <!-- PHẦN BÊN PHẢI: FORM ĐĂNG NHẬP -->
-            <Grid Grid.Column="1" Background="#FFFFFF">
+            <Grid Grid.Column="1" Background="#F8FAFC">
                 <!-- Nút X thoát nhanh ở góc trên bên phải -->
                 <Button Content="✕" 
                         Command="{Binding CloseCommand}"
@@ -74,41 +74,41 @@
                         Width="30" Height="30"
                         Background="Transparent"
                         BorderThickness="0"
-                        Foreground="#BDC3C7"
+                        Foreground="#94A3B8"
                         Cursor="Hand"
                         FontSize="18"/>
 
                 <StackPanel Margin="40" VerticalAlignment="Center">
                     <TextBlock Text="ĐĂNG NHẬP" 
                                FontSize="24" 
-                               FontWeight="Bold" 
-                               Foreground="#3F51B5" 
+                                FontWeight="Bold" 
+                               Foreground="#4F46E5" 
                                Margin="0,0,0,30"
                                HorizontalAlignment="Left"/>
 
                     <!-- Tài khoản -->
-                    <TextBlock Text="Tên đăng nhập" Foreground="#7F8C8D" FontWeight="SemiBold" Margin="0,0,0,5"/>
+                    <TextBlock Text="Tên đăng nhập" Foreground="#475569" FontWeight="SemiBold" Margin="0,0,0,5"/>
                     <TextBox Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}" 
                              Height="40" 
                              Margin="0,0,0,20"
                              Padding="10,0"
                              VerticalContentAlignment="Center"
-                             BorderBrush="#DCDDE1"
+                             BorderBrush="#CBD5E1"
                              FontSize="14"/>
 
                     <!-- Mật khẩu -->
-                    <TextBlock Text="Mật khẩu" Foreground="#7F8C8D" FontWeight="SemiBold" Margin="0,0,0,5"/>
+                    <TextBlock Text="Mật khẩu" Foreground="#475569" FontWeight="SemiBold" Margin="0,0,0,5"/>
                     <PasswordBox Name="txtPassword" 
                                  Height="40" 
                                  Margin="0,0,0,10"
                                  Padding="10,0"
                                  VerticalContentAlignment="Center"
-                                 BorderBrush="#DCDDE1"
+                                 BorderBrush="#CBD5E1"
                                  FontSize="14"/>
 
                     <!-- Thông báo lỗi -->
                     <TextBlock Text="{Binding ErrorMessage}" 
-                               Foreground="#E74C3C" 
+                               Foreground="#DC2626" 
                                FontSize="12" 
                                Height="25"
                                Margin="0,0,0,10"
@@ -120,7 +120,7 @@
                             Command="{Binding LoginCommand}" 
                             CommandParameter="{Binding ElementName=txtPassword}" 
                             Height="45" 
-                            Background="#3F51B5" 
+                            Background="#4F46E5" 
                             Foreground="White" 
                             FontWeight="Bold"
                             FontSize="14"
@@ -140,7 +140,7 @@
                             Command="{Binding CloseCommand}" 
                             Background="Transparent"
                             BorderThickness="0"
-                            Foreground="#95A5A6"
+                            Foreground="#94A3B8"
                             FontSize="13"
                             Cursor="Hand"/>
                 </StackPanel>

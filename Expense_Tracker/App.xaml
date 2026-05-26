@@ -5,15 +5,26 @@
              xmlns:v="clr-namespace:Expense_Tracker.View"
              xmlns:vm="clr-namespace:Expense_Tracker.ViewModel">
     <Application.Resources>
-        <!-- Tokens -->
-        <SolidColorBrush x:Key="ColorBackground" Color="#1E1E2E"/>
-        <SolidColorBrush x:Key="ColorSurface" Color="#2A2A3E"/>
-        <SolidColorBrush x:Key="ColorAccent" Color="#7C3AED"/>
-        <SolidColorBrush x:Key="ColorAccentHover" Color="#6D28D9"/>
-        <SolidColorBrush x:Key="ColorSuccess" Color="#10B981"/>
-        <SolidColorBrush x:Key="ColorDanger" Color="#EF4444"/>
-        <SolidColorBrush x:Key="ColorTextPrimary" Color="#F1F5F9"/>
-        <SolidColorBrush x:Key="ColorTextMuted" Color="#94A3B8"/>
+        <!-- ── Design Tokens: Indigo-Slate Light Theme ── -->
+        <SolidColorBrush x:Key="ColorBackground" Color="#F8FAFC"/>      <!-- Slate-50  — page background -->
+        <SolidColorBrush x:Key="ColorSurface" Color="#FFFFFF"/>          <!-- White    — cards / panels -->
+        <SolidColorBrush x:Key="ColorSurfaceHover" Color="#F1F5F9"/>     <!-- Slate-100 — hover / alt rows -->
+        <SolidColorBrush x:Key="ColorAccent" Color="#4F46E5"/>           <!-- Indigo-600 — primary accent -->
+        <SolidColorBrush x:Key="ColorAccentHover" Color="#4338CA"/>      <!-- Indigo-700 — hover -->
+        <SolidColorBrush x:Key="ColorAccentLight" Color="#818CF8"/>      <!-- Indigo-400 — labels / subtle -->
+        <SolidColorBrush x:Key="ColorSuccess" Color="#16A34A"/>          <!-- Green-600  — Thu (Income) -->
+        <SolidColorBrush x:Key="ColorSuccessMuted" Color="#86EFAC"/>     <!-- Green-300  — charts / labels -->
+        <SolidColorBrush x:Key="ColorDanger" Color="#DC2626"/>           <!-- Red-600    — Chi (Expense) -->
+        <SolidColorBrush x:Key="ColorDangerMuted" Color="#FCA5A5"/>      <!-- Red-300    — charts / labels -->
+        <SolidColorBrush x:Key="ColorWarning" Color="#D97706"/>          <!-- Amber-600  — warnings -->
+        <SolidColorBrush x:Key="ColorTextPrimary" Color="#1E293B"/>      <!-- Slate-800  — headings -->
+        <SolidColorBrush x:Key="ColorTextSecondary" Color="#475569"/>    <!-- Slate-600  — body text -->
+        <SolidColorBrush x:Key="ColorTextMuted" Color="#94A3B8"/>        <!-- Slate-400  — captions -->
+        <SolidColorBrush x:Key="ColorBorder" Color="#E2E8F0"/>           <!-- Slate-200  — borders -->
+
+        <!-- Sidebar-only dark tokens -->
+        <SolidColorBrush x:Key="SidebarBackground" Color="#1E293B"/>     <!-- Slate-800 -->
+        <SolidColorBrush x:Key="SidebarAccent" Color="#312E81"/>         <!-- Indigo-900 -->
         
         <CornerRadius x:Key="RadiusCard">10</CornerRadius>
         <FontFamily x:Key="FontMain">Segoe UI</FontFamily>
@@ -40,11 +51,14 @@
         <DataTemplate DataType="{x:Type vm:StatisticViewModel}">
             <v:StatisticView />
         </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:ReportViewModel}">
+            <v:Report/>
+        </DataTemplate>
 
-        <!-- SidebarButtonStyle -->
+        <!-- SidebarButtonStyle (stays light-on-dark) -->
         <Style x:Key="SidebarButtonStyle" TargetType="Button">
             <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="Foreground" Value="{StaticResource ColorTextPrimary}"/>
+            <Setter Property="Foreground" Value="#E2E8F0"/>
             <Setter Property="Padding" Value="10"/>
             <Setter Property="Margin" Value="0,5"/>
             <Setter Property="BorderThickness" Value="0"/>
@@ -99,7 +113,7 @@
             <Setter Property="Background" Value="{StaticResource ColorDanger}"/>
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="#DC2626"/>
+                    <Setter Property="Background" Value="#B91C1C"/>
                 </Trigger>
             </Style.Triggers>
         </Style>
@@ -110,18 +124,20 @@
             <Setter Property="CornerRadius" Value="{StaticResource RadiusCard}"/>
             <Setter Property="Padding" Value="15"/>
             <Setter Property="Margin" Value="5"/>
+            <Setter Property="BorderBrush" Value="{StaticResource ColorBorder}"/>
+            <Setter Property="BorderThickness" Value="1"/>
         </Style>
 
-        <!-- DataGridDarkStyle -->
+        <!-- DataGridStyle (light theme) -->
         <Style x:Key="DataGridDarkStyle" TargetType="DataGrid">
             <Setter Property="Background" Value="{StaticResource ColorSurface}"/>
             <Setter Property="RowBackground" Value="{StaticResource ColorSurface}"/>
-            <Setter Property="AlternatingRowBackground" Value="#33334A"/>
+            <Setter Property="AlternatingRowBackground" Value="{StaticResource ColorSurfaceHover}"/>
             <Setter Property="Foreground" Value="{StaticResource ColorTextPrimary}"/>
             <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="RowHeaderWidth" Value="0"/>
             <Setter Property="GridLinesVisibility" Value="Horizontal"/>
-            <Setter Property="HorizontalGridLinesBrush" Value="#474761"/>
+            <Setter Property="HorizontalGridLinesBrush" Value="{StaticResource ColorBorder}"/>
             <Setter Property="AutoGenerateColumns" Value="False"/>
             <Setter Property="CanUserAddRows" Value="False"/>
         </Style>
@@ -146,17 +162,17 @@
             </Setter>
             <Style.Triggers>
                 <Trigger Property="IsSelected" Value="True">
-                    <Setter Property="Background" Value="{StaticResource ColorAccentHover}"/>
-                    <Setter Property="Foreground" Value="White"/>
+                    <Setter Property="Background" Value="#EEF2FF"/>
+                    <Setter Property="Foreground" Value="{StaticResource ColorAccent}"/>
                 </Trigger>
             </Style.Triggers>
         </Style>
 
         <!-- InputBoxStyle -->
         <Style x:Key="InputBoxStyle" TargetType="Control">
-            <Setter Property="Background" Value="#33334A"/>
+            <Setter Property="Background" Value="{StaticResource ColorSurface}"/>
             <Setter Property="Foreground" Value="{StaticResource ColorTextPrimary}"/>
-            <Setter Property="BorderBrush" Value="#474761"/>
+            <Setter Property="BorderBrush" Value="#CBD5E1"/>
             <Setter Property="BorderThickness" Value="1"/>
             <Setter Property="Padding" Value="8"/>
             <Setter Property="FontFamily" Value="{StaticResource FontMain}"/>

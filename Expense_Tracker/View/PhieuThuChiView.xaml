@@ -131,7 +131,7 @@
                                 <StackPanel Grid.Column="0" Margin="0,0,10,0">
                                     <TextBlock Foreground="{StaticResource ColorTextMuted}" Margin="0,0,0,4">
                                         <Run Text="Người Nộp / Nhận"/>
-                                        <Run Text=" *" Foreground="#EF4444"/>
+                                        <Run Text=" *" Foreground="{StaticResource ColorDanger}"/>
                                     </TextBlock>
                                     <TextBox Text="{Binding NguoiNopNhan,
                                                     UpdateSourceTrigger=PropertyChanged}">
@@ -139,7 +139,7 @@
                                             <Style TargetType="TextBox" BasedOn="{StaticResource {x:Type TextBox}}">
                                                 <Style.Triggers>
                                                     <DataTrigger Binding="{Binding NguoiNopNhan}" Value="">
-                                                        <Setter Property="BorderBrush" Value="#EF4444"/>
+                                                        <Setter Property="BorderBrush" Value="{StaticResource ColorDanger}"/>
                                                         <Setter Property="ToolTip"     Value="Trường bắt buộc nhập"/>
                                                     </DataTrigger>
                                                 </Style.Triggers>
@@ -152,7 +152,7 @@
                                 <StackPanel Grid.Column="1">
                                     <TextBlock Foreground="{StaticResource ColorTextMuted}" Margin="0,0,0,4">
                                         <Run Text="Tài Khoản Quỹ"/>
-                                        <Run Text=" *" Foreground="#EF4444"/>
+                                        <Run Text=" *" Foreground="{StaticResource ColorDanger}"/>
                                     </TextBlock>
                                     <ComboBox ItemsSource="{Binding DataContext.TaiKhoanQuys,
                                                             RelativeSource={RelativeSource AncestorType=UserControl}}"
@@ -164,7 +164,7 @@
                                             <Style TargetType="ComboBox" BasedOn="{StaticResource {x:Type ComboBox}}">
                                                 <Style.Triggers>
                                                     <DataTrigger Binding="{Binding MaQuy}" Value="{x:Null}">
-                                                        <Setter Property="BorderBrush" Value="#EF4444"/>
+                                                        <Setter Property="BorderBrush" Value="{StaticResource ColorDanger}"/>
                                                         <Setter Property="ToolTip"     Value="Vui lòng chọn tài khoản quỹ"/>
                                                     </DataTrigger>
                                                 </Style.Triggers>
@@ -236,7 +236,7 @@
                                         <DataGridTemplateColumn.CellTemplate>
                                             <DataTemplate>
                                                 <Button Content="✕"
-                                                        Foreground="#EF4444"
+                                                        Foreground="{StaticResource ColorDanger}"
                                                         Background="Transparent"
                                                         BorderThickness="0"
                                                         FontSize="13"
@@ -254,7 +254,7 @@
                             <TextBlock HorizontalAlignment="Right"
                                        Margin="0,8,0,0"
                                        FontSize="15" FontWeight="Bold"
-                                       Foreground="#EF4444">
+                                       Foreground="{StaticResource ColorDanger}">
                                 <Run Text="Tổng: "/>
                                 <Run Text="{Binding TongTien, StringFormat={}{0:N0} đ}"/>
                             </TextBlock>
