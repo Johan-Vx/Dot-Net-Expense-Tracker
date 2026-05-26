@@ -1,14 +1,14 @@
-using System;
+    using System;
 
-namespace Expense_Tracker.Module
-{
-    public static class NavigationService
+    namespace Expense_Tracker.Module
     {
-        public static Action<BaseViewModel> NavigateToViewModel { get; set; }
-
-        public static void NavigateTo(BaseViewModel viewModel)
+        public static class NavigationService
         {
-            NavigateToViewModel?.Invoke(viewModel);
+            public static Action<BaseViewModel> NavigateToViewModel { get; set; }
+
+            public static void NavigateTo(BaseViewModel viewModel)
+            {
+                NavigateToViewModel?.Invoke(viewModel);
+            }
         }
     }
-}

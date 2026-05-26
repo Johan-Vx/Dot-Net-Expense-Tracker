@@ -37,6 +37,7 @@ namespace Expense_Tracker.ViewModel
         public ICommand NavigateLedgerCommand { get; }
         public ICommand NavigateSettingsCommand { get; }
         public ICommand NavigateStatisticCommand { get; }
+        public ICommand NavigateReportCommand { get; }
         public ICommand LogoutCommand { get; }
 
         public MainViewModel()
@@ -48,6 +49,7 @@ namespace Expense_Tracker.ViewModel
             NavigateLedgerCommand = new RelayCommand(o => NavigationService.NavigateTo(new LedgerViewModel()));
             NavigateSettingsCommand = new RelayCommand(o => NavigationService.NavigateTo(new SettingsViewModel()));
             NavigateStatisticCommand = new RelayCommand(o => NavigationService.NavigateTo(new StatisticViewModel()));
+            NavigateReportCommand = new RelayCommand(o => NavigationService.NavigateTo(new ReportViewModel()));
             LogoutCommand = new RelayCommand(ExecuteLogout);
             NavigationService.NavigateTo(new DashBoardViewModel());
         }

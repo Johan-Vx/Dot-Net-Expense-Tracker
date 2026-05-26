@@ -24,17 +24,17 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <!-- Sidebar -->
-        <Border Grid.Column="0" Background="{StaticResource ColorSurface}">
+        <!-- Sidebar (dark accent panel) -->
+        <Border Grid.Column="0" Background="{StaticResource SidebarBackground}">
             <DockPanel LastChildFill="False">
                 <StackPanel DockPanel.Dock="Top" Margin="10,20,10,20">
-                    <TextBlock Text="QUẢN LÝ QUỸ" FontSize="20" FontWeight="Bold" Foreground="{StaticResource ColorAccent}" HorizontalAlignment="Center" Margin="0,0,0,20"/>
+                    <TextBlock Text="QUẢN LÝ QUỸ" FontSize="20" FontWeight="Bold" Foreground="{StaticResource ColorAccentLight}" HorizontalAlignment="Center" Margin="0,0,0,20"/>
 
                     <!-- User Info -->
-                    <Border Background="#33334A" CornerRadius="5" Padding="10" Margin="0,0,0,20">
+                    <Border Background="{StaticResource SidebarAccent}" CornerRadius="5" Padding="10" Margin="0,0,0,20">
                         <StackPanel>
                             <TextBlock Text="{Binding CurrentUserName}" Foreground="White" FontWeight="Bold" FontSize="14" HorizontalAlignment="Center"/>
-                            <TextBlock Text="{Binding CurrentUserRole}" Foreground="#A0A0B5" FontSize="12" HorizontalAlignment="Center"/>
+                            <TextBlock Text="{Binding CurrentUserRole}" Foreground="#C7D2FE" FontSize="12" HorizontalAlignment="Center"/>
                         </StackPanel>
                     </Border>
 
@@ -43,6 +43,7 @@
                     <Button Content="📝 Lập Phiếu" Command="{Binding NavigatePhieuThuChiCommand}" Style="{StaticResource SidebarButtonStyle}"/>
                     <Button Content="📖 Sổ Quỹ" Command="{Binding NavigateLedgerCommand}" Style="{StaticResource SidebarButtonStyle}"/>
                     <Button Content="📈 Thống Kê" Command="{Binding NavigateStatisticCommand}" Style="{StaticResource SidebarButtonStyle}"/>
+                    <Button Content="📑Báo cáo" Command="{Binding NavigateReportCommand}" Style="{StaticResource SidebarButtonStyle}"/>
 
                     <Button Content="⚙️ Cài Đặt" Command="{Binding NavigateSettingsCommand}">
                         <Button.Style>

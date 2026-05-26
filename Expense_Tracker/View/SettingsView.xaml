@@ -15,7 +15,10 @@
         <DockPanel Grid.Row="0" Margin="0,0,0,20">
             <TextBlock Text="Cài Đặt Hệ Thống" FontSize="28" FontWeight="Bold" Foreground="{StaticResource ColorTextPrimary}"/>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                <Button Content="Làm Mới" Command="{Binding RefreshCommand}" Style="{StaticResource SidebarButtonStyle}" Margin="0,0,10,0"/>
+                <Button Content="Làm Mới" Command="{Binding RefreshCommand}" 
+                        Background="{StaticResource ColorSurfaceHover}" Foreground="{StaticResource ColorTextSecondary}"
+                        BorderThickness="1" BorderBrush="{StaticResource ColorBorder}" Padding="15,8"
+                        FontFamily="{StaticResource FontMain}" FontWeight="SemiBold" Margin="0,0,10,0"/>
                 <Button Content="Lưu Thay Đổi" Command="{Binding SaveCommand}" Style="{StaticResource PrimaryButtonStyle}"/>
             </StackPanel>
         </DockPanel>
@@ -27,7 +30,7 @@
                         <Setter Property="Template">
                             <Setter.Value>
                                 <ControlTemplate TargetType="TabItem">
-                                    <Border Name="Border" Padding="15,10" Margin="0,0,5,0" Background="#33334A" CornerRadius="5,5,0,0">
+                                    <Border Name="Border" Padding="15,10" Margin="0,0,5,0" Background="{StaticResource ColorSurfaceHover}" CornerRadius="5,5,0,0">
                                         <ContentPresenter x:Name="ContentSite" VerticalAlignment="Center" HorizontalAlignment="Center" ContentSource="Header" Margin="10,2"/>
                                     </Border>
                                     <ControlTemplate.Triggers>
@@ -44,7 +47,7 @@
                                 </ControlTemplate>
                             </Setter.Value>
                         </Setter>
-                        <Setter Property="Foreground" Value="{StaticResource ColorTextPrimary}"/>
+                        <Setter Property="Foreground" Value="{StaticResource ColorTextSecondary}"/>
                         <Setter Property="FontFamily" Value="{StaticResource FontMain}"/>
                         <Setter Property="FontSize" Value="14"/>
                     </Style>
