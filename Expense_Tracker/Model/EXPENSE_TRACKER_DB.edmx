@@ -163,6 +163,10 @@
           <Parameter Name="TuNgay" Type="datetime" Mode="In" />
           <Parameter Name="DenNgay" Type="datetime" Mode="In" />
         </Function>
+        <Function Name="sp_BaoCaoThuChiTheoThangChiTiet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Thang" Type="int" Mode="In" />
+          <Parameter Name="Nam" Type="int" Mode="In" />
+        </Function>
         <Function Name="sp_Call_ChuyenSoTienThuyenChu" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Amount" Type="decimal" Mode="In" />
         </Function>
@@ -200,6 +204,11 @@
           <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
           <Parameter Name="owner_id" Type="int" Mode="In" />
           <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_SaoKeTaiKhoanQuy" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MaQuy" Type="char" Mode="In" />
+          <Parameter Name="TuNgay" Type="datetime" Mode="In" />
+          <Parameter Name="DenNgay" Type="datetime" Mode="In" />
         </Function>
         <Function Name="sp_ThemPhieuThuChiTuDong" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="SoPhieu" Type="varchar" Mode="In" />
@@ -462,6 +471,15 @@
             <Parameter Name="MaQuy" Mode="In" Type="String" />
             <Parameter Name="Ngay" Mode="In" Type="DateTime" />
           </FunctionImport>
+          <FunctionImport Name="sp_BaoCaoThuChiTheoThangChiTiet" ReturnType="Collection(EXPENSE_TRACKER_DBModel.sp_BaoCaoThuChiTheoThangChiTiet_Result)">
+            <Parameter Name="Thang" Mode="In" Type="Int32" />
+            <Parameter Name="Nam" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_SaoKeTaiKhoanQuy" ReturnType="Collection(EXPENSE_TRACKER_DBModel.sp_SaoKeTaiKhoanQuy_Result)">
+            <Parameter Name="MaQuy" Mode="In" Type="String" />
+            <Parameter Name="TuNgay" Mode="In" Type="DateTime" />
+            <Parameter Name="DenNgay" Mode="In" Type="DateTime" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
           <Property Type="Int32" Name="version" Nullable="true" />
@@ -473,6 +491,24 @@
           <Property Type="Int32" Name="ID" Nullable="false" />
           <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
           <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="sp_BaoCaoThuChiTheoThangChiTiet_Result">
+          <Property Type="String" Name="SoPhieu" Nullable="false" MaxLength="20" />
+          <Property Type="DateTime" Name="NgayLap" Nullable="false" Precision="23" />
+          <Property Type="String" Name="LoaiPhieu" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="NguoiNopNhan" Nullable="false" MaxLength="100" />
+          <Property Type="Decimal" Name="TongTien" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="String" Name="MaQuy" Nullable="false" MaxLength="5" />
+        </ComplexType>
+        <ComplexType Name="sp_SaoKeTaiKhoanQuy_Result">
+          <Property Type="String" Name="TenQuy" Nullable="true" MaxLength="100" />
+          <Property Type="Decimal" Name="SoDuDauKy" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="SoPhieu" Nullable="false" MaxLength="20" />
+          <Property Type="DateTime" Name="NgayLap" Nullable="false" Precision="23" />
+          <Property Type="String" Name="LoaiPhieu" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="LyDoChung" Nullable="true" MaxLength="255" />
+          <Property Type="Decimal" Name="TienThu" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="TienChi" Nullable="false" Precision="18" Scale="2" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -582,6 +618,32 @@
           <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="EXPENSE_TRACKER_DBModel.Store.sp_renamediagram" />
           <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="EXPENSE_TRACKER_DBModel.Store.sp_upgraddiagrams" />
           <FunctionImportMapping FunctionImportName="sp_Call_TinhSoDuCuoiKy" FunctionName="EXPENSE_TRACKER_DBModel.Store.sp_Call_TinhSoDuCuoiKy" />
+          <FunctionImportMapping FunctionImportName="sp_BaoCaoThuChiTheoThangChiTiet" FunctionName="EXPENSE_TRACKER_DBModel.Store.sp_BaoCaoThuChiTheoThangChiTiet">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="EXPENSE_TRACKER_DBModel.sp_BaoCaoThuChiTheoThangChiTiet_Result">
+                <ScalarProperty Name="SoPhieu" ColumnName="SoPhieu" />
+                <ScalarProperty Name="NgayLap" ColumnName="NgayLap" />
+                <ScalarProperty Name="LoaiPhieu" ColumnName="LoaiPhieu" />
+                <ScalarProperty Name="NguoiNopNhan" ColumnName="NguoiNopNhan" />
+                <ScalarProperty Name="TongTien" ColumnName="TongTien" />
+                <ScalarProperty Name="MaQuy" ColumnName="MaQuy" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_SaoKeTaiKhoanQuy" FunctionName="EXPENSE_TRACKER_DBModel.Store.sp_SaoKeTaiKhoanQuy">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="EXPENSE_TRACKER_DBModel.sp_SaoKeTaiKhoanQuy_Result">
+                <ScalarProperty Name="TenQuy" ColumnName="TenQuy" />
+                <ScalarProperty Name="SoDuDauKy" ColumnName="SoDuDauKy" />
+                <ScalarProperty Name="SoPhieu" ColumnName="SoPhieu" />
+                <ScalarProperty Name="NgayLap" ColumnName="NgayLap" />
+                <ScalarProperty Name="LoaiPhieu" ColumnName="LoaiPhieu" />
+                <ScalarProperty Name="LyDoChung" ColumnName="LyDoChung" />
+                <ScalarProperty Name="TienThu" ColumnName="TienThu" />
+                <ScalarProperty Name="TienChi" ColumnName="TienChi" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
