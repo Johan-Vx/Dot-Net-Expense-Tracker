@@ -16,14 +16,14 @@ namespace Expense_Tracker.Report {
     using CrystalDecisions.CrystalReports.Engine;
     
     
-    public class QuarterlyReports : ReportClass {
+    public class Monthly : ReportClass {
         
-        public QuarterlyReports() {
+        public Monthly() {
         }
         
         public override string ResourceName {
             get {
-                return "QuarterlyReports.rpt";
+                return "Monthly.rpt";
             }
             set {
                 // Do nothing
@@ -41,7 +41,7 @@ namespace Expense_Tracker.Report {
         
         public override string FullResourceName {
             get {
-                return "Expense_Tracker.Report.QuarterlyReports.rpt";
+                return "Expense_Tracker.Report.Monthly.rpt";
             }
             set {
                 // Do nothing
@@ -90,9 +90,9 @@ namespace Expense_Tracker.Report {
     }
     
     [System.Drawing.ToolboxBitmapAttribute(typeof(CrystalDecisions.Shared.ExportOptions), "report.bmp")]
-    public class CachedQuarterlyReports : Component, ICachedReport {
+    public class CachedMonthly : Component, ICachedReport {
         
-        public CachedQuarterlyReports() {
+        public CachedMonthly() {
         }
         
         [Browsable(false)]
@@ -129,7 +129,7 @@ namespace Expense_Tracker.Report {
         }
         
         public virtual CrystalDecisions.CrystalReports.Engine.ReportDocument CreateReport() {
-            QuarterlyReports rpt = new QuarterlyReports();
+            Monthly rpt = new Monthly();
             rpt.Site = this.Site;
             return rpt;
         }
