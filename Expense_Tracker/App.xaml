@@ -61,7 +61,7 @@
             <v:StatisticView />
         </DataTemplate>
         <DataTemplate DataType="{x:Type vm:ReportViewModel}">
-            <v:Report/>
+            <v:MonthlyReportView/>
         </DataTemplate>
 
         <!-- SidebarButtonStyle (stays light-on-dark) -->

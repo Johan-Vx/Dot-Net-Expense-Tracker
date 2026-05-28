@@ -181,8 +181,8 @@
     <Compile Include="View\PhieuThuChiView.xaml.cs">
       <DependentUpon>PhieuThuChiView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Report.xaml.cs">
-      <DependentUpon>Report.xaml</DependentUpon>
+    <Compile Include="View\Report\MonthlyReportView.xaml.cs">
+      <DependentUpon>MonthlyReportView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\SettingsView.xaml.cs">
       <DependentUpon>SettingsView.xaml</DependentUpon>
@@ -218,7 +218,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="View\Report.xaml">
+    <Page Include="View\Report\MonthlyReportView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
