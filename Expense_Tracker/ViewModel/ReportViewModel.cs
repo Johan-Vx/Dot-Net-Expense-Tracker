@@ -37,83 +37,63 @@ namespace Expense_Tracker.ViewModel
             }
         }
 
-        // ── ComboBox Tháng ──────────────────────────────────────────
-        private ObservableCollection<int> _months;
-        public ObservableCollection<int> Months
+        // ── DatePicker Từ Ngày ───────────────────────────────────────
+        private DateTime _selectedStartTime;
+        public DateTime SelectedStartTime
         {
-            get => _months;
-            set { _months = value; OnPropertyChanged(); }
+            get => _selectedStartTime;
+            set { _selectedStartTime = value; OnPropertyChanged(); }
         }
 
-        private int _selectedMonth;
-        public int SelectedMonth
+        // ── DatePicker Đến Ngày ───────────────────────────────────────
+        private DateTime _selectedEndTime;
+        public DateTime SelectedEndTime
         {
-            get => _selectedMonth;
-            set { _selectedMonth = value; OnPropertyChanged(); }
-        }
-
-        // ── ComboBox Năm ────────────────────────────────────────────
-        private ObservableCollection<int> _years;
-        public ObservableCollection<int> Years
-        {
-            get => _years;
-            set { _years = value; OnPropertyChanged(); }
-        }
-
-        private int _selectedYear;
-        public int SelectedYear
-        {
-            get => _selectedYear;
-            set { _selectedYear = value; OnPropertyChanged(); }
+            get => _selectedEndTime;
+            set { _selectedEndTime = value; OnPropertyChanged(); }
         }
 
         // ── Command ─────────────────────────────────────────────────
         public ICommand GenerateReportCommand { get; }
 
         // ── Event để code-behind nhận tham số tạo report ────────────
-        public event Action<DateTime?, int, int> OnGenerateReport;
+        public event Action<DateTime?, DateTime, DateTime> OnGenerateReport;
 
         public ReportViewModel()
         {
             _context = new EXPENSE_TRACKER_DBEntities();
-            LoadMonthsAndYears();
+            InitializeDates();
 
             GenerateReportCommand = new RelayCommand(_ =>
             {
                 DateTime? dateParam = IsAllDate ? (DateTime?)null : SelectedDate;
-                OnGenerateReport?.Invoke(dateParam, SelectedMonth, SelectedYear);
+                OnGenerateReport?.Invoke(dateParam, SelectedStartTime, SelectedEndTime);
             });
         }
 
         /// <summary>
-        /// Lấy danh sách Tháng và Năm có dữ liệu từ bảng PhieuThuChi.
+        /// Khởi tạo khoảng thời gian lọc báo cáo mặc định
         /// </summary>
-        private void LoadMonthsAndYears()
+        private void InitializeDates()
         {
-            var phieuDates = _context.PhieuThuChi
-                .Select(p => p.NgayLap)
-                .ToList();
+            SelectedStartTime = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1);
+            SelectedEndTime = DateTime.Today;
 
-            // Lấy danh sách tháng distinct, sắp xếp tăng dần
-            var months = phieuDates
-                .Select(d => d.Month)
-                .Distinct()
-                .OrderBy(m => m)
-                .ToList();
+            try
+            {
+                if (_context.PhieuThuChi.Any())
+                {
+                    var minDate = _context.PhieuThuChi.Min(p => p.NgayLap);
+                    var maxDate = _context.PhieuThuChi.Max(p => p.NgayLap);
 
-            // Lấy danh sách năm distinct, sắp xếp giảm dần (mới nhất lên trước)
-            var years = phieuDates
-                .Select(d => d.Year)
-                .Distinct()
-                .OrderByDescending(y => y)
-                .ToList();
-
-            Months = new ObservableCollection<int>(months);
-            Years = new ObservableCollection<int>(years);
-
-            // Mặc định chọn tháng/năm hiện tại nếu có trong danh sách
-            SelectedMonth = months.Contains(DateTime.Now.Month) ? DateTime.Now.Month : (months.Any() ? months.First() : 1);
-            SelectedYear = years.Contains(DateTime.Now.Year) ? DateTime.Now.Year : (years.Any() ? years.First() : DateTime.Now.Year);
+                    SelectedStartTime = minDate;
+                    SelectedEndTime = maxDate;
+                }
+            }
+            catch
+            {
+                // Fallback nếu lỗi DB
+            }
         }
     }
 }
