@@ -416,7 +416,7 @@
     </None>
     <None Include=".env.example" />
     <None Include="connections.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Model\EXPENSE_TRACKER_DB.edmx.diagram">
       <DependentUpon>EXPENSE_TRACKER_DB.edmx</DependentUpon>
