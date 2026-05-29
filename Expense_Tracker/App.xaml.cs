@@ -24,9 +24,10 @@ namespace Expense_Tracker
 
             if (!string.IsNullOrEmpty(envConnectionString))
             {
+                string escapedConnectionString = envConnectionString.Replace("\"", "&quot;");
                 string configPath = AppDomain.CurrentDomain.BaseDirectory + "connections.config";
                 string xmlContent = $@"<connectionStrings>
-    <add name=""EXPENSE_TRACKER_DBEntities"" connectionString=""{envConnectionString}"" providerName=""System.Data.EntityClient"" />
+    <add name=""EXPENSE_TRACKER_DBEntities"" connectionString=""{escapedConnectionString}"" providerName=""System.Data.EntityClient"" />
 </connectionStrings>";
                 System.IO.File.WriteAllText(configPath, xmlContent);
             }
