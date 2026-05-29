@@ -15,6 +15,7 @@ namespace Expense_Tracker.View
         {
             InitializeComponent();
             this.DataContextChanged += MonthlyReportView_DataContextChanged;
+            
         }
 
         private void MonthlyReportView_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
@@ -45,7 +46,13 @@ namespace Expense_Tracker.View
             try
             {
                 MonthlyReports rpt = new MonthlyReports();
-                
+
+                DotNetEnv.Env.Load();
+                string db_user = Environment.GetEnvironmentVariable("DB_USERNAME");
+                string db_password = Environment.GetEnvironmentVariable("DB_PASSWORD");
+                string db_servername = Environment.GetEnvironmentVariable("DB_SEVERNAME");
+                string db_dbname = Environment.GetEnvironmentVariable("DB_DBNAME");
+                rpt.SetDatabaseLogon(db_user,db_password,db_servername,db_dbname);
                 // Thiết lập tham số cho report
                 if (dateParam.HasValue)
                 {
