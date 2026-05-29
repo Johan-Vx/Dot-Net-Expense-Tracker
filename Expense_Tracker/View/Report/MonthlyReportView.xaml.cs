@@ -53,11 +53,11 @@ namespace Expense_Tracker.View
                 }
                 else
                 {
-                    rpt.SetParameterValue("p_DateReport", DBNull.Value);
+                    rpt.SetParameterValue("p_DateReport", DateTime.Today);
                 }
                 
-                rpt.SetParameterValue("TuNgay", tuNgay);
-                rpt.SetParameterValue("DenNgay", denNgay);
+                rpt.SetParameterValue("@TuNgay", tuNgay);
+                rpt.SetParameterValue("@DenNgay", denNgay);
                 
                 // Gán ReportSource cho CrystalReportsViewer
                 MainReport.ViewerCore.ReportSource = rpt;
