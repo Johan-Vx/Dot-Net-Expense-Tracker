@@ -27,11 +27,16 @@ namespace Expense_Tracker.View
             {
                 newVm.OnGenerateReport += ReportViewModel_OnGenerateReport;
                 
-                // Tự động tạo báo cáo lần đầu tiên khi View được load và DataContext được gán
-                if (newVm.GenerateReportCommand != null && newVm.GenerateReportCommand.CanExecute(null))
+                // Tự động tạo báo cáo lần đầu tiên khi View được load và DataContext được gán.
+                // Sử dụng Dispatcher.BeginInvoke để chạy bất đồng bộ nhằm tránh lỗi Dispatcher processing suspended
+                // khi phát sinh lỗi/hiển thị MessageBox trong luồng DataContextChanged của WPF layout.
+                Dispatcher.BeginInvoke(new Action(() =>
                 {
-                    newVm.GenerateReportCommand.Execute(null);
-                }
+                    if (newVm.GenerateReportCommand != null && newVm.GenerateReportCommand.CanExecute(null))
+                    {
+                        newVm.GenerateReportCommand.Execute(null);
+                    }
+                }), System.Windows.Threading.DispatcherPriority.Background);
             }
         }
 
