@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="Expense_Tracker.View.MonthlyReportView"
+<UserControl x:Class="Expense_Tracker.View.MonthlyReportView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -41,20 +41,18 @@
                            Foreground="{StaticResource ColorTextMuted}" FontSize="13"/>
                 </StackPanel>
 
-                <!-- ComboBox Tháng -->
+                <!-- DatePicker Từ ngày -->
                 <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center" Margin="0,0,15,0">
-                    <TextBlock Text="Tháng:" VerticalAlignment="Center" Margin="0,0,8,0" FontSize="14"/>
-                    <ComboBox ItemsSource="{Binding Months}"
-                          SelectedItem="{Binding SelectedMonth, Mode=TwoWay}"
-                          Width="70" VerticalAlignment="Center"/>
+                    <TextBlock Text="Từ ngày:" VerticalAlignment="Center" Margin="0,0,8,0" FontSize="14"/>
+                    <DatePicker SelectedDate="{Binding SelectedStartTime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            Width="140" VerticalAlignment="Center"/>
                 </StackPanel>
 
-                <!-- ComboBox Năm -->
+                <!-- DatePicker Đến ngày -->
                 <StackPanel Grid.Column="3" Orientation="Horizontal" VerticalAlignment="Center" Margin="0,0,15,0">
-                    <TextBlock Text="Năm:" VerticalAlignment="Center" Margin="0,0,8,0" FontSize="14"/>
-                    <ComboBox ItemsSource="{Binding Years}"
-                          SelectedItem="{Binding SelectedYear, Mode=TwoWay}"
-                          Width="90" VerticalAlignment="Center"/>
+                    <TextBlock Text="Đến ngày:" VerticalAlignment="Center" Margin="0,0,8,0" FontSize="14"/>
+                    <DatePicker SelectedDate="{Binding SelectedEndTime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            Width="140" VerticalAlignment="Center"/>
                 </StackPanel>
 
                 <!-- Button Tạo báo cáo -->
