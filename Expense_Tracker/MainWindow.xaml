@@ -10,6 +10,7 @@
         Title="Quản lý Quỹ Thu Chi" Height="720" Width="1200"
         WindowStartupLocation="CenterScreen"
         Background="{StaticResource ColorBackground}"
+        Closing="Window_Closing"
         behavior:WindowBehavior.DialogResult="{Binding DialogResult}">
     <!-- Binding DialogResult để hỗ trợ đóng Window từ ViewModel -->
 
