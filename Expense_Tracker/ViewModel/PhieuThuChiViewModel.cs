@@ -68,6 +68,9 @@ namespace Expense_Tracker.ViewModel
             OnPropertyChanged(nameof(SelectedPhieu));
         }
 
+        /// <summary>Public accessor for code-behind CellEditEnding recalculation.</summary>
+        public void TriggerRecalcTongTien() => RecalcTongTien();
+
         // ── Lookup collections ───────────────────────────────────────
         public ObservableCollection<string>      LoaiPhieus   { get; set; }
             = new ObservableCollection<string> { "Thu", "Chi" };
