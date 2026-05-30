@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Expense_Tracker.View"
              mc:Ignorable="d" 
-             d:DesignHeight="600" d:DesignWidth="800">
+             d:DesignHeight="600" d:DesignWidth="900">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -17,14 +17,68 @@
 
         <!-- Filters -->
         <Border Grid.Row="1" Style="{StaticResource CardBorderStyle}" Margin="0,0,0,20">
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Từ ngày:" VerticalAlignment="Center" Margin="0,0,10,0"/>
-                <DatePicker SelectedDate="{Binding StartDate}" Margin="0,0,20,0"/>
-                
-                <TextBlock Text="Đến ngày:" VerticalAlignment="Center" Margin="0,0,10,0"/>
-                <DatePicker SelectedDate="{Binding EndDate}" Margin="0,0,20,0"/>
+            <StackPanel>
+                <!-- Row 1: Date range + Transaction type + Fund account -->
+                <WrapPanel Orientation="Horizontal" Margin="0,0,0,10">
+                    <StackPanel Orientation="Horizontal" Margin="0,0,15,5">
+                        <TextBlock Text="Từ ngày:" VerticalAlignment="Center" Margin="0,0,8,0" FontWeight="SemiBold"/>
+                        <DatePicker SelectedDate="{Binding StartDate}" Width="130"/>
+                    </StackPanel>
 
-                <Button Content="Lọc" Command="{Binding FilterCommand}" Style="{StaticResource PrimaryButtonStyle}"/>
+                    <StackPanel Orientation="Horizontal" Margin="0,0,15,5">
+                        <TextBlock Text="Đến ngày:" VerticalAlignment="Center" Margin="0,0,8,0" FontWeight="SemiBold"/>
+                        <DatePicker SelectedDate="{Binding EndDate}" Width="130"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Margin="0,0,15,5">
+                        <TextBlock Text="Loại:" VerticalAlignment="Center" Margin="0,0,8,0" FontWeight="SemiBold"/>
+                        <ComboBox ItemsSource="{Binding LoaiPhieuOptions}"
+                                  SelectedItem="{Binding SelectedLoaiPhieu}"
+                                  Width="100"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Margin="0,0,15,5">
+                        <TextBlock Text="Quỹ:" VerticalAlignment="Center" Margin="0,0,8,0" FontWeight="SemiBold"/>
+                        <ComboBox ItemsSource="{Binding TaiKhoanQuys}"
+                                  SelectedValue="{Binding SelectedMaQuy}"
+                                  SelectedValuePath="MaQuy"
+                                  DisplayMemberPath="TenQuy"
+                                  Width="140"/>
+                    </StackPanel>
+                </WrapPanel>
+
+                <!-- Row 2: Category + Search + Amount range + Filter button -->
+                <WrapPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Horizontal" Margin="0,0,15,5">
+                        <TextBlock Text="Danh mục:" VerticalAlignment="Center" Margin="0,0,8,0" FontWeight="SemiBold"/>
+                        <ComboBox ItemsSource="{Binding DanhMucs}"
+                                  SelectedValue="{Binding SelectedMaDM}"
+                                  SelectedValuePath="MaDM"
+                                  DisplayMemberPath="TenDM"
+                                  Width="150"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Margin="0,0,15,5">
+                        <TextBlock Text="Tìm kiếm:" VerticalAlignment="Center" Margin="0,0,8,0" FontWeight="SemiBold"/>
+                        <TextBox Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}" Width="150"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Margin="0,0,15,5">
+                        <TextBlock Text="Số tiền từ:" VerticalAlignment="Center" Margin="0,0,8,0" FontWeight="SemiBold"/>
+                        <TextBox Text="{Binding MinAmountText, UpdateSourceTrigger=PropertyChanged}" Width="100"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Margin="0,0,15,5">
+                        <TextBlock Text="đến:" VerticalAlignment="Center" Margin="0,0,8,0" FontWeight="SemiBold"/>
+                        <TextBox Text="{Binding MaxAmountText, UpdateSourceTrigger=PropertyChanged}" Width="100"/>
+                    </StackPanel>
+
+                    <Button Content="🔍 Lọc" Command="{Binding FilterCommand}" Style="{StaticResource PrimaryButtonStyle}" Margin="0,0,8,5"/>
+                    <Button Content="↺ Xóa bộ lọc" Command="{Binding ClearFilterCommand}"
+                            Background="{StaticResource ColorSurfaceHover}" Foreground="{StaticResource ColorTextSecondary}"
+                            BorderThickness="1" BorderBrush="{StaticResource ColorBorder}" Padding="15,8"
+                            FontFamily="{StaticResource FontMain}" FontWeight="SemiBold" Margin="0,0,0,5"/>
+                </WrapPanel>
             </StackPanel>
         </Border>
 
