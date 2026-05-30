@@ -34,7 +34,7 @@ namespace Expense_Tracker.View
         {
             try
             {
-                using (var context = new EXPENSE_TRACKER_DBEntities())
+                using (var context = new EXPENSE_TRACKER_DB_Entities())
                 {
                     ReportDocument report=new ReportDocument();
                     DotNetEnv.Env.Load();
@@ -45,15 +45,11 @@ namespace Expense_Tracker.View
 
                     string reportName = type == "ThuChi" ? "MonthlyReports.rpt" : "FundStatementReportrpt.rpt";
                     string reportPath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Report", reportName);
-                    
                     report.Load(reportPath);
+                    report.SetDatabaseLogon(db_user, db_password, db_severname, db_dbname);                    
 
                     if (type == "ThuChi")
                     {
-                        var data = context.sp_BaoCaoThuChiTheoThangChiTiet(dateParam.Month, dateParam.Year).ToList();
-                        report.SetDataSource(data);
-
-                        // Set parameters for MonthlyReports (matched exactly with report file definitions)
                         report.SetParameterValue("p_DateReport", DateTime.Now);
                         report.SetParameterValue("@TuNgay", startTime);
                         report.SetParameterValue("@DenNgay", endTime);
@@ -61,10 +57,6 @@ namespace Expense_Tracker.View
                     }
                     else // "SaoKe"
                     {
-                        var data = context.sp_SaoKeTaiKhoanQuy(maQuy, startTime, endTime).ToList();
-                        report.SetDataSource(data);
-
-                        // Set parameters for FundStatementReport (matched exactly with report file definitions)
                         report.SetParameterValue("p_DateReport", DateTime.Now);
                         report.SetParameterValue("@MaQuy", maQuy ?? "");
                         report.SetParameterValue("@TuNgay", startTime);
@@ -72,10 +64,6 @@ namespace Expense_Tracker.View
                         report.SetParameterValue("p_ReportPerson", SessionManager.CurrentUser?.HoTen ?? "");
                     }
 
-                    // Set database logon AFTER loading the report
-                    report.SetDatabaseLogon(db_user, db_password, db_severname, db_dbname);
-
-                    
                     MainReport.ViewerCore.ReportSource = report;
                 }
             }
