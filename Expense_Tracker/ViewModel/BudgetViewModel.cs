@@ -207,6 +207,22 @@ namespace Expense_Tracker.ViewModel
         {
             try
             {
+                // Validate duplicate categories
+                var duplicateCategories = BudgetLines
+                    .Where(l => !string.IsNullOrEmpty(l.MaDM))
+                    .GroupBy(l => l.MaDM)
+                    .Where(g => g.Count() > 1)
+                    .Select(g => g.First().TenDM)
+                    .ToList();
+
+                if (duplicateCategories.Any())
+                {
+                    MessageBox.Show("Các hạng mục sau bị trùng lặp: " + string.Join(", ", duplicateCategories) + 
+                                    "\nMột hạng mục chỉ được thêm một lần trong ngân sách tháng.", 
+                                    "Lỗi dữ liệu", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
+
                 int maND = SessionManager.CurrentUser?.MaND ?? 1;
 
                 // Create NganSach header if not exists
@@ -261,7 +277,14 @@ namespace Expense_Tracker.ViewModel
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi khi lưu ngân sách: " + ex.Message, "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                string errorMsg = ex.Message;
+                if (ex.InnerException != null)
+                {
+                    errorMsg += "\nChi tiết: " + ex.InnerException.Message;
+                    if (ex.InnerException.InnerException != null)
+                        errorMsg += "\n" + ex.InnerException.InnerException.Message;
+                }
+                MessageBox.Show("Lỗi khi lưu ngân sách: " + errorMsg, "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }
