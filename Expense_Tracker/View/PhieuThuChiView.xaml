@@ -51,16 +51,16 @@
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Số Phiếu"
                                                Binding="{Binding SoPhieu}"
-                                               Width="*"/>
+                                               Width="1*"/>
                             <DataGridTextColumn Header="Ngày"
                                                Binding="{Binding NgayLap, StringFormat=dd/MM/yy}"
-                                               Width="75"/>
+                                               Width="1*"/>
                             <DataGridTextColumn Header="Loại"
                                                Binding="{Binding LoaiPhieu}"
-                                               Width="45"/>
+                                               Width="1*"/>
                             <DataGridTextColumn Header="Tổng"
                                                Binding="{Binding TongTien, StringFormat={}{0:N0}}"
-                                               Width="80"/>
+                                               Width="1*"/>
                         </DataGrid.Columns>
                     </DataGrid>
                 </DockPanel>
