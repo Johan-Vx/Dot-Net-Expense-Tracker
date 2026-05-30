@@ -63,7 +63,7 @@
 
         <!-- ── Doughnut Chart: Chi tiêu tháng này vs tháng trước ── -->
         <Border Grid.Row="2" Background="{StaticResource ColorSurface}" CornerRadius="12" Padding="20" Margin="0,0,0,12"
-                BorderBrush="{StaticResource ColorBorder}" BorderThickness="1">
+                BorderBrush="{StaticResource ColorBorder}" BorderThickness="1" HorizontalAlignment="Left" MinWidth="450">
             <Border.Effect><DropShadowEffect BlurRadius="8" Color="#E2E8F0" ShadowDepth="1" Opacity="0.5"/></Border.Effect>
             <Grid>
                 <Grid.ColumnDefinitions>
