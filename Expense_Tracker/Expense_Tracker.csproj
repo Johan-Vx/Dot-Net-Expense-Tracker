@@ -259,61 +259,61 @@
     </ApplicationDefinition>
     <Compile Include="Helper\WindowBehavior.cs" />
     <Compile Include="Model\ChiTietNganSach.cs">
-      <DependentUpon>EXPENSE_TRACKER_DB.tt</DependentUpon>
+      <DependentUpon>EXPENSE_TRACKER_Entities.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\ChiTietPhieu.cs">
-      <DependentUpon>EXPENSE_TRACKER_DB.tt</DependentUpon>
+      <DependentUpon>EXPENSE_TRACKER_Entities.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\DanhMuc.cs">
-      <DependentUpon>EXPENSE_TRACKER_DB.tt</DependentUpon>
+      <DependentUpon>EXPENSE_TRACKER_Entities.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\EXPENSE_TRACKER_DB.Context.cs">
+    <Compile Include="Model\EXPENSE_TRACKER_Entities.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>EXPENSE_TRACKER_DB.Context.tt</DependentUpon>
+      <DependentUpon>EXPENSE_TRACKER_Entities.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\EXPENSE_TRACKER_DB.cs">
+    <Compile Include="Model\EXPENSE_TRACKER_Entities.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>EXPENSE_TRACKER_DB.tt</DependentUpon>
+      <DependentUpon>EXPENSE_TRACKER_Entities.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\EXPENSE_TRACKER_DB.Designer.cs">
+    <Compile Include="Model\EXPENSE_TRACKER_Entities.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>EXPENSE_TRACKER_DB.edmx</DependentUpon>
+      <DependentUpon>EXPENSE_TRACKER_Entities.edmx</DependentUpon>
     </Compile>
     <Compile Include="Model\NganSach.cs">
-      <DependentUpon>EXPENSE_TRACKER_DB.tt</DependentUpon>
+      <DependentUpon>EXPENSE_TRACKER_Entities.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\NguoiDung.cs">
-      <DependentUpon>EXPENSE_TRACKER_DB.tt</DependentUpon>
+      <DependentUpon>EXPENSE_TRACKER_Entities.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\PhieuThuChi.cs">
-      <DependentUpon>EXPENSE_TRACKER_DB.tt</DependentUpon>
+      <DependentUpon>EXPENSE_TRACKER_Entities.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\sp_BaoCaoChiTietTheoThoiGian_Result.cs">
-      <DependentUpon>EXPENSE_TRACKER_DB.tt</DependentUpon>
+      <DependentUpon>EXPENSE_TRACKER_Entities.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\sp_BaoCaoThuChiTheoThangChiTiet_Result.cs">
-      <DependentUpon>EXPENSE_TRACKER_DB.tt</DependentUpon>
+      <DependentUpon>EXPENSE_TRACKER_Entities.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\sp_SaoKeTaiKhoanQuy_Result.cs">
-      <DependentUpon>EXPENSE_TRACKER_DB.tt</DependentUpon>
+      <DependentUpon>EXPENSE_TRACKER_Entities.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\sp_ThongKeThuChiThang_Result.cs">
-      <DependentUpon>EXPENSE_TRACKER_DB.tt</DependentUpon>
+      <DependentUpon>EXPENSE_TRACKER_Entities.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\sp_TongHopChiTieuTheoDanhMuc_Result.cs">
-      <DependentUpon>EXPENSE_TRACKER_DB.tt</DependentUpon>
+      <DependentUpon>EXPENSE_TRACKER_Entities.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\sp_XacThucTaiKhoan_Result.cs">
-      <DependentUpon>EXPENSE_TRACKER_DB.tt</DependentUpon>
+      <DependentUpon>EXPENSE_TRACKER_Entities.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\TaiKhoanQuy.cs">
-      <DependentUpon>EXPENSE_TRACKER_DB.tt</DependentUpon>
+      <DependentUpon>EXPENSE_TRACKER_Entities.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\VaiTro.cs">
-      <DependentUpon>EXPENSE_TRACKER_DB.tt</DependentUpon>
+      <DependentUpon>EXPENSE_TRACKER_Entities.tt</DependentUpon>
     </Compile>
     <Compile Include="Module\BaseViewModel.cs" />
     <Compile Include="Module\NavigationService.cs" />
@@ -441,12 +441,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include=".env.example" />
-    <EntityDeploy Include="Model\EXPENSE_TRACKER_DB.edmx">
+    <EntityDeploy Include="Model\EXPENSE_TRACKER_Entities.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>EXPENSE_TRACKER_DB.Designer.cs</LastGenOutput>
+      <LastGenOutput>EXPENSE_TRACKER_Entities.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="Model\EXPENSE_TRACKER_DB.edmx.diagram">
-      <DependentUpon>EXPENSE_TRACKER_DB.edmx</DependentUpon>
+    <None Include="Model\EXPENSE_TRACKER_Entities.edmx.diagram">
+      <DependentUpon>EXPENSE_TRACKER_Entities.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -465,15 +465,15 @@
     <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Model\EXPENSE_TRACKER_DB.Context.tt">
+    <Content Include="Model\EXPENSE_TRACKER_Entities.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>EXPENSE_TRACKER_DB.edmx</DependentUpon>
-      <LastGenOutput>EXPENSE_TRACKER_DB.Context.cs</LastGenOutput>
+      <DependentUpon>EXPENSE_TRACKER_Entities.edmx</DependentUpon>
+      <LastGenOutput>EXPENSE_TRACKER_Entities.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Model\EXPENSE_TRACKER_DB.tt">
+    <Content Include="Model\EXPENSE_TRACKER_Entities.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>EXPENSE_TRACKER_DB.edmx</DependentUpon>
-      <LastGenOutput>EXPENSE_TRACKER_DB.cs</LastGenOutput>
+      <DependentUpon>EXPENSE_TRACKER_Entities.edmx</DependentUpon>
+      <LastGenOutput>EXPENSE_TRACKER_Entities.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -110,7 +110,7 @@
                     <TextBlock Text="{Binding ErrorMessage}" 
                                Foreground="#DC2626" 
                                FontSize="12" 
-                               Height="70"
+                               Height="32"
                                Margin="0,0,0,10"
                                TextWrapping="Wrap"
                                TextAlignment="Center"
