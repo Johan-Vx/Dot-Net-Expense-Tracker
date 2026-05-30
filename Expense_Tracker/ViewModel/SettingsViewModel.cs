@@ -10,7 +10,7 @@ namespace Expense_Tracker.ViewModel
 {
     public class SettingsViewModel : BaseViewModel
     {
-        private EXPENSE_TRACKER_DBEntities _context;
+        private EXPENSE_TRACKER_DB_Entities _context;
 
         public ObservableCollection<DanhMuc> DanhMucs { get; set; }
         public ObservableCollection<TaiKhoanQuy> TaiKhoanQuys { get; set; }
@@ -30,7 +30,7 @@ namespace Expense_Tracker.ViewModel
 
         public SettingsViewModel()
         {
-            _context = new EXPENSE_TRACKER_DBEntities();
+            _context = new EXPENSE_TRACKER_DB_Entities();
 
             SaveCommand = new RelayCommand(o =>
             {

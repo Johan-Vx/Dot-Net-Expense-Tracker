@@ -15,10 +15,10 @@ namespace Expense_Tracker.Model
     using System.Data.Entity.Core.Objects;
     using System.Linq;
     
-    public partial class EXPENSE_TRACKER_DBEntities : DbContext
+    public partial class EXPENSE_TRACKER_DB_Entities : DbContext
     {
-        public EXPENSE_TRACKER_DBEntities()
-            : base("name=EXPENSE_TRACKER_DBEntities")
+        public EXPENSE_TRACKER_DB_Entities()
+            : base("name=EXPENSE_TRACKER_DB_Entities")
         {
         }
     

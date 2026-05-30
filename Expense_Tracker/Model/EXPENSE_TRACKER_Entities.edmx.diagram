@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="1564cfe1f2674848b44f627cf729cda3" Name="Diagram1">
+        <EntityTypeShape EntityType="EXPENSE_TRACKER_DB_Model.ChiTietNganSach" Width="1.5" PointX="7.5" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="EXPENSE_TRACKER_DB_Model.ChiTietPhieu" Width="1.5" PointX="7.5" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EXPENSE_TRACKER_DB_Model.DanhMuc" Width="1.5" PointX="5.25" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="EXPENSE_TRACKER_DB_Model.NganSach" Width="1.5" PointX="5.25" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EXPENSE_TRACKER_DB_Model.NguoiDung" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="EXPENSE_TRACKER_DB_Model.PhieuThuChi" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EXPENSE_TRACKER_DB_Model.TaiKhoanQuy" Width="1.5" PointX="3" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="EXPENSE_TRACKER_DB_Model.VaiTro" Width="1.5" PointX="0.75" PointY="5.375" IsExpanded="true" />
+        <AssociationConnector Association="EXPENSE_TRACKER_DB_Model.FK_CTNS_DM" ManuallyRouted="false" />
+        <AssociationConnector Association="EXPENSE_TRACKER_DB_Model.FK_ChiTietNganSach_NganSach" ManuallyRouted="false" />
+        <AssociationConnector Association="EXPENSE_TRACKER_DB_Model.FK__ChiTietPh__SoPhi__5629CD9C" ManuallyRouted="false" />
+        <AssociationConnector Association="EXPENSE_TRACKER_DB_Model.FK__ChiTietPhi__MaDM__571DF1D5" ManuallyRouted="false" />
+        <AssociationConnector Association="EXPENSE_TRACKER_DB_Model.FK_NganSach_NguoiDung" ManuallyRouted="false" />
+        <AssociationConnector Association="EXPENSE_TRACKER_DB_Model.FK__NguoiDung__MaVai__5812160E" ManuallyRouted="false" />
+        <AssociationConnector Association="EXPENSE_TRACKER_DB_Model.FK__PhieuThuC__Nguoi__59FA5E80" ManuallyRouted="false" />
+        <AssociationConnector Association="EXPENSE_TRACKER_DB_Model.FK__PhieuThuC__MaQuy__59063A47" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

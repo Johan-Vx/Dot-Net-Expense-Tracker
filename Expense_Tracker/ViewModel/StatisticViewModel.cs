@@ -71,7 +71,7 @@ namespace Expense_Tracker.ViewModel
 
         private void LoadData()
         {
-            using (var context = new EXPENSE_TRACKER_DBEntities())
+            using (var context = new EXPENSE_TRACKER_DB_Entities())
             {
                 try
                 {

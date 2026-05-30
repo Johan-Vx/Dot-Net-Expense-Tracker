@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="EXPENSE_TRACKER_DBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="EXPENSE_TRACKER_DB_Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="ChiTietNganSach">
           <Key>
             <PropertyRef Name="MaChiTietNganSach" />
@@ -250,7 +250,7 @@
           <Parameter Name="TenDangNhap" Type="varchar" Mode="In" />
           <Parameter Name="MatKhauHash" Type="varchar" Mode="In" />
         </Function>
-        <EntityContainer Name="EXPENSE_TRACKER_DBModelStoreContainer">
+        <EntityContainer Name="EXPENSE_TRACKER_DB_ModelStoreContainer">
           <EntitySet Name="ChiTietNganSach" EntityType="Self.ChiTietNganSach" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ChiTietPhieu" EntityType="Self.ChiTietPhieu" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DanhMuc" EntityType="Self.DanhMuc" Schema="dbo" store:Type="Tables" />
@@ -296,7 +296,7 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="EXPENSE_TRACKER_DBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="EXPENSE_TRACKER_DB_Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="ChiTietNganSach">
           <Key>
             <PropertyRef Name="MaChiTietNganSach" />
@@ -492,7 +492,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="EXPENSE_TRACKER_DBEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="EXPENSE_TRACKER_DB_Entities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="ChiTietNganSach" EntityType="Self.ChiTietNganSach" />
           <EntitySet Name="ChiTietPhieu" EntityType="Self.ChiTietPhieu" />
           <EntitySet Name="DanhMuc" EntityType="Self.DanhMuc" />
@@ -533,11 +533,11 @@
             <End Role="TaiKhoanQuy" EntitySet="TaiKhoanQuy" />
             <End Role="PhieuThuChi" EntitySet="PhieuThuChi" />
           </AssociationSet>
-          <FunctionImport Name="sp_BaoCaoChiTietTheoThoiGian" ReturnType="Collection(EXPENSE_TRACKER_DBModel.sp_BaoCaoChiTietTheoThoiGian_Result)">
+          <FunctionImport Name="sp_BaoCaoChiTietTheoThoiGian" ReturnType="Collection(EXPENSE_TRACKER_DB_Model.sp_BaoCaoChiTietTheoThoiGian_Result)">
             <Parameter Name="TuNgay" Mode="In" Type="DateTime" />
             <Parameter Name="DenNgay" Mode="In" Type="DateTime" />
           </FunctionImport>
-          <FunctionImport Name="sp_BaoCaoThuChiTheoThangChiTiet" ReturnType="Collection(EXPENSE_TRACKER_DBModel.sp_BaoCaoThuChiTheoThangChiTiet_Result)">
+          <FunctionImport Name="sp_BaoCaoThuChiTheoThangChiTiet" ReturnType="Collection(EXPENSE_TRACKER_DB_Model.sp_BaoCaoThuChiTheoThangChiTiet_Result)">
             <Parameter Name="Thang" Mode="In" Type="Int32" />
             <Parameter Name="Nam" Mode="In" Type="Int32" />
           </FunctionImport>
@@ -556,7 +556,7 @@
             <Parameter Name="MaQuy" Mode="In" Type="String" />
             <Parameter Name="Ngay" Mode="In" Type="DateTime" />
           </FunctionImport>
-          <FunctionImport Name="sp_SaoKeTaiKhoanQuy" ReturnType="Collection(EXPENSE_TRACKER_DBModel.sp_SaoKeTaiKhoanQuy_Result)">
+          <FunctionImport Name="sp_SaoKeTaiKhoanQuy" ReturnType="Collection(EXPENSE_TRACKER_DB_Model.sp_SaoKeTaiKhoanQuy_Result)">
             <Parameter Name="MaQuy" Mode="In" Type="String" />
             <Parameter Name="TuNgay" Mode="In" Type="DateTime" />
             <Parameter Name="DenNgay" Mode="In" Type="DateTime" />
@@ -571,16 +571,16 @@
             <Parameter Name="MaQuy" Mode="In" Type="String" />
             <Parameter Name="NguoiLapPhieu" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="sp_ThongKeThuChiThang" ReturnType="Collection(EXPENSE_TRACKER_DBModel.sp_ThongKeThuChiThang_Result)">
+          <FunctionImport Name="sp_ThongKeThuChiThang" ReturnType="Collection(EXPENSE_TRACKER_DB_Model.sp_ThongKeThuChiThang_Result)">
             <Parameter Name="Thang" Mode="In" Type="Int32" />
             <Parameter Name="Nam" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="sp_TongHopChiTieuTheoDanhMuc" ReturnType="Collection(EXPENSE_TRACKER_DBModel.sp_TongHopChiTieuTheoDanhMuc_Result)">
+          <FunctionImport Name="sp_TongHopChiTieuTheoDanhMuc" ReturnType="Collection(EXPENSE_TRACKER_DB_Model.sp_TongHopChiTieuTheoDanhMuc_Result)">
             <Parameter Name="LoaiDM" Mode="In" Type="String" />
             <Parameter Name="TuNgay" Mode="In" Type="DateTime" />
             <Parameter Name="DenNgay" Mode="In" Type="DateTime" />
           </FunctionImport>
-          <FunctionImport Name="sp_XacThucTaiKhoan" ReturnType="Collection(EXPENSE_TRACKER_DBModel.sp_XacThucTaiKhoan_Result)">
+          <FunctionImport Name="sp_XacThucTaiKhoan" ReturnType="Collection(EXPENSE_TRACKER_DB_Model.sp_XacThucTaiKhoan_Result)">
             <Parameter Name="TenDangNhap" Mode="In" Type="String" />
             <Parameter Name="MatKhauHash" Mode="In" Type="String" />
           </FunctionImport>
@@ -607,7 +607,7 @@
         </ComplexType>
         <ComplexType Name="sp_SaoKeTaiKhoanQuy_Result">
           <Property Type="String" Name="TenQuy" Nullable="true" MaxLength="100" />
-          <Property Type="Decimal" Name="SoDuDauKy" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="SoDuDauKy" Nullable="false" Precision="18" Scale="2" />
           <Property Type="String" Name="SoPhieu" Nullable="false" MaxLength="20" />
           <Property Type="DateTime" Name="NgayLap" Nullable="false" Precision="23" />
           <Property Type="String" Name="LoaiPhieu" Nullable="false" MaxLength="10" />
@@ -636,9 +636,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="EXPENSE_TRACKER_DBModelStoreContainer" CdmEntityContainer="EXPENSE_TRACKER_DBEntities">
+        <EntityContainerMapping StorageEntityContainer="EXPENSE_TRACKER_DB_ModelStoreContainer" CdmEntityContainer="EXPENSE_TRACKER_DB_Entities">
           <EntitySetMapping Name="ChiTietNganSach">
-            <EntityTypeMapping TypeName="EXPENSE_TRACKER_DBModel.ChiTietNganSach">
+            <EntityTypeMapping TypeName="EXPENSE_TRACKER_DB_Model.ChiTietNganSach">
               <MappingFragment StoreEntitySet="ChiTietNganSach">
                 <ScalarProperty Name="MaChiTietNganSach" ColumnName="MaChiTietNganSach" />
                 <ScalarProperty Name="MaNganSach" ColumnName="MaNganSach" />
@@ -648,7 +648,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ChiTietPhieu">
-            <EntityTypeMapping TypeName="EXPENSE_TRACKER_DBModel.ChiTietPhieu">
+            <EntityTypeMapping TypeName="EXPENSE_TRACKER_DB_Model.ChiTietPhieu">
               <MappingFragment StoreEntitySet="ChiTietPhieu">
                 <ScalarProperty Name="MaCT" ColumnName="MaCT" />
                 <ScalarProperty Name="SoPhieu" ColumnName="SoPhieu" />
@@ -659,7 +659,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="DanhMuc">
-            <EntityTypeMapping TypeName="EXPENSE_TRACKER_DBModel.DanhMuc">
+            <EntityTypeMapping TypeName="EXPENSE_TRACKER_DB_Model.DanhMuc">
               <MappingFragment StoreEntitySet="DanhMuc">
                 <ScalarProperty Name="MaDM" ColumnName="MaDM" />
                 <ScalarProperty Name="TenDM" ColumnName="TenDM" />
@@ -669,7 +669,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="NganSach">
-            <EntityTypeMapping TypeName="EXPENSE_TRACKER_DBModel.NganSach">
+            <EntityTypeMapping TypeName="EXPENSE_TRACKER_DB_Model.NganSach">
               <MappingFragment StoreEntitySet="NganSach">
                 <ScalarProperty Name="MaNganSach" ColumnName="MaNganSach" />
                 <ScalarProperty Name="MaND" ColumnName="MaND" />
@@ -680,7 +680,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="NguoiDung">
-            <EntityTypeMapping TypeName="EXPENSE_TRACKER_DBModel.NguoiDung">
+            <EntityTypeMapping TypeName="EXPENSE_TRACKER_DB_Model.NguoiDung">
               <MappingFragment StoreEntitySet="NguoiDung">
                 <ScalarProperty Name="MaND" ColumnName="MaND" />
                 <ScalarProperty Name="TenDangNhap" ColumnName="TenDangNhap" />
@@ -692,7 +692,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="PhieuThuChi">
-            <EntityTypeMapping TypeName="EXPENSE_TRACKER_DBModel.PhieuThuChi">
+            <EntityTypeMapping TypeName="EXPENSE_TRACKER_DB_Model.PhieuThuChi">
               <MappingFragment StoreEntitySet="PhieuThuChi">
                 <ScalarProperty Name="SoPhieu" ColumnName="SoPhieu" />
                 <ScalarProperty Name="NgayLap" ColumnName="NgayLap" />
@@ -706,7 +706,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TaiKhoanQuy">
-            <EntityTypeMapping TypeName="EXPENSE_TRACKER_DBModel.TaiKhoanQuy">
+            <EntityTypeMapping TypeName="EXPENSE_TRACKER_DB_Model.TaiKhoanQuy">
               <MappingFragment StoreEntitySet="TaiKhoanQuy">
                 <ScalarProperty Name="MaQuy" ColumnName="MaQuy" />
                 <ScalarProperty Name="TenQuy" ColumnName="TenQuy" />
@@ -716,7 +716,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="VaiTro">
-            <EntityTypeMapping TypeName="EXPENSE_TRACKER_DBModel.VaiTro">
+            <EntityTypeMapping TypeName="EXPENSE_TRACKER_DB_Model.VaiTro">
               <MappingFragment StoreEntitySet="VaiTro">
                 <ScalarProperty Name="MaVaiTro" ColumnName="MaVaiTro" />
                 <ScalarProperty Name="TenVaiTro" ColumnName="TenVaiTro" />
@@ -724,9 +724,9 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="sp_BaoCaoChiTietTheoThoiGian" FunctionName="EXPENSE_TRACKER_DBModel.Store.sp_BaoCaoChiTietTheoThoiGian">
+          <FunctionImportMapping FunctionImportName="sp_BaoCaoChiTietTheoThoiGian" FunctionName="EXPENSE_TRACKER_DB_Model.Store.sp_BaoCaoChiTietTheoThoiGian">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="EXPENSE_TRACKER_DBModel.sp_BaoCaoChiTietTheoThoiGian_Result">
+              <ComplexTypeMapping TypeName="EXPENSE_TRACKER_DB_Model.sp_BaoCaoChiTietTheoThoiGian_Result">
                 <ScalarProperty Name="SoPhieu" ColumnName="SoPhieu" />
                 <ScalarProperty Name="NgayLap" ColumnName="NgayLap" />
                 <ScalarProperty Name="LoaiPhieu" ColumnName="LoaiPhieu" />
@@ -740,9 +740,9 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_BaoCaoThuChiTheoThangChiTiet" FunctionName="EXPENSE_TRACKER_DBModel.Store.sp_BaoCaoThuChiTheoThangChiTiet">
+          <FunctionImportMapping FunctionImportName="sp_BaoCaoThuChiTheoThangChiTiet" FunctionName="EXPENSE_TRACKER_DB_Model.Store.sp_BaoCaoThuChiTheoThangChiTiet">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="EXPENSE_TRACKER_DBModel.sp_BaoCaoThuChiTheoThangChiTiet_Result">
+              <ComplexTypeMapping TypeName="EXPENSE_TRACKER_DB_Model.sp_BaoCaoThuChiTheoThangChiTiet_Result">
                 <ScalarProperty Name="SoPhieu" ColumnName="SoPhieu" />
                 <ScalarProperty Name="NgayLap" ColumnName="NgayLap" />
                 <ScalarProperty Name="LoaiPhieu" ColumnName="LoaiPhieu" />
@@ -752,14 +752,14 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_Call_ChuyenSoTienThanhChu" FunctionName="EXPENSE_TRACKER_DBModel.Store.sp_Call_ChuyenSoTienThanhChu" />
-          <FunctionImportMapping FunctionImportName="sp_Call_KiemTraQuyDuTien" FunctionName="EXPENSE_TRACKER_DBModel.Store.sp_Call_KiemTraQuyDuTien" />
-          <FunctionImportMapping FunctionImportName="sp_Call_LayHoTenNguoiLap" FunctionName="EXPENSE_TRACKER_DBModel.Store.sp_Call_LayHoTenNguoiLap" />
-          <FunctionImportMapping FunctionImportName="sp_Call_LayTongSoDu" FunctionName="EXPENSE_TRACKER_DBModel.Store.sp_Call_LayTongSoDu" />
-          <FunctionImportMapping FunctionImportName="sp_Call_TinhSoDuCuoiKy" FunctionName="EXPENSE_TRACKER_DBModel.Store.sp_Call_TinhSoDuCuoiKy" />
-          <FunctionImportMapping FunctionImportName="sp_SaoKeTaiKhoanQuy" FunctionName="EXPENSE_TRACKER_DBModel.Store.sp_SaoKeTaiKhoanQuy">
+          <FunctionImportMapping FunctionImportName="sp_Call_ChuyenSoTienThanhChu" FunctionName="EXPENSE_TRACKER_DB_Model.Store.sp_Call_ChuyenSoTienThanhChu" />
+          <FunctionImportMapping FunctionImportName="sp_Call_KiemTraQuyDuTien" FunctionName="EXPENSE_TRACKER_DB_Model.Store.sp_Call_KiemTraQuyDuTien" />
+          <FunctionImportMapping FunctionImportName="sp_Call_LayHoTenNguoiLap" FunctionName="EXPENSE_TRACKER_DB_Model.Store.sp_Call_LayHoTenNguoiLap" />
+          <FunctionImportMapping FunctionImportName="sp_Call_LayTongSoDu" FunctionName="EXPENSE_TRACKER_DB_Model.Store.sp_Call_LayTongSoDu" />
+          <FunctionImportMapping FunctionImportName="sp_Call_TinhSoDuCuoiKy" FunctionName="EXPENSE_TRACKER_DB_Model.Store.sp_Call_TinhSoDuCuoiKy" />
+          <FunctionImportMapping FunctionImportName="sp_SaoKeTaiKhoanQuy" FunctionName="EXPENSE_TRACKER_DB_Model.Store.sp_SaoKeTaiKhoanQuy">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="EXPENSE_TRACKER_DBModel.sp_SaoKeTaiKhoanQuy_Result">
+              <ComplexTypeMapping TypeName="EXPENSE_TRACKER_DB_Model.sp_SaoKeTaiKhoanQuy_Result">
                 <ScalarProperty Name="TenQuy" ColumnName="TenQuy" />
                 <ScalarProperty Name="SoDuDauKy" ColumnName="SoDuDauKy" />
                 <ScalarProperty Name="SoPhieu" ColumnName="SoPhieu" />
@@ -771,27 +771,27 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_ThemPhieuThuChiTuDong" FunctionName="EXPENSE_TRACKER_DBModel.Store.sp_ThemPhieuThuChiTuDong" />
-          <FunctionImportMapping FunctionImportName="sp_ThongKeThuChiThang" FunctionName="EXPENSE_TRACKER_DBModel.Store.sp_ThongKeThuChiThang">
+          <FunctionImportMapping FunctionImportName="sp_ThemPhieuThuChiTuDong" FunctionName="EXPENSE_TRACKER_DB_Model.Store.sp_ThemPhieuThuChiTuDong" />
+          <FunctionImportMapping FunctionImportName="sp_ThongKeThuChiThang" FunctionName="EXPENSE_TRACKER_DB_Model.Store.sp_ThongKeThuChiThang">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="EXPENSE_TRACKER_DBModel.sp_ThongKeThuChiThang_Result">
+              <ComplexTypeMapping TypeName="EXPENSE_TRACKER_DB_Model.sp_ThongKeThuChiThang_Result">
                 <ScalarProperty Name="LoaiPhieu" ColumnName="LoaiPhieu" />
                 <ScalarProperty Name="TongTienThang" ColumnName="TongTienThang" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_TongHopChiTieuTheoDanhMuc" FunctionName="EXPENSE_TRACKER_DBModel.Store.sp_TongHopChiTieuTheoDanhMuc">
+          <FunctionImportMapping FunctionImportName="sp_TongHopChiTieuTheoDanhMuc" FunctionName="EXPENSE_TRACKER_DB_Model.Store.sp_TongHopChiTieuTheoDanhMuc">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="EXPENSE_TRACKER_DBModel.sp_TongHopChiTieuTheoDanhMuc_Result">
+              <ComplexTypeMapping TypeName="EXPENSE_TRACKER_DB_Model.sp_TongHopChiTieuTheoDanhMuc_Result">
                 <ScalarProperty Name="MaDM" ColumnName="MaDM" />
                 <ScalarProperty Name="TenDM" ColumnName="TenDM" />
                 <ScalarProperty Name="TongTien" ColumnName="TongTien" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_XacThucTaiKhoan" FunctionName="EXPENSE_TRACKER_DBModel.Store.sp_XacThucTaiKhoan">
+          <FunctionImportMapping FunctionImportName="sp_XacThucTaiKhoan" FunctionName="EXPENSE_TRACKER_DB_Model.Store.sp_XacThucTaiKhoan">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="EXPENSE_TRACKER_DBModel.sp_XacThucTaiKhoan_Result">
+              <ComplexTypeMapping TypeName="EXPENSE_TRACKER_DB_Model.sp_XacThucTaiKhoan_Result">
                 <ScalarProperty Name="MaND" ColumnName="MaND" />
                 <ScalarProperty Name="TenDangNhap" ColumnName="TenDangNhap" />
                 <ScalarProperty Name="HoTen" ColumnName="HoTen" />

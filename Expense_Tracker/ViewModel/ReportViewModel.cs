@@ -10,7 +10,7 @@ namespace Expense_Tracker.ViewModel
 {
     public class ReportViewModel : BaseViewModel
     {
-        private EXPENSE_TRACKER_DBEntities _context;
+        private EXPENSE_TRACKER_DB_Entities _context;
 
         public ObservableCollection<TaiKhoanQuy> DanhSachQuy { get; set; }
 
@@ -56,7 +56,7 @@ namespace Expense_Tracker.ViewModel
 
         public ReportViewModel()
         {
-            _context = new EXPENSE_TRACKER_DBEntities();
+            _context = new EXPENSE_TRACKER_DB_Entities();
             LoadDanhSachQuy();
             InitializeDates();
 

@@ -14,7 +14,7 @@ namespace Expense_Tracker.Model
     public partial class sp_SaoKeTaiKhoanQuy_Result
     {
         public string TenQuy { get; set; }
-        public Nullable<decimal> SoDuDauKy { get; set; }
+        public decimal SoDuDauKy { get; set; }
         public string SoPhieu { get; set; }
         public System.DateTime NgayLap { get; set; }
         public string LoaiPhieu { get; set; }

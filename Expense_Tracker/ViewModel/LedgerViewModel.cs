@@ -9,7 +9,7 @@ namespace Expense_Tracker.ViewModel
 {
     public class LedgerViewModel : BaseViewModel
     {
-        private EXPENSE_TRACKER_DBEntities _context;
+        private EXPENSE_TRACKER_DB_Entities _context;
 
         // ── Date range filters ──
         private DateTime? _startDate;
@@ -94,7 +94,7 @@ namespace Expense_Tracker.ViewModel
 
         public LedgerViewModel()
         {
-            _context = new EXPENSE_TRACKER_DBEntities();
+            _context = new EXPENSE_TRACKER_DB_Entities();
 
             // Default filter: current month
             var now = DateTime.Now;
