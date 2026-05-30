@@ -53,23 +53,23 @@ namespace Expense_Tracker.View
                         var data = context.sp_BaoCaoThuChiTheoThangChiTiet(dateParam.Month, dateParam.Year).ToList();
                         report.SetDataSource(data);
 
-                        // Set parameters for MonthlyReports (with @ prefix)
-                        report.SetParameterValue("@p_DateReport", DateTime.Now);
+                        // Set parameters for MonthlyReports (matched exactly with report file definitions)
+                        report.SetParameterValue("p_DateReport", DateTime.Now);
                         report.SetParameterValue("@TuNgay", startTime);
                         report.SetParameterValue("@DenNgay", endTime);
-                        report.SetParameterValue("@p_ReportPerson", SessionManager.CurrentUser?.HoTen ?? "");
+                        report.SetParameterValue("p_ReportPerson", SessionManager.CurrentUser?.HoTen ?? "");
                     }
                     else // "SaoKe"
                     {
                         var data = context.sp_SaoKeTaiKhoanQuy(maQuy, startTime, endTime).ToList();
                         report.SetDataSource(data);
 
-                        // Set parameters for FundStatementReport (with @ prefix)
-                        report.SetParameterValue("@p_DateReport", DateTime.Now);
+                        // Set parameters for FundStatementReport (matched exactly with report file definitions)
+                        report.SetParameterValue("p_DateReport", DateTime.Now);
                         report.SetParameterValue("@MaQuy", maQuy ?? "");
                         report.SetParameterValue("@TuNgay", startTime);
                         report.SetParameterValue("@DenNgay", endTime);
-                        report.SetParameterValue("@p_ReportPerson", SessionManager.CurrentUser?.HoTen ?? "");
+                        report.SetParameterValue("p_ReportPerson", SessionManager.CurrentUser?.HoTen ?? "");
                     }
 
                     // Set database logon AFTER loading the report
