@@ -46,11 +46,15 @@ namespace Expense_Tracker.ViewModel
         }
 
         public ICommand LoginCommand { get; }
+        public ICommand RegisterCommand { get; }
+        public ICommand ForgotPasswordCommand { get; }
         public ICommand CloseCommand { get; }
 
         public LoginViewModel()
         {
             LoginCommand = new RelayCommand(ExecuteLogin);
+            RegisterCommand = new RelayCommand(ExecuteRegister);
+            ForgotPasswordCommand = new RelayCommand(_ => System.Windows.MessageBox.Show("Liên hệ người quản lý để thay đổi mật khẩu", "Quên mật khẩu", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Information));
             CloseCommand = new RelayCommand(o => DialogResult = false); // Đóng form (Cancel)
         }
 
@@ -70,7 +74,7 @@ namespace Expense_Tracker.ViewModel
             try
             {
                 string hash = HashPassword(password);
-                using (var context = new EXPENSE_TRACKER_DBEntities())
+                using (var context = new EXPENSE_TRACKER_DB_Entities())
                 {
                     var user = context.NguoiDung.FirstOrDefault(u => u.TenDangNhap == Username && u.MatKhauHash == hash);
                     if (user != null)
@@ -87,6 +91,49 @@ namespace Expense_Tracker.ViewModel
             catch (Exception ex)
             {
                 ErrorMessage = "Lỗi kết nối cơ sở dữ liệu: " + ex.Message;
+            }
+        }
+
+        private void ExecuteRegister(object parameter)
+        {
+            var passwordBox = parameter as PasswordBox;
+            if (passwordBox == null) return;
+            string password = passwordBox.Password;
+
+            if (string.IsNullOrWhiteSpace(Username) || string.IsNullOrWhiteSpace(password))
+            {
+                ErrorMessage = "Vui lòng nhập tên đăng nhập và mật khẩu để đăng ký.";
+                return;
+            }
+
+            try
+            {
+                using (var context = new EXPENSE_TRACKER_DB_Entities())
+                {
+                    if (context.NguoiDung.Any(u => u.TenDangNhap == Username))
+                    {
+                        ErrorMessage = "Tên đăng nhập đã tồn tại!";
+                        return;
+                    }
+
+                    var newUser = new NguoiDung
+                    {
+                        TenDangNhap = Username,
+                        MatKhauHash = HashPassword(password),
+                        HoTen = Username,
+                        MaVaiTro = 2, // 1: Admin, 2: User
+                        TrangThai = true
+                    };
+
+                    context.NguoiDung.Add(newUser);
+                    context.SaveChanges();
+
+                    System.Windows.MessageBox.Show("Đăng ký thành công! Vui lòng đăng nhập.", "Thông báo", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                ErrorMessage = "Lỗi đăng ký: " + ex.Message;
             }
         }
 

@@ -116,25 +116,54 @@
                                TextAlignment="Center"
                                />
 
-                    <!-- Nút Đăng nhập -->
-                    <Button Content="ĐĂNG NHẬP" 
-                            Command="{Binding LoginCommand}" 
-                            CommandParameter="{Binding ElementName=txtPassword}" 
-                            Height="45" 
-                            Background="#4F46E5" 
-                            Foreground="White" 
-                            FontWeight="Bold"
-                            FontSize="14"
+                    <!-- Nút Đăng nhập và Đăng ký -->
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,10" HorizontalAlignment="Center">
+                        <Button Content="ĐĂNG NHẬP" 
+                                Command="{Binding LoginCommand}" 
+                                CommandParameter="{Binding ElementName=txtPassword}" 
+                                Width="140" Height="45" 
+                                Background="#4F46E5" 
+                                Foreground="White" 
+                                FontWeight="Bold"
+                                FontSize="14"
+                                BorderThickness="0"
+                                Cursor="Hand"
+                                Margin="0,0,10,0">
+                            <Button.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="8"/>
+                                </Style>
+                            </Button.Resources>
+                        </Button>
+
+                        <Button Content="ĐĂNG KÝ" 
+                                Command="{Binding RegisterCommand}" 
+                                CommandParameter="{Binding ElementName=txtPassword}" 
+                                Width="140" Height="45" 
+                                Background="#10B981" 
+                                Foreground="White" 
+                                FontWeight="Bold"
+                                FontSize="14"
+                                BorderThickness="0"
+                                Cursor="Hand">
+                            <Button.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="8"/>
+                                </Style>
+                            </Button.Resources>
+                        </Button>
+                    </StackPanel>
+
+                    <!-- Quên mật khẩu -->
+                    <Button Content="Quên mật khẩu?" 
+                            Command="{Binding ForgotPasswordCommand}" 
+                            Background="Transparent"
                             BorderThickness="0"
+                            Foreground="#4F46E5"
+                            FontSize="13"
                             Cursor="Hand"
-                            Margin="0,0,0,15">
-                        <Button.Resources>
-                            <!-- Bo góc cho nút bấm -->
-                            <Style TargetType="Border">
-                                <Setter Property="CornerRadius" Value="8"/>
-                            </Style>
-                        </Button.Resources>
-                    </Button>
+                            Margin="0,0,0,15"
+                            HorizontalAlignment="Center"/>
 
                     <!-- Nút Thoát (Thực hiện CloseCommand) -->
                     <Button Content="Thoát ứng dụng" 
@@ -143,7 +172,8 @@
                             BorderThickness="0"
                             Foreground="#94A3B8"
                             FontSize="13"
-                            Cursor="Hand"/>
+                            Cursor="Hand"
+                            HorizontalAlignment="Center"/>
                 </StackPanel>
             </Grid>
         </Grid>

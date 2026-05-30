@@ -49,7 +49,7 @@ namespace Expense_Tracker.ViewModel
 
     public class BudgetViewModel : BaseViewModel
     {
-        private EXPENSE_TRACKER_DBEntities _context;
+        private EXPENSE_TRACKER_DB_Entities _context;
 
         // ── Month/Year selection ──
         public ObservableCollection<int> Months { get; set; }
@@ -95,7 +95,7 @@ namespace Expense_Tracker.ViewModel
 
         public BudgetViewModel()
         {
-            _context = new EXPENSE_TRACKER_DBEntities();
+            _context = new EXPENSE_TRACKER_DB_Entities();
 
             SelectedMonth = DateTime.Now.Month;
             SelectedYear = DateTime.Now.Year;
@@ -168,6 +168,20 @@ namespace Expense_Tracker.ViewModel
                         TenDM = ct.DanhMuc?.TenDM ?? ct.MaDM,
                         SoTienKeHoach = ct.SoTienKeHoach,
                         ThucTe = actual
+                    });
+                }
+            }
+            else
+            {
+                // Auto-populate all categories with 0 plan if no budget exists
+                foreach (var dm in DanhMucs)
+                {
+                    lines.Add(new BudgetLineItem
+                    {
+                        MaDM = dm.MaDM,
+                        TenDM = dm.TenDM,
+                        SoTienKeHoach = 0,
+                        ThucTe = GetActualExpense(dm.MaDM)
                     });
                 }
             }
