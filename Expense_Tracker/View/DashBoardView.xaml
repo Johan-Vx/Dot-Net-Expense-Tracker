@@ -12,8 +12,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>  <!-- Row 0: Title -->
             <RowDefinition Height="Auto"/>  <!-- Row 1: Summary Cards -->
-            <RowDefinition Height="Auto"/>  <!-- Row 2: Doughnut Chart -->
-            <RowDefinition Height="*"/>     <!-- Row 3: Recent Transactions -->
+            <RowDefinition Height="*"/>     <!-- Row 2: Bottom Content -->
         </Grid.RowDefinitions>
 
         <!-- ── Tiêu đề trang ── -->
@@ -61,107 +60,115 @@
             </Border>
         </Grid>
 
-        <!-- ── Doughnut Chart: Chi tiêu tháng này vs tháng trước ── -->
-        <Border Grid.Row="2" Background="{StaticResource ColorSurface}" CornerRadius="12" Padding="20" Margin="0,0,0,20"
-                BorderBrush="{StaticResource ColorBorder}" BorderThickness="1">
-            <Border.Effect><DropShadowEffect BlurRadius="8" Color="#E2E8F0" ShadowDepth="1" Opacity="0.5"/></Border.Effect>
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="220"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
+        <!-- ── Bottom Content ── -->
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="380"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
 
-                <!-- Chart -->
-                <lvc:PieChart Grid.Column="0"
-                              Height="200"
-                              InnerRadius="55"
-                              Hoverable="True"
-                              DataTooltip="{x:Null}"
-                              LegendLocation="None">
-                    <lvc:PieChart.Series>
-                        <lvc:PieSeries Title="Tháng này"
-                                       Values="{Binding ChiThangNayValues}"
-                                       DataLabels="False"
-                                       Fill="#EF4444"
-                                       StrokeThickness="0"/>
-                        <lvc:PieSeries Title="Tháng trước"
-                                       Values="{Binding ChiThangTruocValues}"
-                                       DataLabels="False"
-                                       Fill="#FCA5A5"
-                                       StrokeThickness="0"/>
-                    </lvc:PieChart.Series>
-                </lvc:PieChart>
+            <!-- ── Doughnut Chart: Chi tiêu tháng này vs tháng trước ── -->
+            <Border Grid.Column="0" Background="{StaticResource ColorSurface}" CornerRadius="12" Padding="20" Margin="0,0,20,0"
+                    BorderBrush="{StaticResource ColorBorder}" BorderThickness="1" VerticalAlignment="Stretch">
+                <Border.Effect><DropShadowEffect BlurRadius="8" Color="#E2E8F0" ShadowDepth="1" Opacity="0.5"/></Border.Effect>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
 
-                <!-- Info bên phải chart -->
-                <StackPanel Grid.Column="1" VerticalAlignment="Center" Margin="20,0,0,0">
-                    <TextBlock Text="CHI TIÊU SO VỚI THÁNG TRƯỚC"
-                               Foreground="{StaticResource ColorTextMuted}" FontSize="11" FontWeight="Bold"
-                               Margin="0,0,0,8"/>
+                    <!-- Chart -->
+                    <lvc:PieChart Grid.Row="0"
+                                  InnerRadius="50"
+                                  Hoverable="True"
+                                  DataTooltip="{x:Null}"
+                                  LegendLocation="None"
+                                  Margin="0,0,0,20">
+                        <lvc:PieChart.Series>
+                            <lvc:PieSeries Title="Tháng này"
+                                           Values="{Binding ChiThangNayValues}"
+                                           DataLabels="False"
+                                           Fill="#EF4444"
+                                           StrokeThickness="0"/>
+                            <lvc:PieSeries Title="Tháng trước"
+                                           Values="{Binding ChiThangTruocValues}"
+                                           DataLabels="False"
+                                           Fill="#FCA5A5"
+                                           StrokeThickness="0"/>
+                        </lvc:PieChart.Series>
+                    </lvc:PieChart>
 
-                    <!-- % thay đổi: màu đỏ nếu tăng, xanh nếu giảm -->
-                    <TextBlock Text="{Binding PhanTramThayDoi}"
-                               FontSize="36" FontWeight="Bold"
-                               Margin="0,0,0,4">
-                        <TextBlock.Style>
-                            <Style TargetType="TextBlock">
-                                <Setter Property="Foreground" Value="{StaticResource ColorSuccess}"/>
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding IsChiTang}" Value="True">
-                                        <Setter Property="Foreground" Value="{StaticResource ColorDanger}"/>
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </TextBlock.Style>
-                    </TextBlock>
+                    <!-- Info dưới chart -->
+                    <StackPanel Grid.Row="1" HorizontalAlignment="Center">
+                        <TextBlock Text="CHI TIÊU SO VỚI THÁNG TRƯỚC"
+                                   Foreground="{StaticResource ColorTextMuted}" FontSize="11" FontWeight="Bold"
+                                   Margin="0,0,0,8" HorizontalAlignment="Center"/>
 
-                    <TextBlock Text="{Binding TongChiThangNay, StringFormat=Chi tháng này: {0:N0} đ}"
-                               Foreground="{StaticResource ColorTextSecondary}" FontSize="13" Margin="0,0,0,3"/>
-                    <TextBlock Text="{Binding ChiThangTruocValues[0], StringFormat=Chi tháng trước: {0:N0} đ}"
-                               Foreground="{StaticResource ColorTextMuted}" FontSize="12"/>
-
-                    <!-- Legend -->
-                    <StackPanel Orientation="Horizontal" Margin="0,12,0,0">
-                        <Border Width="12" Height="12" Background="#EF4444" CornerRadius="2" Margin="0,0,6,0" VerticalAlignment="Center"/>
-                        <TextBlock Text="Tháng này" Foreground="{StaticResource ColorTextMuted}" FontSize="12" VerticalAlignment="Center" Margin="0,0,16,0"/>
-                        <Border Width="12" Height="12" Background="#FCA5A5" CornerRadius="2" Margin="0,0,6,0" VerticalAlignment="Center"/>
-                        <TextBlock Text="Tháng trước" Foreground="{StaticResource ColorTextMuted}" FontSize="12" VerticalAlignment="Center"/>
-                    </StackPanel>
-                </StackPanel>
-            </Grid>
-        </Border>
-
-        <!-- ── Recent Transactions Table ── -->
-        <Border Grid.Row="3" Background="{StaticResource ColorSurface}" CornerRadius="12" Padding="20"
-                BorderBrush="{StaticResource ColorBorder}" BorderThickness="1">
-            <Border.Effect><DropShadowEffect BlurRadius="8" Color="#E2E8F0" ShadowDepth="1" Opacity="0.5"/></Border.Effect>
-            <DockPanel>
-                <TextBlock DockPanel.Dock="Top" Text="Giao dịch gần đây"
-                           FontSize="18" FontWeight="Bold" Foreground="{StaticResource ColorTextPrimary}" Margin="0,0,0,20"/>
-
-                <DataGrid ItemsSource="{Binding RecentTransactions}" 
-                          Style="{StaticResource DataGridDarkStyle}"
-                          IsReadOnly="True"
-                          RowHeight="40"
-                          HeadersVisibility="Column">
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Header="Mã Phiếu"  Binding="{Binding SoPhieu}" Width="100"/>
-                        <DataGridTextColumn Header="Ngày Lập"  Binding="{Binding NgayLap, StringFormat=dd/MM/yyyy}" Width="120"/>
-                        <DataGridTextColumn Header="Loại"      Binding="{Binding LoaiPhieu}" Width="80"/>
-                        <DataGridTextColumn Header="Số Tiền"   Binding="{Binding TongTien, StringFormat={}{0:N0}}" Width="150">
-                            <DataGridTextColumn.ElementStyle>
+                        <!-- % thay đổi -->
+                        <TextBlock Text="{Binding PhanTramThayDoi}"
+                                   FontSize="36" FontWeight="Bold"
+                                   Margin="0,0,0,8" HorizontalAlignment="Center">
+                            <TextBlock.Style>
                                 <Style TargetType="TextBlock">
-                                    <Setter Property="FontWeight" Value="SemiBold"/>
-                                    <Setter Property="VerticalAlignment" Value="Center"/>
-                                    <Setter Property="Margin" Value="10,0"/>
+                                    <Setter Property="Foreground" Value="{StaticResource ColorSuccess}"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding IsChiTang}" Value="True">
+                                            <Setter Property="Foreground" Value="{StaticResource ColorDanger}"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
                                 </Style>
-                            </DataGridTextColumn.ElementStyle>
-                        </DataGridTextColumn>
-                        <DataGridTextColumn Header="Người Lập" Binding="{Binding NguoiDung.HoTen}" Width="150"/>
-                        <DataGridTextColumn Header="Nội dung"  Binding="{Binding LyDoChung}" Width="*"/>
-                    </DataGrid.Columns>
-                </DataGrid>
-            </DockPanel>
-        </Border>
+                            </TextBlock.Style>
+                        </TextBlock>
+
+                        <TextBlock Text="{Binding TongChiThangNay, StringFormat=Chi tháng này: {0:N0} đ}"
+                                   Foreground="{StaticResource ColorTextSecondary}" FontSize="13" Margin="0,0,0,3" HorizontalAlignment="Center"/>
+                        <TextBlock Text="{Binding ChiThangTruocValues[0], StringFormat=Chi tháng trước: {0:N0} đ}"
+                                   Foreground="{StaticResource ColorTextMuted}" FontSize="12" HorizontalAlignment="Center"/>
+
+                        <!-- Legend -->
+                        <StackPanel Orientation="Horizontal" Margin="0,15,0,0" HorizontalAlignment="Center">
+                            <Border Width="12" Height="12" Background="#EF4444" CornerRadius="2" Margin="0,0,6,0" VerticalAlignment="Center"/>
+                            <TextBlock Text="Tháng này" Foreground="{StaticResource ColorTextMuted}" FontSize="12" VerticalAlignment="Center" Margin="0,0,16,0"/>
+                            <Border Width="12" Height="12" Background="#FCA5A5" CornerRadius="2" Margin="0,0,6,0" VerticalAlignment="Center"/>
+                            <TextBlock Text="Tháng trước" Foreground="{StaticResource ColorTextMuted}" FontSize="12" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Grid>
+            </Border>
+
+            <!-- ── Recent Transactions Table ── -->
+            <Border Grid.Column="1" Background="{StaticResource ColorSurface}" CornerRadius="12" Padding="20"
+                    BorderBrush="{StaticResource ColorBorder}" BorderThickness="1">
+                <Border.Effect><DropShadowEffect BlurRadius="8" Color="#E2E8F0" ShadowDepth="1" Opacity="0.5"/></Border.Effect>
+                <DockPanel>
+                    <TextBlock DockPanel.Dock="Top" Text="Giao dịch gần đây"
+                               FontSize="18" FontWeight="Bold" Foreground="{StaticResource ColorTextPrimary}" Margin="0,0,0,20"/>
+
+                    <DataGrid ItemsSource="{Binding RecentTransactions}" 
+                              Style="{StaticResource DataGridDarkStyle}"
+                              IsReadOnly="True"
+                              RowHeight="40"
+                              HeadersVisibility="Column">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Mã Phiếu"  Binding="{Binding SoPhieu}" Width="100"/>
+                            <DataGridTextColumn Header="Ngày Lập"  Binding="{Binding NgayLap, StringFormat=dd/MM/yyyy}" Width="100"/>
+                            <DataGridTextColumn Header="Loại"      Binding="{Binding LoaiPhieu}" Width="70"/>
+                            <DataGridTextColumn Header="Số Tiền"   Binding="{Binding TongTien, StringFormat={}{0:N0}}" Width="120">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="FontWeight" Value="SemiBold"/>
+                                        <Setter Property="VerticalAlignment" Value="Center"/>
+                                        <Setter Property="Margin" Value="10,0"/>
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Header="Người Lập" Binding="{Binding NguoiDung.HoTen}" Width="120"/>
+                            <DataGridTextColumn Header="Nội dung"  Binding="{Binding LyDoChung}" Width="*"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </DockPanel>
+            </Border>
+        </Grid>
     </Grid>
 </UserControl>
 

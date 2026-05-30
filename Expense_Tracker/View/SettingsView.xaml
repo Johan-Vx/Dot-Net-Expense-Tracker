@@ -66,13 +66,28 @@
                 
                 <!-- Tài Khoản Quỹ -->
                 <TabItem Header="Tài Khoản Quỹ">
-                    <DataGrid ItemsSource="{Binding TaiKhoanQuys}" Style="{StaticResource DataGridDarkStyle}" CanUserAddRows="True" CanUserDeleteRows="True" IsReadOnly="False" Margin="0,10,0,0">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="Mã Quỹ" Binding="{Binding MaQuy}" Width="80"/>
-                            <DataGridTextColumn Header="Tên Quỹ" Binding="{Binding TenQuy}" Width="200"/>
-                            <DataGridTextColumn Header="Số Dư Ban Đầu" Binding="{Binding SoDuBanDau}" Width="150"/>
-                        </DataGrid.Columns>
-                    </DataGrid>
+                    <DockPanel Margin="0,10,0,0">
+                        <!-- Toolbar -->
+                        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="0,0,0,10" HorizontalAlignment="Right">
+                            <Button Content="➕ Thêm Quỹ" Command="{Binding AddFundCommand}"
+                                    Style="{StaticResource PrimaryButtonStyle}" Margin="0,0,10,0"/>
+                            <Button Content="🗑 Xóa Quỹ" Command="{Binding DeleteFundCommand}"
+                                    Style="{StaticResource DangerButtonStyle}"/>
+                        </StackPanel>
+
+                        <DataGrid ItemsSource="{Binding TaiKhoanQuys}" 
+                                  SelectedItem="{Binding SelectedFund}"
+                                  Style="{StaticResource DataGridDarkStyle}" 
+                                  CanUserAddRows="False" CanUserDeleteRows="False" 
+                                  IsReadOnly="False" SelectionMode="Single">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Mã Quỹ" Binding="{Binding MaQuy}" Width="80"/>
+                                <DataGridTextColumn Header="Tên Quỹ" Binding="{Binding TenQuy}" Width="200"/>
+                                <DataGridTextColumn Header="Số Dư Ban Đầu" Binding="{Binding SoDuBanDau, StringFormat={}{0:N0}}" Width="150"/>
+                                <DataGridTextColumn Header="Số Dư Hiện Tại" Binding="{Binding SoDuHienTai, StringFormat={}{0:N0}}" IsReadOnly="True" Width="150"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </DockPanel>
                 </TabItem>
 
                 <!-- Người Dùng -->

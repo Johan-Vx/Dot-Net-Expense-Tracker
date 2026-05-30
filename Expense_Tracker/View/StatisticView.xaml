@@ -71,12 +71,12 @@
             <UniformGrid Grid.Row="2" Columns="2" Rows="3" Margin="0,0,0,25">
                 
                 <!-- 1. Doughnut Chart: Tỷ lệ Giao dịch Thu/Chi -->
-                <Border Background="{StaticResource ColorSurface}" CornerRadius="8" Padding="20" Margin="0,0,10,20"
-                        BorderBrush="{StaticResource ColorBorder}" BorderThickness="1">
+                <Border Background="{StaticResource ColorSurface}" CornerRadius="8" Padding="15" Margin="0,0,10,12"
+                        BorderBrush="{StaticResource ColorBorder}" BorderThickness="1" MinHeight="280">
                     <Border.Effect><DropShadowEffect BlurRadius="8" Color="#E2E8F0" Opacity="0.5" ShadowDepth="1"/></Border.Effect>
                     <DockPanel>
-                        <TextBlock DockPanel.Dock="Top" Text="Tỷ lệ Số lượng Phiếu Thu vs Chi" FontWeight="Bold" Foreground="{StaticResource ColorTextPrimary}" FontSize="14" Margin="0,0,0,15"/>
-                        <lvc:PieChart Series="{Binding DoughnutSeries}" LegendLocation="Right" InnerRadius="50" Hoverable="True" DataTooltip="{x:Null}">
+                        <TextBlock DockPanel.Dock="Top" Text="Tỷ lệ Số lượng Phiếu Thu vs Chi" FontWeight="Bold" Foreground="{StaticResource ColorTextPrimary}" FontSize="14" Margin="0,0,0,10"/>
+                        <lvc:PieChart Series="{Binding DoughnutSeries}" LegendLocation="Right" InnerRadius="50" Hoverable="True" DataTooltip="{x:Null}" Height="250">
                             <lvc:PieChart.ChartLegend>
                                 <lvc:DefaultLegend BulletSize="12" Foreground="{StaticResource ColorTextPrimary}"/>
                             </lvc:PieChart.ChartLegend>
@@ -85,12 +85,12 @@
                 </Border>
 
                 <!-- 2. Pie Chart: Cơ cấu chi tiêu theo Danh mục -->
-                <Border Background="{StaticResource ColorSurface}" CornerRadius="8" Padding="20" Margin="10,0,0,20"
-                        BorderBrush="{StaticResource ColorBorder}" BorderThickness="1">
+                <Border Background="{StaticResource ColorSurface}" CornerRadius="8" Padding="15" Margin="10,0,0,12"
+                        BorderBrush="{StaticResource ColorBorder}" BorderThickness="1" MinHeight="280">
                     <Border.Effect><DropShadowEffect BlurRadius="8" Color="#E2E8F0" Opacity="0.5" ShadowDepth="1"/></Border.Effect>
                     <DockPanel>
-                        <TextBlock DockPanel.Dock="Top" Text="Phân bổ Chi tiêu theo Danh mục (6 tháng)" FontWeight="Bold" Foreground="{StaticResource ColorTextPrimary}" FontSize="14" Margin="0,0,0,15"/>
-                        <lvc:PieChart Series="{Binding PieSeries}" LegendLocation="Right" Hoverable="True">
+                        <TextBlock DockPanel.Dock="Top" Text="Phân bổ Chi tiêu theo Danh mục (6 tháng)" FontWeight="Bold" Foreground="{StaticResource ColorTextPrimary}" FontSize="14" Margin="0,0,0,10"/>
+                        <lvc:PieChart Series="{Binding PieSeries}" LegendLocation="Right" Hoverable="True" Height="250">
                             <lvc:PieChart.ChartLegend>
                                 <lvc:DefaultLegend BulletSize="12" Foreground="{StaticResource ColorTextPrimary}"/>
                             </lvc:PieChart.ChartLegend>
@@ -99,12 +99,12 @@
                 </Border>
 
                 <!-- 3. Bar Chart: Top 5 danh mục chi tiêu lớn nhất -->
-                <Border Background="{StaticResource ColorSurface}" CornerRadius="8" Padding="20" Margin="0,0,10,20"
-                        BorderBrush="{StaticResource ColorBorder}" BorderThickness="1">
+                <Border Background="{StaticResource ColorSurface}" CornerRadius="8" Padding="15" Margin="0,0,10,12"
+                        BorderBrush="{StaticResource ColorBorder}" BorderThickness="1" MinHeight="280">
                     <Border.Effect><DropShadowEffect BlurRadius="8" Color="#E2E8F0" Opacity="0.5" ShadowDepth="1"/></Border.Effect>
                     <DockPanel>
-                        <TextBlock DockPanel.Dock="Top" Text="Top 5 Danh mục chi nhiều nhất" FontWeight="Bold" Foreground="{StaticResource ColorTextPrimary}" FontSize="14" Margin="0,0,0,15"/>
-                        <lvc:CartesianChart Series="{Binding BarSeries}">
+                        <TextBlock DockPanel.Dock="Top" Text="Top 5 Danh mục chi nhiều nhất" FontWeight="Bold" Foreground="{StaticResource ColorTextPrimary}" FontSize="14" Margin="0,0,0,10"/>
+                        <lvc:CartesianChart Series="{Binding BarSeries}" Height="250">
                             <lvc:CartesianChart.AxisX>
                                 <lvc:Axis Title="Số tiền (đ)" LabelFormatter="{Binding BarFormatter}" Foreground="{StaticResource ColorTextMuted}"/>
                             </lvc:CartesianChart.AxisX>
@@ -116,12 +116,12 @@
                 </Border>
 
                 <!-- 4. Line Graph: Xu hướng chi tiêu theo thời gian -->
-                <Border Background="{StaticResource ColorSurface}" CornerRadius="8" Padding="20" Margin="10,0,0,20"
-                        BorderBrush="{StaticResource ColorBorder}" BorderThickness="1">
+                <Border Background="{StaticResource ColorSurface}" CornerRadius="8" Padding="15" Margin="10,0,0,12"
+                        BorderBrush="{StaticResource ColorBorder}" BorderThickness="1" MinHeight="280">
                     <Border.Effect><DropShadowEffect BlurRadius="8" Color="#E2E8F0" Opacity="0.5" ShadowDepth="1"/></Border.Effect>
                     <DockPanel>
-                        <TextBlock DockPanel.Dock="Top" Text="Xu hướng Chi tiêu 6 tháng qua" FontWeight="Bold" Foreground="{StaticResource ColorTextPrimary}" FontSize="14" Margin="0,0,0,15"/>
-                        <lvc:CartesianChart Series="{Binding SingleLineSeries}">
+                        <TextBlock DockPanel.Dock="Top" Text="Xu hướng Chi tiêu 6 tháng qua" FontWeight="Bold" Foreground="{StaticResource ColorTextPrimary}" FontSize="14" Margin="0,0,0,10"/>
+                        <lvc:CartesianChart Series="{Binding SingleLineSeries}" Height="250">
                             <lvc:CartesianChart.AxisX>
                                 <lvc:Axis Title="Tháng" Labels="{Binding SingleLineLabels}" Foreground="{StaticResource ColorTextMuted}"/>
                             </lvc:CartesianChart.AxisX>
@@ -133,12 +133,12 @@
                 </Border>
 
                 <!-- 5. Column Chart: So sánh Thu vs Chi -->
-                <Border Background="{StaticResource ColorSurface}" CornerRadius="8" Padding="20" Margin="0,0,10,0"
-                        BorderBrush="{StaticResource ColorBorder}" BorderThickness="1">
+                <Border Background="{StaticResource ColorSurface}" CornerRadius="8" Padding="15" Margin="0,0,10,0"
+                        BorderBrush="{StaticResource ColorBorder}" BorderThickness="1" MinHeight="280">
                     <Border.Effect><DropShadowEffect BlurRadius="8" Color="#E2E8F0" Opacity="0.5" ShadowDepth="1"/></Border.Effect>
                     <DockPanel>
-                        <TextBlock DockPanel.Dock="Top" Text="So sánh Tổng số tiền Thu vs Chi" FontWeight="Bold" Foreground="{StaticResource ColorTextPrimary}" FontSize="14" Margin="0,0,0,15"/>
-                        <lvc:CartesianChart Series="{Binding ColumnSeries}" LegendLocation="Top">
+                        <TextBlock DockPanel.Dock="Top" Text="So sánh Tổng số tiền Thu vs Chi" FontWeight="Bold" Foreground="{StaticResource ColorTextPrimary}" FontSize="14" Margin="0,0,0,10"/>
+                        <lvc:CartesianChart Series="{Binding ColumnSeries}" LegendLocation="Top" Height="250">
                             <lvc:CartesianChart.AxisX>
                                 <lvc:Axis Title="Tháng" Labels="{Binding ColumnLabels}" Foreground="{StaticResource ColorTextMuted}"/>
                             </lvc:CartesianChart.AxisX>
@@ -150,12 +150,12 @@
                 </Border>
 
                 <!-- 6. Line Graph (2+ Line Series): Đối chiếu Số phiếu Thu vs Chi -->
-                <Border Background="{StaticResource ColorSurface}" CornerRadius="8" Padding="20" Margin="10,0,0,0"
-                        BorderBrush="{StaticResource ColorBorder}" BorderThickness="1">
+                <Border Background="{StaticResource ColorSurface}" CornerRadius="8" Padding="15" Margin="10,0,0,0"
+                        BorderBrush="{StaticResource ColorBorder}" BorderThickness="1" MinHeight="280">
                     <Border.Effect><DropShadowEffect BlurRadius="8" Color="#E2E8F0" Opacity="0.5" ShadowDepth="1"/></Border.Effect>
                     <DockPanel>
-                        <TextBlock DockPanel.Dock="Top" Text="Đối chiếu Số lượng giao dịch Thu vs Chi" FontWeight="Bold" Foreground="{StaticResource ColorTextPrimary}" FontSize="14" Margin="0,0,0,15"/>
-                        <lvc:CartesianChart Series="{Binding MultiLineSeries}" LegendLocation="Top">
+                        <TextBlock DockPanel.Dock="Top" Text="Đối chiếu Số lượng giao dịch Thu vs Chi" FontWeight="Bold" Foreground="{StaticResource ColorTextPrimary}" FontSize="14" Margin="0,0,0,10"/>
+                        <lvc:CartesianChart Series="{Binding MultiLineSeries}" LegendLocation="Top" Height="250">
                             <lvc:CartesianChart.AxisX>
                                 <lvc:Axis Title="Tháng" Labels="{Binding MultiLineLabels}" Foreground="{StaticResource ColorTextMuted}"/>
                             </lvc:CartesianChart.AxisX>

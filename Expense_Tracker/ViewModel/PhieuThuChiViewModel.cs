@@ -12,7 +12,7 @@ namespace Expense_Tracker.ViewModel
 {
     public class PhieuThuChiViewModel : BaseViewModel
     {
-        private EXPENSE_TRACKER_DBEntities _context;
+        private EXPENSE_TRACKER_DB_Entities _context;
 
         // ── Master list ──────────────────────────────────────────────
         public ObservableCollection<PhieuThuChi> PhieuThuChis { get; set; }
@@ -68,6 +68,9 @@ namespace Expense_Tracker.ViewModel
             OnPropertyChanged(nameof(SelectedPhieu));
         }
 
+        /// <summary>Public accessor for code-behind CellEditEnding recalculation.</summary>
+        public void TriggerRecalcTongTien() => RecalcTongTien();
+
         // ── Lookup collections ───────────────────────────────────────
         public ObservableCollection<string>      LoaiPhieus   { get; set; }
             = new ObservableCollection<string> { "Thu", "Chi" };
@@ -102,7 +105,7 @@ namespace Expense_Tracker.ViewModel
 
         public PhieuThuChiViewModel()
         {
-            _context = new EXPENSE_TRACKER_DBEntities();
+            _context = new EXPENSE_TRACKER_DB_Entities();
             LoadData();
 
             // ── Thêm phiếu mới ──
@@ -163,14 +166,19 @@ namespace Expense_Tracker.ViewModel
                 {
                     SelectedPhieu.SoPhieu = "PTC" + DateTime.Now.ToString("yyMMddHHmmssff");
                     _context.PhieuThuChi.Add(SelectedPhieu);
+                }
 
-                    // Gán SoPhieu cho các dòng ChiTiet đang chờ
-                    if (ChiTietPhieus != null)
-                        foreach (var ct in ChiTietPhieus.Where(c => string.IsNullOrEmpty(c.SoPhieu)))
+                // Gán SoPhieu cho các dòng ChiTiet đang chờ và thêm vào context nếu là dòng mới
+                if (ChiTietPhieus != null)
+                {
+                    foreach (var ct in ChiTietPhieus)
+                    {
+                        if (ct.MaCT == 0) // Dòng chi tiết mới
                         {
                             ct.SoPhieu = SelectedPhieu.SoPhieu;
                             _context.ChiTietPhieu.Add(ct);
                         }
+                    }
                 }
 
                 // Tổng tiền tự tính (real-time đã cập nhật, lưu lại chắc chắn)
@@ -193,7 +201,8 @@ namespace Expense_Tracker.ViewModel
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Lỗi không xác định: " + ex.Message,
+                    var innerMessage = ex.InnerException?.InnerException?.Message ?? ex.InnerException?.Message ?? ex.Message;
+                    MessageBox.Show("Lỗi không xác định: " + innerMessage,
                         "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             });
@@ -260,7 +269,7 @@ namespace Expense_Tracker.ViewModel
             PhieuThuChis = new ObservableCollection<PhieuThuChi>(
                 _context.PhieuThuChi.Include("TaiKhoanQuy").OrderByDescending(p => p.NgayLap).ToList());
 
-            DanhMucs     = new ObservableCollection<DanhMuc>(_context.DanhMuc.ToList());
+            DanhMucs = new ObservableCollection<DanhMuc>(_context.DanhMuc.ToList());
             TaiKhoanQuys = new ObservableCollection<TaiKhoanQuy>(_context.TaiKhoanQuy.ToList());
 
             OnPropertyChanged(nameof(PhieuThuChis));
@@ -268,6 +277,7 @@ namespace Expense_Tracker.ViewModel
             OnPropertyChanged(nameof(TaiKhoanQuys));
             OnPropertyChanged(nameof(FilteredDanhMucs));
         }
+        
 
         private void LoadChiTiet()
         {

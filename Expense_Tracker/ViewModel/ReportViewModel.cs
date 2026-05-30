@@ -3,117 +3,108 @@ using Expense_Tracker.Module;
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Windows;
 using System.Windows.Input;
 
 namespace Expense_Tracker.ViewModel
 {
     public class ReportViewModel : BaseViewModel
     {
-        private EXPENSE_TRACKER_DBEntities _context;
+        private EXPENSE_TRACKER_DB_Entities _context;
 
-        // ── DatePicker ──────────────────────────────────────────────
+        public ObservableCollection<TaiKhoanQuy> DanhSachQuy { get; set; }
+
+        private string _selectedMaQuy;
+        public string SelectedMaQuy
+        {
+            get => _selectedMaQuy;
+            set { _selectedMaQuy = value; OnPropertyChanged(); }
+        }
+
         private DateTime? _selectedDate;
         public DateTime? SelectedDate
         {
             get => _selectedDate;
-            set
-            {
-                _selectedDate = value;
-                OnPropertyChanged();
-                // Tự động bật checkbox nếu không chọn ngày
-                IsAllDate = !value.HasValue;
-            }
+            set { _selectedDate = value; OnPropertyChanged(); IsAllDate = !value.HasValue; }
         }
 
-        // ── CheckBox "Tất cả ngày" ──────────────────────────────────
         private bool _isAllDate = true;
         public bool IsAllDate
         {
             get => _isAllDate;
-            set
-            {
-                _isAllDate = value;
-                OnPropertyChanged();
-            }
+            set { _isAllDate = value; OnPropertyChanged(); }
         }
 
-        // ── ComboBox Tháng ──────────────────────────────────────────
-        private ObservableCollection<int> _months;
-        public ObservableCollection<int> Months
+        private DateTime _selectedStartTime;
+        public DateTime SelectedStartTime
         {
-            get => _months;
-            set { _months = value; OnPropertyChanged(); }
+            get => _selectedStartTime;
+            set { _selectedStartTime = value; OnPropertyChanged(); }
         }
 
-        private int _selectedMonth;
-        public int SelectedMonth
+        private DateTime _selectedEndTime;
+        public DateTime SelectedEndTime
         {
-            get => _selectedMonth;
-            set { _selectedMonth = value; OnPropertyChanged(); }
+            get => _selectedEndTime;
+            set { _selectedEndTime = value; OnPropertyChanged(); }
         }
 
-        // ── ComboBox Năm ────────────────────────────────────────────
-        private ObservableCollection<int> _years;
-        public ObservableCollection<int> Years
-        {
-            get => _years;
-            set { _years = value; OnPropertyChanged(); }
-        }
+        public ICommand GenerateThuChiCommand { get; }
+        public ICommand GenerateSaoKeCommand { get; }
 
-        private int _selectedYear;
-        public int SelectedYear
-        {
-            get => _selectedYear;
-            set { _selectedYear = value; OnPropertyChanged(); }
-        }
-
-        // ── Command ─────────────────────────────────────────────────
-        public ICommand GenerateReportCommand { get; }
-
-        // ── Event để code-behind nhận tham số tạo report ────────────
-        public event Action<DateTime?, int, int> OnGenerateReport;
+        public event Action<string, DateTime, DateTime, DateTime, string> OnGenerateReport;
 
         public ReportViewModel()
         {
-            _context = new EXPENSE_TRACKER_DBEntities();
-            LoadMonthsAndYears();
+            _context = new EXPENSE_TRACKER_DB_Entities();
+            LoadDanhSachQuy();
+            InitializeDates();
 
-            GenerateReportCommand = new RelayCommand(_ =>
-            {
-                DateTime? dateParam = IsAllDate ? (DateTime?)null : SelectedDate;
-                OnGenerateReport?.Invoke(dateParam, SelectedMonth, SelectedYear);
-            });
+            GenerateThuChiCommand = new RelayCommand(_ => ExecuteGenerateReport("ThuChi"));
+            GenerateSaoKeCommand = new RelayCommand(_ => ExecuteGenerateReport("SaoKe"));
         }
 
-        /// <summary>
-        /// Lấy danh sách Tháng và Năm có dữ liệu từ bảng PhieuThuChi.
-        /// </summary>
-        private void LoadMonthsAndYears()
+        private void LoadDanhSachQuy()
         {
-            var phieuDates = _context.PhieuThuChi
-                .Select(p => p.NgayLap)
-                .ToList();
+            try
+            {
+                DanhSachQuy = new ObservableCollection<TaiKhoanQuy>(_context.TaiKhoanQuy.ToList());
+            }
+            catch { DanhSachQuy = new ObservableCollection<TaiKhoanQuy>(); }
+        }
 
-            // Lấy danh sách tháng distinct, sắp xếp tăng dần
-            var months = phieuDates
-                .Select(d => d.Month)
-                .Distinct()
-                .OrderBy(m => m)
-                .ToList();
+        private void ExecuteGenerateReport(string type)
+        {
+            if (SelectedStartTime > SelectedEndTime)
+            {
+                MessageBox.Show("Ngày bắt đầu không được lớn hơn ngày kết thúc!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
 
-            // Lấy danh sách năm distinct, sắp xếp giảm dần (mới nhất lên trước)
-            var years = phieuDates
-                .Select(d => d.Year)
-                .Distinct()
-                .OrderByDescending(y => y)
-                .ToList();
+            if (type == "SaoKe" && string.IsNullOrEmpty(SelectedMaQuy))
+            {
+                MessageBox.Show("Vui lòng chọn quỹ để thực hiện sao kê!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
 
-            Months = new ObservableCollection<int>(months);
-            Years = new ObservableCollection<int>(years);
+            DateTime dateParam = SelectedDate ?? DateTime.Today;
+            OnGenerateReport?.Invoke(type, dateParam, SelectedStartTime, SelectedEndTime, SelectedMaQuy);
+        }
 
-            // Mặc định chọn tháng/năm hiện tại nếu có trong danh sách
-            SelectedMonth = months.Contains(DateTime.Now.Month) ? DateTime.Now.Month : (months.Any() ? months.First() : 1);
-            SelectedYear = years.Contains(DateTime.Now.Year) ? DateTime.Now.Year : (years.Any() ? years.First() : DateTime.Now.Year);
+        private void InitializeDates()
+        {
+            SelectedStartTime = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1);
+            SelectedEndTime = DateTime.Today;
+
+            try
+            {
+                if (_context.PhieuThuChi.Any())
+                {
+                    SelectedStartTime = _context.PhieuThuChi.Min(p => p.NgayLap);
+                    SelectedEndTime = _context.PhieuThuChi.Max(p => p.NgayLap);
+                }
+            }
+            catch { }
         }
     }
 }

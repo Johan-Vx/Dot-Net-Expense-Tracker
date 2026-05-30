@@ -27,7 +27,7 @@
 
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
-                <!-- #7: Master column fixed 280px, detail flexible -->
+                <!-- Master column fixed 280px, detail flexible -->
                 <ColumnDefinition Width="280"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
@@ -51,16 +51,16 @@
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Số Phiếu"
                                                Binding="{Binding SoPhieu}"
-                                               Width="*"/>
+                                               Width="1*"/>
                             <DataGridTextColumn Header="Ngày"
                                                Binding="{Binding NgayLap, StringFormat=dd/MM/yy}"
-                                               Width="75"/>
+                                               Width="1*"/>
                             <DataGridTextColumn Header="Loại"
                                                Binding="{Binding LoaiPhieu}"
-                                               Width="45"/>
+                                               Width="1*"/>
                             <DataGridTextColumn Header="Tổng"
                                                Binding="{Binding TongTien, StringFormat={}{0:N0}}"
-                                               Width="80"/>
+                                               Width="1*"/>
                         </DataGrid.Columns>
                     </DataGrid>
                 </DockPanel>
@@ -97,167 +97,188 @@
                         <StackPanel Margin="0,0,12,0"
                                     DataContext="{Binding SelectedPhieu}">
 
-                            <!-- Row 1: Ngày Lập + Loại Phiếu -->
-                            <Grid Margin="0,0,0,12">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
+                            <!-- ═══ SECTION A: Thông Tin Chung ═══ -->
+                            <GroupBox Margin="0,0,0,14">
+                                <GroupBox.Header>
+                                    <TextBlock Text="📋 Thông Tin Chung" FontSize="15" FontWeight="Bold"
+                                               Foreground="{StaticResource ColorAccent}"/>
+                                </GroupBox.Header>
+                                <StackPanel Margin="5,8,5,0">
+                                    <!-- Row 1: Ngày Lập + Loại Phiếu -->
+                                    <Grid Margin="0,0,0,12">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
 
-                                <StackPanel Grid.Column="0" Margin="0,0,10,0">
-                                    <TextBlock Text="Ngày Lập" Margin="0,0,0,4"
+                                        <StackPanel Grid.Column="0" Margin="0,0,10,0">
+                                            <TextBlock Text="Ngày Lập" Margin="0,0,0,4"
+                                                       Foreground="{StaticResource ColorTextMuted}"/>
+                                            <DatePicker SelectedDate="{Binding NgayLap}"/>
+                                        </StackPanel>
+
+                                        <StackPanel Grid.Column="1">
+                                            <TextBlock Text="Loại Phiếu" Margin="0,0,0,4"
+                                                       Foreground="{StaticResource ColorTextMuted}"/>
+                                            <!-- LoaiPhieu change → FilteredDanhMucs refresh via ViewModel -->
+                                            <ComboBox ItemsSource="{Binding DataContext.LoaiPhieus,
+                                                                    RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                      SelectedItem="{Binding LoaiPhieu}"/>
+                                        </StackPanel>
+                                    </Grid>
+
+                                    <!-- Row 2: Người Nộp/Nhận + Tài Khoản Quỹ -->
+                                    <Grid Margin="0,0,0,12">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <!-- NguoiNopNhan — UpdateSourceTrigger để validate real-time -->
+                                        <StackPanel Grid.Column="0" Margin="0,0,10,0">
+                                            <TextBlock Foreground="{StaticResource ColorTextMuted}" Margin="0,0,0,4">
+                                                <Run Text="Người Nộp / Nhận"/>
+                                                <Run Text=" *" Foreground="{StaticResource ColorDanger}"/>
+                                            </TextBlock>
+                                            <TextBox Text="{Binding NguoiNopNhan,
+                                                            UpdateSourceTrigger=PropertyChanged}">
+                                                <TextBox.Style>
+                                                    <Style TargetType="TextBox" BasedOn="{StaticResource {x:Type TextBox}}">
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding NguoiNopNhan}" Value="">
+                                                                <Setter Property="BorderBrush" Value="{StaticResource ColorDanger}"/>
+                                                                <Setter Property="ToolTip"     Value="Trường bắt buộc nhập"/>
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </TextBox.Style>
+                                            </TextBox>
+                                        </StackPanel>
+
+                                        <!-- MaQuy — border đỏ khi chưa chọn -->
+                                        <StackPanel Grid.Column="1">
+                                            <TextBlock Foreground="{StaticResource ColorTextMuted}" Margin="0,0,0,4">
+                                                <Run Text="Tài Khoản Quỹ"/>
+                                                <Run Text=" *" Foreground="{StaticResource ColorDanger}"/>
+                                            </TextBlock>
+                                            <ComboBox ItemsSource="{Binding DataContext.TaiKhoanQuys,
+                                                                    RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                      SelectedItem="{Binding TaiKhoanQuy}"
+                                                      SelectedValue="{Binding MaQuy}"
+                                                      SelectedValuePath="MaQuy"
+                                                      DisplayMemberPath="TenQuy">
+                                                <ComboBox.Style>
+                                                    <Style TargetType="ComboBox" BasedOn="{StaticResource {x:Type ComboBox}}">
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding MaQuy}" Value="{x:Null}">
+                                                                <Setter Property="BorderBrush" Value="{StaticResource ColorDanger}"/>
+                                                                <Setter Property="ToolTip"     Value="Vui lòng chọn tài khoản quỹ"/>
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </ComboBox.Style>
+                                            </ComboBox>
+                                        </StackPanel>
+                                    </Grid>
+
+                                    <!-- Lý Do -->
+                                    <TextBlock Text="Lý Do" Margin="0,0,0,4"
                                                Foreground="{StaticResource ColorTextMuted}"/>
-                                    <DatePicker SelectedDate="{Binding NgayLap}"/>
+                                    <TextBox Text="{Binding LyDoChung}"
+                                             Height="55" TextWrapping="Wrap"
+                                             AcceptsReturn="True" Margin="0,0,0,0"/>
                                 </StackPanel>
+                            </GroupBox>
 
-                                <StackPanel Grid.Column="1">
-                                    <TextBlock Text="Loại Phiếu" Margin="0,0,0,4"
-                                               Foreground="{StaticResource ColorTextMuted}"/>
-                                    <!-- LoaiPhieu change → FilteredDanhMucs refresh via ViewModel -->
-                                    <ComboBox ItemsSource="{Binding DataContext.LoaiPhieus,
+                            <!-- ═══ SECTION B: Chi Tiết Phiếu ═══ -->
+                            <GroupBox Margin="0,0,0,0">
+                                <GroupBox.Header>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <TextBlock Grid.Column="0"
+                                                   Text="📝 Chi Tiết Phiếu" FontSize="15" FontWeight="Bold"
+                                                   Foreground="{StaticResource ColorAccent}" VerticalAlignment="Center"/>
+
+                                        <Button Grid.Column="1"
+                                                Content="➕ Thêm Dòng"
+                                                Command="{Binding DataContext.AddChiTietCommand,
+                                                          RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                Style="{StaticResource PrimaryButtonStyle}"
+                                                Padding="8,4"/>
+                                    </Grid>
+                                </GroupBox.Header>
+
+                                <StackPanel Margin="5,8,5,0">
+                                    <!-- DataGrid chi tiết — inline editable -->
+                                    <DataGrid ItemsSource="{Binding DataContext.ChiTietPhieus,
                                                             RelativeSource={RelativeSource AncestorType=UserControl}}"
-                                              SelectedItem="{Binding LoaiPhieu}"/>
-                                </StackPanel>
-                            </Grid>
+                                              Style="{StaticResource DataGridDarkStyle}"
+                                              Height="180"
+                                              CanUserAddRows="False"
+                                              CanUserDeleteRows="False"
+                                              AutoGenerateColumns="False"
+                                              SelectionUnit="FullRow"
+                                              CellEditEnding="ChiTietGrid_CellEditEnding"
+                                              x:Name="ChiTietGrid">
+                                        <DataGrid.Columns>
 
-                            <!-- Row 2: Người Nộp/Nhận + Tài Khoản Quỹ -->
-                            <Grid Margin="0,0,0,12">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
+                                            <!-- FilteredDanhMucs theo LoaiPhieu -->
+                                            <DataGridTemplateColumn Header="Danh Mục *" Width="160">
+                                                <DataGridTemplateColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <ComboBox ItemsSource="{Binding DataContext.FilteredDanhMucs,
+                                                                                RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                                  SelectedValue="{Binding MaDM, UpdateSourceTrigger=PropertyChanged}"
+                                                                  SelectedValuePath="MaDM"
+                                                                  DisplayMemberPath="TenDM"
+                                                                  Background="Transparent"
+                                                                  BorderThickness="0"/>
+                                                    </DataTemplate>
+                                                </DataGridTemplateColumn.CellTemplate>
+                                            </DataGridTemplateColumn>
 
-                                <!-- #1: NguoiNopNhan — UpdateSourceTrigger để validate real-time -->
-                                <StackPanel Grid.Column="0" Margin="0,0,10,0">
-                                    <TextBlock Foreground="{StaticResource ColorTextMuted}" Margin="0,0,0,4">
-                                        <Run Text="Người Nộp / Nhận"/>
-                                        <Run Text=" *" Foreground="{StaticResource ColorDanger}"/>
+                                            <DataGridTextColumn Header="Ghi Chú"
+                                                               Binding="{Binding GhiChu}"
+                                                               Width="*"/>
+
+                                            <!-- SoTien — editable, format N0 -->
+                                            <DataGridTextColumn Header="Số Tiền"
+                                                               Binding="{Binding SoTien, StringFormat={}{0:N0}, UpdateSourceTrigger=LostFocus}"
+                                                               Width="110"/>
+
+                                            <!-- Nút xóa dòng -->
+                                            <DataGridTemplateColumn Header="" Width="36">
+                                                <DataGridTemplateColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <Button Content="✕"
+                                                                Foreground="{StaticResource ColorDanger}"
+                                                                Background="Transparent"
+                                                                BorderThickness="0"
+                                                                FontSize="13"
+                                                                Padding="2"
+                                                                Command="{Binding DataContext.DeleteChiTietCommand,
+                                                                          RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                                CommandParameter="{Binding}"/>
+                                                    </DataTemplate>
+                                                </DataGridTemplateColumn.CellTemplate>
+                                            </DataGridTemplateColumn>
+                                        </DataGrid.Columns>
+                                    </DataGrid>
+
+                                    <!-- Real-time TongTien display -->
+                                    <TextBlock HorizontalAlignment="Right"
+                                               Margin="0,8,0,0"
+                                               FontSize="15" FontWeight="Bold"
+                                               Foreground="{StaticResource ColorDanger}">
+                                        <Run Text="Tổng: "/>
+                                        <Run Text="{Binding TongTien, StringFormat={}{0:N0} đ}"/>
                                     </TextBlock>
-                                    <TextBox Text="{Binding NguoiNopNhan,
-                                                    UpdateSourceTrigger=PropertyChanged}">
-                                        <TextBox.Style>
-                                            <Style TargetType="TextBox" BasedOn="{StaticResource {x:Type TextBox}}">
-                                                <Style.Triggers>
-                                                    <DataTrigger Binding="{Binding NguoiNopNhan}" Value="">
-                                                        <Setter Property="BorderBrush" Value="{StaticResource ColorDanger}"/>
-                                                        <Setter Property="ToolTip"     Value="Trường bắt buộc nhập"/>
-                                                    </DataTrigger>
-                                                </Style.Triggers>
-                                            </Style>
-                                        </TextBox.Style>
-                                    </TextBox>
                                 </StackPanel>
-
-                                <!-- #2: MaQuy — border đỏ khi chưa chọn -->
-                                <StackPanel Grid.Column="1">
-                                    <TextBlock Foreground="{StaticResource ColorTextMuted}" Margin="0,0,0,4">
-                                        <Run Text="Tài Khoản Quỹ"/>
-                                        <Run Text=" *" Foreground="{StaticResource ColorDanger}"/>
-                                    </TextBlock>
-                                    <ComboBox ItemsSource="{Binding DataContext.TaiKhoanQuys,
-                                                            RelativeSource={RelativeSource AncestorType=UserControl}}"
-                                              SelectedItem="{Binding TaiKhoanQuy}"
-                                              SelectedValue="{Binding MaQuy}"
-                                              SelectedValuePath="MaQuy"
-                                              DisplayMemberPath="TenQuy">
-                                        <ComboBox.Style>
-                                            <Style TargetType="ComboBox" BasedOn="{StaticResource {x:Type ComboBox}}">
-                                                <Style.Triggers>
-                                                    <DataTrigger Binding="{Binding MaQuy}" Value="{x:Null}">
-                                                        <Setter Property="BorderBrush" Value="{StaticResource ColorDanger}"/>
-                                                        <Setter Property="ToolTip"     Value="Vui lòng chọn tài khoản quỹ"/>
-                                                    </DataTrigger>
-                                                </Style.Triggers>
-                                            </Style>
-                                        </ComboBox.Style>
-                                    </ComboBox>
-                                </StackPanel>
-                            </Grid>
-
-                            <!-- Lý Do -->
-                            <TextBlock Text="Lý Do" Margin="0,0,0,4"
-                                       Foreground="{StaticResource ColorTextMuted}"/>
-                            <TextBox Text="{Binding LyDoChung}"
-                                     Height="55" TextWrapping="Wrap"
-                                     AcceptsReturn="True" Margin="0,0,0,14"/>
-
-                            <!-- Chi Tiết Phiếu header + Add button -->
-                            <Grid Margin="0,0,0,8">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="Auto"/>
-                                </Grid.ColumnDefinitions>
-
-                                <TextBlock Grid.Column="0"
-                                           Text="Chi Tiết Phiếu"
-                                           FontSize="15" FontWeight="SemiBold"/>
-
-                                <!-- #5: Button thêm dòng tường minh -->
-                                <Button Grid.Column="1"
-                                        Content="➕ Thêm Dòng"
-                                        Command="{Binding DataContext.AddChiTietCommand,
-                                                  RelativeSource={RelativeSource AncestorType=UserControl}}"
-                                        Style="{StaticResource PrimaryButtonStyle}"
-                                        Padding="8,4"/>
-                            </Grid>
-
-                            <!-- #3 + #5: DataGrid chi tiết — CanUserAddRows=False -->
-                            <DataGrid ItemsSource="{Binding DataContext.ChiTietPhieus,
-                                                    RelativeSource={RelativeSource AncestorType=UserControl}}"
-                                      Style="{StaticResource DataGridDarkStyle}"
-                                      Height="160"
-                                      CanUserAddRows="False"
-                                      CanUserDeleteRows="False"
-                                      AutoGenerateColumns="False"
-                                      SelectionUnit="FullRow"
-                                      x:Name="ChiTietGrid">
-                                <DataGrid.Columns>
-
-                                    <!-- #9: FilteredDanhMucs theo LoaiPhieu -->
-                                    <DataGridComboBoxColumn Header="Danh Mục *"
-                                        ItemsSource="{Binding DataContext.FilteredDanhMucs,
-                                                      RelativeSource={RelativeSource AncestorType=UserControl}}"
-                                        DisplayMemberPath="TenDM"
-                                        SelectedValuePath="MaDM"
-                                        SelectedValueBinding="{Binding MaDM}"
-                                        Width="160"/>
-
-                                    <DataGridTextColumn Header="Ghi Chú"
-                                                       Binding="{Binding GhiChu}"
-                                                       Width="*"/>
-
-                                    <!-- #3: SoTien format N0 -->
-                                    <DataGridTextColumn Header="Số Tiền"
-                                                       Binding="{Binding SoTien, StringFormat={}{0:N0}}"
-                                                       Width="110"/>
-
-                                    <!-- #5: Nút xóa dòng -->
-                                    <DataGridTemplateColumn Header="" Width="36">
-                                        <DataGridTemplateColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <Button Content="✕"
-                                                        Foreground="{StaticResource ColorDanger}"
-                                                        Background="Transparent"
-                                                        BorderThickness="0"
-                                                        FontSize="13"
-                                                        Padding="2"
-                                                        Command="{Binding DataContext.DeleteChiTietCommand,
-                                                                  RelativeSource={RelativeSource AncestorType=UserControl}}"
-                                                        CommandParameter="{Binding}"/>
-                                            </DataTemplate>
-                                        </DataGridTemplateColumn.CellTemplate>
-                                    </DataGridTemplateColumn>
-                                </DataGrid.Columns>
-                            </DataGrid>
-
-                            <!-- #6: Real-time TongTien display -->
-                            <TextBlock HorizontalAlignment="Right"
-                                       Margin="0,8,0,0"
-                                       FontSize="15" FontWeight="Bold"
-                                       Foreground="{StaticResource ColorDanger}">
-                                <Run Text="Tổng: "/>
-                                <Run Text="{Binding TongTien, StringFormat={}{0:N0} đ}"/>
-                            </TextBlock>
+                            </GroupBox>
 
                         </StackPanel>
                     </ScrollViewer>

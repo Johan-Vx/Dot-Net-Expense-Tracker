@@ -1,5 +1,6 @@
-﻿using Expense_Tracker.Module;
+using Expense_Tracker.Module;
 using Expense_Tracker.View;
+using System;
 using System.Windows;
 
 namespace Expense_Tracker

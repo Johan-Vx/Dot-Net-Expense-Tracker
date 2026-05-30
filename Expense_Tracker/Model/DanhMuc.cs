@@ -17,6 +17,7 @@ namespace Expense_Tracker.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public DanhMuc()
         {
+            this.ChiTietNganSach = new HashSet<ChiTietNganSach>();
             this.ChiTietPhieu = new HashSet<ChiTietPhieu>();
         }
     
@@ -25,6 +26,8 @@ namespace Expense_Tracker.Model
         public string LoaiDM { get; set; }
         public string MoTa { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ChiTietNganSach> ChiTietNganSach { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ChiTietPhieu> ChiTietPhieu { get; set; }
     }

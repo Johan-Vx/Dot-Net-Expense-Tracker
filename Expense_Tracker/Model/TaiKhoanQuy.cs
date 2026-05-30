@@ -22,8 +22,8 @@ namespace Expense_Tracker.Model
     
         public string MaQuy { get; set; }
         public string TenQuy { get; set; }
-        public Nullable<decimal> SoDuBanDau { get; set; }
-        public Nullable<decimal> SoDuHienTai { get; set; }
+        public decimal SoDuBanDau { get; set; }
+        public decimal SoDuHienTai { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PhieuThuChi> PhieuThuChi { get; set; }
