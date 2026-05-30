@@ -62,19 +62,19 @@
         </Grid>
 
         <!-- ── Doughnut Chart: Chi tiêu tháng này vs tháng trước ── -->
-        <Border Grid.Row="2" Background="{StaticResource ColorSurface}" CornerRadius="12" Padding="20" Margin="0,0,0,20"
+        <Border Grid.Row="2" Background="{StaticResource ColorSurface}" CornerRadius="12" Padding="20" Margin="0,0,0,12"
                 BorderBrush="{StaticResource ColorBorder}" BorderThickness="1">
             <Border.Effect><DropShadowEffect BlurRadius="8" Color="#E2E8F0" ShadowDepth="1" Opacity="0.5"/></Border.Effect>
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="220"/>
+                    <ColumnDefinition Width="180"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
                 <!-- Chart -->
                 <lvc:PieChart Grid.Column="0"
-                              Height="200"
-                              InnerRadius="55"
+                              Height="140"
+                              InnerRadius="40"
                               Hoverable="True"
                               DataTooltip="{x:Null}"
                               LegendLocation="None">
