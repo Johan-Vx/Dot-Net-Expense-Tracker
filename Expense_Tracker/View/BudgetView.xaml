@@ -6,6 +6,9 @@
              xmlns:local="clr-namespace:Expense_Tracker.View"
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="900">
+    <UserControl.Resources>
+        <CollectionViewSource x:Key="DanhMucsSource" Source="{Binding DanhMucs}" />
+    </UserControl.Resources>
     <Grid Margin="0">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -51,11 +54,10 @@
                 <DataGrid.Columns>
                     <!-- Category ComboBox -->
                     <DataGridComboBoxColumn Header="Danh mục Chi"
-                        ItemsSource="{Binding DataContext.DanhMucs,
-                                      RelativeSource={RelativeSource AncestorType=UserControl}}"
+                        ItemsSource="{Binding Source={StaticResource DanhMucsSource}}"
                         DisplayMemberPath="TenDM"
                         SelectedValuePath="MaDM"
-                        SelectedValueBinding="{Binding MaDM}"
+                        SelectedValueBinding="{Binding MaDM, UpdateSourceTrigger=PropertyChanged}"
                         Width="180"/>
 
                     <!-- Planned Amount (editable) -->
