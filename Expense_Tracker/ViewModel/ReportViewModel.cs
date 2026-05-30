@@ -3,6 +3,7 @@ using Expense_Tracker.Module;
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Windows;
 using System.Windows.Input;
 
 namespace Expense_Tracker.ViewModel
@@ -11,33 +12,29 @@ namespace Expense_Tracker.ViewModel
     {
         private EXPENSE_TRACKER_DBEntities _context;
 
-        // ── DatePicker ──────────────────────────────────────────────
+        public ObservableCollection<TaiKhoanQuy> DanhSachQuy { get; set; }
+
+        private string _selectedMaQuy;
+        public string SelectedMaQuy
+        {
+            get => _selectedMaQuy;
+            set { _selectedMaQuy = value; OnPropertyChanged(); }
+        }
+
         private DateTime? _selectedDate;
         public DateTime? SelectedDate
         {
             get => _selectedDate;
-            set
-            {
-                _selectedDate = value;
-                OnPropertyChanged();
-                // Tự động bật checkbox nếu không chọn ngày
-                IsAllDate = !value.HasValue;
-            }
+            set { _selectedDate = value; OnPropertyChanged(); IsAllDate = !value.HasValue; }
         }
 
-        // ── CheckBox "Tất cả ngày" ──────────────────────────────────
         private bool _isAllDate = true;
         public bool IsAllDate
         {
             get => _isAllDate;
-            set
-            {
-                _isAllDate = value;
-                OnPropertyChanged();
-            }
+            set { _isAllDate = value; OnPropertyChanged(); }
         }
 
-        // ── DatePicker Từ Ngày ───────────────────────────────────────
         private DateTime _selectedStartTime;
         public DateTime SelectedStartTime
         {
@@ -45,7 +42,6 @@ namespace Expense_Tracker.ViewModel
             set { _selectedStartTime = value; OnPropertyChanged(); }
         }
 
-        // ── DatePicker Đến Ngày ───────────────────────────────────────
         private DateTime _selectedEndTime;
         public DateTime SelectedEndTime
         {
@@ -53,27 +49,48 @@ namespace Expense_Tracker.ViewModel
             set { _selectedEndTime = value; OnPropertyChanged(); }
         }
 
-        // ── Command ─────────────────────────────────────────────────
-        public ICommand GenerateReportCommand { get; }
+        public ICommand GenerateThuChiCommand { get; }
+        public ICommand GenerateSaoKeCommand { get; }
 
-        // ── Event để code-behind nhận tham số tạo report ────────────
-        public event Action<DateTime?, DateTime, DateTime> OnGenerateReport;
+        public event Action<string, DateTime, DateTime, DateTime, string> OnGenerateReport;
 
         public ReportViewModel()
         {
             _context = new EXPENSE_TRACKER_DBEntities();
+            LoadDanhSachQuy();
             InitializeDates();
 
-            GenerateReportCommand = new RelayCommand(_ =>
-            {
-                DateTime? dateParam = IsAllDate ? (DateTime?)null : SelectedDate;
-                OnGenerateReport?.Invoke(dateParam, SelectedStartTime, SelectedEndTime);
-            });
+            GenerateThuChiCommand = new RelayCommand(_ => ExecuteGenerateReport("ThuChi"));
+            GenerateSaoKeCommand = new RelayCommand(_ => ExecuteGenerateReport("SaoKe"));
         }
 
-        /// <summary>
-        /// Khởi tạo khoảng thời gian lọc báo cáo mặc định
-        /// </summary>
+        private void LoadDanhSachQuy()
+        {
+            try
+            {
+                DanhSachQuy = new ObservableCollection<TaiKhoanQuy>(_context.TaiKhoanQuy.ToList());
+            }
+            catch { DanhSachQuy = new ObservableCollection<TaiKhoanQuy>(); }
+        }
+
+        private void ExecuteGenerateReport(string type)
+        {
+            if (SelectedStartTime > SelectedEndTime)
+            {
+                MessageBox.Show("Ngày bắt đầu không được lớn hơn ngày kết thúc!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            if (type == "SaoKe" && string.IsNullOrEmpty(SelectedMaQuy))
+            {
+                MessageBox.Show("Vui lòng chọn quỹ để thực hiện sao kê!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            DateTime dateParam = SelectedDate ?? DateTime.Today;
+            OnGenerateReport?.Invoke(type, dateParam, SelectedStartTime, SelectedEndTime, SelectedMaQuy);
+        }
+
         private void InitializeDates()
         {
             SelectedStartTime = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1);
@@ -83,17 +100,11 @@ namespace Expense_Tracker.ViewModel
             {
                 if (_context.PhieuThuChi.Any())
                 {
-                    var minDate = _context.PhieuThuChi.Min(p => p.NgayLap);
-                    var maxDate = _context.PhieuThuChi.Max(p => p.NgayLap);
-
-                    SelectedStartTime = minDate;
-                    SelectedEndTime = maxDate;
+                    SelectedStartTime = _context.PhieuThuChi.Min(p => p.NgayLap);
+                    SelectedEndTime = _context.PhieuThuChi.Max(p => p.NgayLap);
                 }
             }
-            catch
-            {
-                // Fallback nếu lỗi DB
-            }
+            catch { }
         }
     }
 }

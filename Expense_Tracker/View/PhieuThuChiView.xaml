@@ -227,13 +227,19 @@
                                         <DataGrid.Columns>
 
                                             <!-- FilteredDanhMucs theo LoaiPhieu -->
-                                            <DataGridComboBoxColumn Header="Danh Mục *"
-                                                ItemsSource="{Binding DataContext.FilteredDanhMucs,
-                                                              RelativeSource={RelativeSource AncestorType=UserControl}}"
-                                                DisplayMemberPath="TenDM"
-                                                SelectedValuePath="MaDM"
-                                                SelectedValueBinding="{Binding MaDM}"
-                                                Width="160"/>
+                                            <DataGridTemplateColumn Header="Danh Mục *" Width="160">
+                                                <DataGridTemplateColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <ComboBox ItemsSource="{Binding DataContext.FilteredDanhMucs,
+                                                                                RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                                  SelectedValue="{Binding MaDM, UpdateSourceTrigger=PropertyChanged}"
+                                                                  SelectedValuePath="MaDM"
+                                                                  DisplayMemberPath="TenDM"
+                                                                  Background="Transparent"
+                                                                  BorderThickness="0"/>
+                                                    </DataTemplate>
+                                                </DataGridTemplateColumn.CellTemplate>
+                                            </DataGridTemplateColumn>
 
                                             <DataGridTextColumn Header="Ghi Chú"
                                                                Binding="{Binding GhiChu}"

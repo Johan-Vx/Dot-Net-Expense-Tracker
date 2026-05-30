@@ -10,10 +10,16 @@
 namespace Expense_Tracker.Model
 {
     using System;
+    using System.Collections.Generic;
     
-    public partial class sp_helpdiagramdefinition_Result
+    public partial class ChiTietNganSach
     {
-        public Nullable<int> version { get; set; }
-        public byte[] definition { get; set; }
+        public int MaChiTietNganSach { get; set; }
+        public int MaNganSach { get; set; }
+        public string MaDM { get; set; }
+        public decimal SoTienKeHoach { get; set; }
+    
+        public virtual DanhMuc DanhMuc { get; set; }
+        public virtual NganSach NganSach { get; set; }
     }
 }

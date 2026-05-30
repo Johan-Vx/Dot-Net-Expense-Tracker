@@ -16,14 +16,14 @@ namespace Expense_Tracker.Report {
     using CrystalDecisions.CrystalReports.Engine;
     
     
-    public class QuarterlyReports : ReportClass {
+    public class FundStatementReportrpt : ReportClass {
         
-        public QuarterlyReports() {
+        public FundStatementReportrpt() {
         }
         
         public override string ResourceName {
             get {
-                return "QuarterlyReports.rpt";
+                return "FundStatementReportrpt.rpt";
             }
             set {
                 // Do nothing
@@ -41,7 +41,7 @@ namespace Expense_Tracker.Report {
         
         public override string FullResourceName {
             get {
-                return "Expense_Tracker.Report.QuarterlyReports.rpt";
+                return "Expense_Tracker.Report.FundStatementReportrpt.rpt";
             }
             set {
                 // Do nothing
@@ -87,12 +87,52 @@ namespace Expense_Tracker.Report {
                 return this.ReportDefinition.Sections[4];
             }
         }
+        
+        [Browsable(false)]
+        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+        public CrystalDecisions.Shared.IParameterField Parameter_p_DateReport {
+            get {
+                return this.DataDefinition.ParameterFields[0];
+            }
+        }
+        
+        [Browsable(false)]
+        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+        public CrystalDecisions.Shared.IParameterField Parameter_MaQuy {
+            get {
+                return this.DataDefinition.ParameterFields[1];
+            }
+        }
+        
+        [Browsable(false)]
+        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+        public CrystalDecisions.Shared.IParameterField Parameter_TuNgay {
+            get {
+                return this.DataDefinition.ParameterFields[2];
+            }
+        }
+        
+        [Browsable(false)]
+        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+        public CrystalDecisions.Shared.IParameterField Parameter_DenNgay {
+            get {
+                return this.DataDefinition.ParameterFields[3];
+            }
+        }
+        
+        [Browsable(false)]
+        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+        public CrystalDecisions.Shared.IParameterField Parameter_p_ReportPerson {
+            get {
+                return this.DataDefinition.ParameterFields[4];
+            }
+        }
     }
     
     [System.Drawing.ToolboxBitmapAttribute(typeof(CrystalDecisions.Shared.ExportOptions), "report.bmp")]
-    public class CachedQuarterlyReports : Component, ICachedReport {
+    public class CachedFundStatementReportrpt : Component, ICachedReport {
         
-        public CachedQuarterlyReports() {
+        public CachedFundStatementReportrpt() {
         }
         
         [Browsable(false)]
@@ -129,7 +169,7 @@ namespace Expense_Tracker.Report {
         }
         
         public virtual CrystalDecisions.CrystalReports.Engine.ReportDocument CreateReport() {
-            QuarterlyReports rpt = new QuarterlyReports();
+            FundStatementReportrpt rpt = new FundStatementReportrpt();
             rpt.Site = this.Site;
             return rpt;
         }

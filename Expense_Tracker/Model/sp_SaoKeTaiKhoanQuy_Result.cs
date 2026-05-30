@@ -11,10 +11,15 @@ namespace Expense_Tracker.Model
 {
     using System;
     
-    public partial class sp_TongHopChiTieuTheoDanhMuc_Result
+    public partial class sp_SaoKeTaiKhoanQuy_Result
     {
-        public string MaDM { get; set; }
-        public string TenDM { get; set; }
-        public decimal TongTien { get; set; }
+        public string TenQuy { get; set; }
+        public Nullable<decimal> SoDuDauKy { get; set; }
+        public string SoPhieu { get; set; }
+        public System.DateTime NgayLap { get; set; }
+        public string LoaiPhieu { get; set; }
+        public string LyDoChung { get; set; }
+        public decimal TienThu { get; set; }
+        public decimal TienChi { get; set; }
     }
 }

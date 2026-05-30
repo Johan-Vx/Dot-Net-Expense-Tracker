@@ -12,20 +12,22 @@ namespace Expense_Tracker.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class TaiKhoanQuy
+    public partial class NganSach
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public TaiKhoanQuy()
+        public NganSach()
         {
-            this.PhieuThuChi = new HashSet<PhieuThuChi>();
+            this.ChiTietNganSach = new HashSet<ChiTietNganSach>();
         }
     
-        public string MaQuy { get; set; }
-        public string TenQuy { get; set; }
-        public decimal SoDuBanDau { get; set; }
-        public decimal SoDuHienTai { get; set; }
+        public int MaNganSach { get; set; }
+        public int MaND { get; set; }
+        public int Thang { get; set; }
+        public int Nam { get; set; }
+        public decimal TongTien { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PhieuThuChi> PhieuThuChi { get; set; }
+        public virtual ICollection<ChiTietNganSach> ChiTietNganSach { get; set; }
+        public virtual NguoiDung NguoiDung { get; set; }
     }
 }

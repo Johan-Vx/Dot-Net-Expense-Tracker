@@ -4,19 +4,23 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="cf4255a42fa34807ab837d4c8f3b2e77" Name="Diagram1" ZoomLevel="47">
-        <EntityTypeShape EntityType="EXPENSE_TRACKER_DBModel.ChiTietPhieu" Width="1.5" PointX="7.5" PointY="1.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="EXPENSE_TRACKER_DBModel.DanhMuc" Width="1.5" PointX="4.25" PointY="4.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="EXPENSE_TRACKER_DBModel.NguoiDung" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="EXPENSE_TRACKER_DBModel.PhieuThuChi" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="EXPENSE_TRACKER_DBModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="EXPENSE_TRACKER_DBModel.TaiKhoanQuy" Width="1.5" PointX="1.5" PointY="4.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="EXPENSE_TRACKER_DBModel.VaiTro" Width="1.5" PointX="0.75" PointY="1.625" IsExpanded="true" />
-        <AssociationConnector Association="EXPENSE_TRACKER_DBModel.FK__ChiTietPh__SoPhi__5EBF139D" ManuallyRouted="false" />
-        <AssociationConnector Association="EXPENSE_TRACKER_DBModel.FK__ChiTietPhi__MaDM__5FB337D6" ManuallyRouted="false" />
-        <AssociationConnector Association="EXPENSE_TRACKER_DBModel.FK__NguoiDung__MaVai__4D94879B" ManuallyRouted="false" />
-        <AssociationConnector Association="EXPENSE_TRACKER_DBModel.FK__PhieuThuC__Nguoi__5AEE82B9" ManuallyRouted="false" />
-        <AssociationConnector Association="EXPENSE_TRACKER_DBModel.FK__PhieuThuC__MaQuy__59FA5E80" ManuallyRouted="false" />
+      <Diagram DiagramId="a557d659c938428d96377356b11c315f" Name="Diagram1">
+        <EntityTypeShape EntityType="EXPENSE_TRACKER_DBModel.ChiTietNganSach" Width="1.5" PointX="7.5" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="EXPENSE_TRACKER_DBModel.ChiTietPhieu" Width="1.5" PointX="7.5" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EXPENSE_TRACKER_DBModel.DanhMuc" Width="1.5" PointX="5.25" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="EXPENSE_TRACKER_DBModel.NganSach" Width="1.5" PointX="5.25" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EXPENSE_TRACKER_DBModel.NguoiDung" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="EXPENSE_TRACKER_DBModel.PhieuThuChi" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EXPENSE_TRACKER_DBModel.TaiKhoanQuy" Width="1.5" PointX="3" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="EXPENSE_TRACKER_DBModel.VaiTro" Width="1.5" PointX="0.75" PointY="5.375" IsExpanded="true" />
+        <AssociationConnector Association="EXPENSE_TRACKER_DBModel.FK_CTNS_DM" ManuallyRouted="false" />
+        <AssociationConnector Association="EXPENSE_TRACKER_DBModel.FK_ChiTietNganSach_NganSach" ManuallyRouted="false" />
+        <AssociationConnector Association="EXPENSE_TRACKER_DBModel.FK__ChiTietPh__SoPhi__5629CD9C" ManuallyRouted="false" />
+        <AssociationConnector Association="EXPENSE_TRACKER_DBModel.FK__ChiTietPhi__MaDM__571DF1D5" ManuallyRouted="false" />
+        <AssociationConnector Association="EXPENSE_TRACKER_DBModel.FK_NganSach_NguoiDung" ManuallyRouted="false" />
+        <AssociationConnector Association="EXPENSE_TRACKER_DBModel.FK__NguoiDung__MaVai__5812160E" ManuallyRouted="false" />
+        <AssociationConnector Association="EXPENSE_TRACKER_DBModel.FK__PhieuThuC__Nguoi__59FA5E80" ManuallyRouted="false" />
+        <AssociationConnector Association="EXPENSE_TRACKER_DBModel.FK__PhieuThuC__MaQuy__59063A47" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -36,34 +36,46 @@ namespace Expense_Tracker.View
             {
                 using (var context = new EXPENSE_TRACKER_DBEntities())
                 {
-                    ReportDocument report;
+                    ReportDocument report=new ReportDocument();
+                    DotNetEnv.Env.Load();
+                    string db_user = Environment.GetEnvironmentVariable("DB_USER");
+                    string db_password = Environment.GetEnvironmentVariable("DB_PASSWORD");
+                    string db_severname = Environment.GetEnvironmentVariable("DB_SERVERNAME");
+                    string db_dbname = Environment.GetEnvironmentVariable("DB_DBNAME");
+
+                    string reportName = type == "ThuChi" ? "MonthlyReports.rpt" : "FundStatementReportrpt.rpt";
+                    string reportPath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Report", reportName);
+                    
+                    report.Load(reportPath);
 
                     if (type == "ThuChi")
                     {
                         var data = context.sp_BaoCaoThuChiTheoThangChiTiet(dateParam.Month, dateParam.Year).ToList();
-                        report = new MonthlyReports();
                         report.SetDataSource(data);
 
-                        // Set parameters for MonthlyReports
-                        report.SetParameterValue("p_DateReport", DateTime.Now);
-                        report.SetParameterValue("TuNgay", startTime);
-                        report.SetParameterValue("DenNgay", endTime);
-                        report.SetParameterValue("p_ReportPerson", SessionManager.CurrentUser?.HoTen ?? "");
+                        // Set parameters for MonthlyReports (with @ prefix)
+                        report.SetParameterValue("@p_DateReport", DateTime.Now);
+                        report.SetParameterValue("@TuNgay", startTime);
+                        report.SetParameterValue("@DenNgay", endTime);
+                        report.SetParameterValue("@p_ReportPerson", SessionManager.CurrentUser?.HoTen ?? "");
                     }
                     else // "SaoKe"
                     {
                         var data = context.sp_SaoKeTaiKhoanQuy(maQuy, startTime, endTime).ToList();
-                        report = new FundStatementReportrpt();
                         report.SetDataSource(data);
 
-                        // Set parameters for FundStatementReport
-                        report.SetParameterValue("p_DateReport", DateTime.Now);
-                        report.SetParameterValue("MaQuy", maQuy ?? "");
-                        report.SetParameterValue("TuNgay", startTime);
-                        report.SetParameterValue("DenNgay", endTime);
-                        report.SetParameterValue("p_ReportPerson", SessionManager.CurrentUser?.HoTen ?? "");
+                        // Set parameters for FundStatementReport (with @ prefix)
+                        report.SetParameterValue("@p_DateReport", DateTime.Now);
+                        report.SetParameterValue("@MaQuy", maQuy ?? "");
+                        report.SetParameterValue("@TuNgay", startTime);
+                        report.SetParameterValue("@DenNgay", endTime);
+                        report.SetParameterValue("@p_ReportPerson", SessionManager.CurrentUser?.HoTen ?? "");
                     }
 
+                    // Set database logon AFTER loading the report
+                    report.SetDatabaseLogon(db_user, db_password, db_severname, db_dbname);
+
+                    
                     MainReport.ViewerCore.ReportSource = report;
                 }
             }

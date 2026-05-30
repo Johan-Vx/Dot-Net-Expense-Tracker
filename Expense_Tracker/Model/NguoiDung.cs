@@ -17,6 +17,7 @@ namespace Expense_Tracker.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public NguoiDung()
         {
+            this.NganSach = new HashSet<NganSach>();
             this.PhieuThuChi = new HashSet<PhieuThuChi>();
         }
     
@@ -25,8 +26,10 @@ namespace Expense_Tracker.Model
         public string MatKhauHash { get; set; }
         public string HoTen { get; set; }
         public int MaVaiTro { get; set; }
-        public Nullable<bool> TrangThai { get; set; }
+        public bool TrangThai { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<NganSach> NganSach { get; set; }
         public virtual VaiTro VaiTro { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PhieuThuChi> PhieuThuChi { get; set; }

@@ -11,9 +11,12 @@ namespace Expense_Tracker.Model
 {
     using System;
     
-    public partial class sproc_ThongKeThuChiThang_Result
+    public partial class sp_XacThucTaiKhoan_Result
     {
-        public string LoaiPhieu { get; set; }
-        public Nullable<decimal> TongTienThang { get; set; }
+        public int MaND { get; set; }
+        public string TenDangNhap { get; set; }
+        public string HoTen { get; set; }
+        public int MaVaiTro { get; set; }
+        public string TenVaiTro { get; set; }
     }
 }

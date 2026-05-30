@@ -82,7 +82,7 @@ namespace Expense_Tracker.ViewModel
 
                     var now = DateTime.Now;
                     
-                    var thangNay = context.sproc_ThongKeThuChiThang(now.Month, now.Year).ToList();
+                    var thangNay = context.sp_ThongKeThuChiThang(now.Month, now.Year).ToList();
                     TongThuThangNay = thangNay.FirstOrDefault(x => x.LoaiPhieu == "Thu")?.TongTienThang ?? 0m;
                     TongChiThangNay = thangNay.FirstOrDefault(x => x.LoaiPhieu == "Chi")?.TongTienThang ?? 0m;
 

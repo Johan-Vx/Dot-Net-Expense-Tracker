@@ -41,6 +41,7 @@
                     <!-- Navigation Buttons -->
                     <Button Content="📊 Tổng Quan" Command="{Binding NavigateDashboardCommand}" Style="{StaticResource SidebarButtonStyle}"/>
                     <Button Content="📝 Lập Phiếu" Command="{Binding NavigatePhieuThuChiCommand}" Style="{StaticResource SidebarButtonStyle}"/>
+                    <Button Content="💰 Ngân Sách" Command="{Binding NavigateBudgetCommand}" Style="{StaticResource SidebarButtonStyle}"/>
                     <Button Content="📖 Sổ Quỹ" Command="{Binding NavigateLedgerCommand}" Style="{StaticResource SidebarButtonStyle}"/>
                     <Button Content="📈 Thống Kê" Command="{Binding NavigateStatisticCommand}" Style="{StaticResource SidebarButtonStyle}"/>
                     <Button Content="📑Báo cáo" Command="{Binding NavigateReportCommand}" Style="{StaticResource SidebarButtonStyle}"/>
